@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://5exh3vxe1lp4"]
+
+[ext_resource type="Texture2D" uid="uid://c4odutsy2ev24" path="res://Assets/button_0.png" id="1_k5sjp"]
+[ext_resource type="Script" path="res://Scripts/button.gd" id="2_gqq5f"]
+
+[sub_resource type="Animation" id="Animation_8yhub"]
+resource_name = "not_selected"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6q7rq"]
+_data = {
+"not_selected": SubResource("Animation_8yhub")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1x6pw"]
+atlas = ExtResource("1_k5sjp")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b18bl"]
+atlas = ExtResource("1_k5sjp")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qh0mm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1x6pw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b18bl")
+}],
+"loop": true,
+"name": &"selected",
+"speed": 5.0
+}]
+
+[node name="Button" type="Button"]
+offset_right = 61.0
+offset_bottom = 52.0
+toggle_mode = true
+flat = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6q7rq")
+}
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(31, 27)
+scale = Vector2(1, 0.984375)
+sprite_frames = SubResource("SpriteFrames_qh0mm")
+animation = &"selected"
+script = ExtResource("2_gqq5f")
