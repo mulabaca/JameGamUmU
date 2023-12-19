@@ -12,7 +12,7 @@ config_version=5
 
 config/name="12 Days Before Quota"
 run/main_scene="res://Scenes/test.tscn"
-config/features=PackedStringArray("4.2", "Mobile")
+config/features=PackedStringArray("4.2", "C#", "Mobile")
 config/icon="res://icon.svg"
 
 [display]
