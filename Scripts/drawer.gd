@@ -1,7 +1,7 @@
 extends Control
 
 
-var slideDistance = 57.0
+var slideDistance = 97.0
 var drawSpeed = slideDistance/10.0
 
 var isOpen = false
@@ -16,11 +16,9 @@ func _ready():
 func _process(delta):
 	if (isOpen and snappedf(position.x, 1) != _opened_ancor.x):
 		position += Vector2(drawSpeed, 0.0)
-		print(position)
 	elif(!isOpen and snappedf(position.x, 1) != _closed_ancor.x):
 		position -= Vector2(drawSpeed, 0.0)
 	
 
 func _on_work_station_menu_pressed():
-	print(_opened_ancor)
 	isOpen = !isOpen

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5ogo0w0s5oeg"]
+
+[ext_resource type="Texture2D" uid="uid://ceuwtsx2hq7xb" path="res://Assets/anvil.png" id="1_xat7y"]
+
+[node name="Anvil" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_xat7y")
