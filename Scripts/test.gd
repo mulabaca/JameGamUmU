@@ -49,7 +49,7 @@ func place(grid_position: Vector2i):
 		placing = false
 		buttonGroup.get_pressed_button().set_pressed_no_signal(false)
 	#if cookies >= cost:
-		var turret_instance = selectedTurretScene.instantiate()
+		var turret_instance = selectedTurretScene.instantiate() #instance() does nothing
 		turret_instance.position = Vector2i(grid_position.x + 16 , grid_position.y + 16);
 		add_child(turret_instance)
 
