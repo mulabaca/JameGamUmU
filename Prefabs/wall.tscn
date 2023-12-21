@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://dif6q4m0i2qss"]
+
+[ext_resource type="Texture2D" uid="uid://dkpcb5fe84y7i" path="res://Assets/wall.png" id="1_jrfrt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aof7l"]
+atlas = ExtResource("1_jrfrt")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1yt5t"]
+atlas = ExtResource("1_jrfrt")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5ybl"]
+atlas = ExtResource("1_jrfrt")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5lb68"]
+atlas = ExtResource("1_jrfrt")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_htdbi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aof7l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1yt5t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5ybl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5lb68")
+}],
+"loop": false,
+"name": &"default",
+"speed": 0.0
+}]
+
+[node name="wall" type="Node2D"]
+
+[node name="wallSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_htdbi")
