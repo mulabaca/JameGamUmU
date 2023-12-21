@@ -53,10 +53,17 @@ func button_pressed():
 	else:
 		placing = false;
 		removeAvailability(hoverCell);
-	
-	
+
 	#get turret from button here
-	
+	var currButton : BaseButton = buttonGroup.get_pressed_button()
+	var buttonName = currButton.getName()
+	print("Button name:", buttonName)
+	if buttonName == "AnvilButton":
+		selectedTurretScene = load("res://Prefabs/anvil.tscn")
+		
+	elif buttonName == "FactoryButton":
+		selectedTurretScene = load("res://Prefabs/factory.tscn")
+
 
 
 # Check if a position is occupied
