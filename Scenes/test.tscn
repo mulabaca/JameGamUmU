@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ymxvxwddtp1f"]
+[gd_scene load_steps=10 format=3 uid="uid://ymxvxwddtp1f"]
 
 [ext_resource type="TileSet" uid="uid://chy8k0w1bg5s4" path="res://Assets/Terrain_tile_set.tres" id="1_ca0dn"]
 [ext_resource type="Script" path="res://Scripts/test.gd" id="1_s1qw0"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://Scripts/drawer.gd" id="2_t6h8n"]
 [ext_resource type="PackedScene" uid="uid://5exh3vxe1lp4" path="res://Prefabs/button.tscn" id="3_vlomp"]
 [ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="7_t2kth"]
+[ext_resource type="Script" path="res://Prefabs/turretButton.gd" id="8_74lwp"]
+[ext_resource type="Texture2D" uid="uid://clwg3bymkm5i3" path="res://Assets/factory-icon.png" id="8_ugfjq"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_s1qw0")
@@ -46,13 +48,26 @@ flat = true
 position = Vector2(-33, 128)
 texture = ExtResource("2_1otlr")
 
-[node name="AnvilButton" parent="Camera2D/Menu/WorkStationMenu" instance=ExtResource("3_vlomp")]
+[node name="GridContainer" type="GridContainer" parent="Camera2D/Menu/WorkStationMenu"]
 layout_mode = 0
-offset_left = -96.0
-offset_top = 4.0
-offset_right = -56.0
-offset_bottom = 44.0
+offset_left = -93.0
+offset_top = 2.0
+offset_right = -6.0
+offset_bottom = 252.0
+theme_override_constants/h_separation = 16
+columns = 2
+
+[node name="AnvilButton" parent="Camera2D/Menu/WorkStationMenu/GridContainer" instance=ExtResource("3_vlomp")]
+layout_mode = 2
+script = ExtResource("8_74lwp")
+metadata/Spawn = "anvil"
+
+[node name="FactoryButton" parent="Camera2D/Menu/WorkStationMenu/GridContainer" instance=ExtResource("3_vlomp")]
+layout_mode = 2
+icon = ExtResource("8_ugfjq")
+script = ExtResource("8_74lwp")
 metadata/Spawn = "anvil"
 
 [connection signal="pressed" from="Camera2D/Menu/WorkStationMenu" to="Camera2D/Menu" method="_on_work_station_menu_pressed"]
-[connection signal="toggled" from="Camera2D/Menu/WorkStationMenu/AnvilButton" to="." method="_on_anvil_button_toggled"]
+[connection signal="toggled" from="Camera2D/Menu/WorkStationMenu/GridContainer/AnvilButton" to="." method="_on_anvil_button_toggled"]
+[connection signal="toggled" from="Camera2D/Menu/WorkStationMenu/GridContainer/FactoryButton" to="." method="_on_anvil_button_toggled"]

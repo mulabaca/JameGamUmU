@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://2kxxsudhcxst"]
+
+[ext_resource type="Texture2D" uid="uid://wgwfsteag045" path="res://Assets/factory.png" id="1_iaaop"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mp204"]
+atlas = ExtResource("1_iaaop")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mg5xb"]
+atlas = ExtResource("1_iaaop")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wc72b"]
+resource_name = "factory"
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mp204")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mg5xb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="Factory" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wc72b")
+autoplay = "default"
+frame_progress = 0.224041
