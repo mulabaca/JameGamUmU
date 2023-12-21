@@ -14,3 +14,4 @@ button_group = ExtResource("2_o22es")
 icon = ExtResource("1_hrofn")
 icon_alignment = 1
 metadata/Spawn = ""
+metadata/Cost = 0
