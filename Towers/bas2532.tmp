@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://uyeypu3hd8tm"]
+[gd_scene load_steps=5 format=3 uid="uid://uyeypu3hd8tm"]
 
 [ext_resource type="Script" path="res://Basic_ballista.gd" id="1_vx2h6"]
 [ext_resource type="Texture2D" uid="uid://du45iv02tjinv" path="res://Assets/ballista_frames/christmas_ballista_starting.png" id="2_04yaw"]
-[ext_resource type="Script" path="res://Towers/Timer.gd" id="3_3b5w4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_itse3"]
 size = Vector2(34.0001, 30.9999)
@@ -26,17 +25,16 @@ rotation = 1.5708
 texture = ExtResource("2_04yaw")
 
 [node name="Tower" type="Area2D" parent="."]
+position = Vector2(-6.99382e-07, -16)
 
 [node name="Tower_Area" type="CollisionShape2D" parent="Tower"]
+position = Vector2(6.99384e-07, 16)
 shape = SubResource("CircleShape2D_yxljt")
 
 [node name="Icicle_Container" type="Node" parent="."]
 
 [node name="Timer" type="Timer" parent="."]
-process_callback = 0
 wait_time = 2.0
-one_shot = true
-script = ExtResource("3_3b5w4")
 
 [connection signal="body_entered" from="Tower" to="." method="_on_tower_body_entered"]
 [connection signal="body_exited" from="Tower" to="." method="_on_tower_body_exited"]
