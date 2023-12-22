@@ -33,7 +33,7 @@ func find_nearest_building(buildingArray, currentPos):
 		if closest == null or current_distance < closest_distance:
 			closest = i
 			closest_distance = current_distance
-	print("Closest building ", closest)
+	#print("Closest building ", closest)
 	return closest
 
 func set_next_target():
