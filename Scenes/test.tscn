@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c1ti7jg3mutfc"]
+[gd_scene load_steps=19 format=3 uid="uid://c1ti7jg3mutfc"]
 
 [ext_resource type="TileSet" uid="uid://chy8k0w1bg5s4" path="res://Assets/Terrain_tile_set.tres" id="1_ca0dn"]
 [ext_resource type="Script" path="res://Scripts/test.gd" id="1_s1qw0"]
@@ -15,7 +15,13 @@
 [ext_resource type="PackedScene" uid="uid://da5bnobgws7my" path="res://Mobs/test_mob.tscn" id="11_t4iav"]
 [ext_resource type="PackedScene" uid="uid://bcvn86g7ofwj2" path="res://Prefabs/gobbo.tscn" id="13_hjark"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rsvol"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q7kd1"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_i01ek"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5ymdl"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_s1qw0")
@@ -65,6 +71,7 @@ offset_left = -320.0
 offset_top = -180.0
 offset_right = -312.0
 offset_bottom = -159.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rsvol")
 flat = true
 
 [node name="menu" type="Sprite2D" parent="Camera2D/Menu/WorkStationMenu"]
@@ -84,6 +91,7 @@ columns = 2
 
 [node name="AnvilButton" parent="Camera2D/Menu/WorkStationMenu/GridContainer" instance=ExtResource("3_vlomp")]
 layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_q7kd1")
 text = "
 "
 script = ExtResource("8_74lwp")
@@ -110,6 +118,7 @@ horizontal_alignment = 1
 
 [node name="FactoryButton" parent="Camera2D/Menu/WorkStationMenu/GridContainer" instance=ExtResource("3_vlomp")]
 layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5ymdl")
 icon = ExtResource("8_ugfjq")
 script = ExtResource("8_74lwp")
 metadata/Spawn = "anvil"
@@ -123,7 +132,7 @@ offset_bottom = 55.905
 scale = Vector2(0.5, 0.5)
 text = "100🍪"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Camera2D/Menu/WorkStationMenu"]
+[node name="DebugMenu" type="VBoxContainer" parent="Camera2D/Menu/WorkStationMenu"]
 layout_mode = 0
 offset_left = -97.0
 offset_top = 255.0
@@ -131,7 +140,7 @@ offset_right = -1.0
 offset_bottom = 320.0
 theme = ExtResource("10_8r6rh")
 
-[node name="Button" type="Button" parent="Camera2D/Menu/WorkStationMenu/VBoxContainer"]
+[node name="Button" type="Button" parent="Camera2D/Menu/WorkStationMenu/DebugMenu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 9
 text = "spawn gobbo"
