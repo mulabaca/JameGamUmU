@@ -3,8 +3,8 @@ extends CharacterBody2D
 
 var target
 var speed = 200
-var dmg
-var curtarget
+var dmg = 5
+@onready var curtarget
 	
 func _physics_process(delta):
 	#print("damage: ", dmg)
@@ -13,19 +13,28 @@ func _physics_process(delta):
 	#causes problems due to they are all the same type and the world enemy target
 	#is one gobbo while spawning in multiple gobbos causes it to not know which to choose
 	#get_nodes_in_group
-	curtarget = get_tree().get_root().get_node(str("World/enemies/",target))
+	#curtarget = get_tree().get_root().get_node(str("World/enemies/",target))
+	curtarget = target
 	velocity = global_position.direction_to(curtarget.position) * speed
 	look_at(curtarget.position)
 	move_and_slide()
 
 #the body for this is the icicle itsself
 func _on_area_2d_body_entered(body):
-	print("enemy body: ", body)
-	print("Enemy name1: ", str(body.get_meta("Type")))
-	if "Enemy" in str(body.get_meta("Type")):
-		print("Enemy name: ", str(body.get_meta("Type")))
-		queue_free()
+	print("enemy body in entered: ", curtarget)
+	#print("Enemy name1: ", str(curtarget.get_meta("Type")))
+	print("this is the group",get_tree().get_nodes_in_group("enemy"))
+	if is_instance_valid(body) and curtarget != null:
+		#for meta
+		# if "Enemy" in bocy.get_meta("Type")
+		#for groups
+		if body in get_tree().get_nodes_in_group("enemy"):
+			body.changeHP(dmg)
+			queue_free()
 
-
+func gone():
+	var R = curtarget.instance()
+	get_parent().call_deffered("add_child", R)
+	
 func _on_timer_timeout():
 	queue_free()
