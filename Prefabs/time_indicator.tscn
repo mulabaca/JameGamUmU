@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://dj0g6mqkvedf"]
+
+[ext_resource type="Texture2D" uid="uid://duab1f3alcr6k" path="res://Assets/DatTimeCard.png" id="1_757m1"]
+[ext_resource type="Script" path="res://Scripts/time_indicator.gd" id="1_wyn5d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1s53h"]
+atlas = ExtResource("1_757m1")
+region = Rect2(0, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3sv7c"]
+atlas = ExtResource("1_757m1")
+region = Rect2(0, 128, 256, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bgbtg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1s53h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3sv7c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.0
+}]
+
+[node name="TimeIndicator" type="Node2D"]
+script = ExtResource("1_wyn5d")
+
+[node name="timeCard" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bgbtg")

@@ -141,7 +141,6 @@ func getAvailability(cell: Vector2i):
 	if AdjacentOnly:
 		for c in tileMap.get_surrounding_cells(cell):
 			if !is_cell_availiable(c):
-				print(c)
 				return AVAILABLE
 		return UNAVAILABLE
 	
@@ -156,10 +155,12 @@ func _on_day_timer_timeout():
 			dayTime = time.MORNING
 		time.MIDNIGHT:
 			dayTime = time.DUSK
+			$Camera2D/TimeIndicator.set_day()
 		time.EVENING:
 			dayTime = time.MIDNIGHT
 		time.AFTERNOON:
 			dayTime = time.EVENING
+			$Camera2D/TimeIndicator.set_night()
 		time.NOON:
 			dayTime = time.AFTERNOON
 		time.MORNING:
@@ -197,7 +198,6 @@ func changeLight():
 			const A = Color(1.0,1.0,1.0) #Noon
 			newLight = B*t + A*(1.0-t)
 	
-	print(newLight)
 	tileMap.set_layer_modulate(0, newLight)
 	tileMap.set_layer_modulate(1, newLight)
 	tileMap.set_layer_modulate(2, newLight)
