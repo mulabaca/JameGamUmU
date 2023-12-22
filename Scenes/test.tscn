@@ -6,14 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://bgiu01i2vvt7m" path="res://Assets/menu_background.png" id="2_1otlr"]
 [ext_resource type="Script" path="res://Scripts/drawer.gd" id="2_t6h8n"]
 [ext_resource type="PackedScene" uid="uid://5exh3vxe1lp4" path="res://Prefabs/button.tscn" id="3_vlomp"]
-[ext_resource type="PackedScene" path="res://Prefabs/time_indicator.tscn" id="5_xncab"]
+[ext_resource type="PackedScene" uid="uid://dj0g6mqkvedf" path="res://Prefabs/time_indicator.tscn" id="5_xncab"]
 [ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="7_t2kth"]
 [ext_resource type="Script" path="res://Scripts/entities/turretButton.gd" id="8_74lwp"]
 [ext_resource type="Texture2D" uid="uid://clwg3bymkm5i3" path="res://Assets/factory-icon.png" id="8_ugfjq"]
 [ext_resource type="Theme" uid="uid://dk8t5d0tge33u" path="res://themes/new_theme.tres" id="10_8r6rh"]
 [ext_resource type="PackedScene" uid="uid://uyeypu3hd8tm" path="res://Towers/basic_ballista.tscn" id="10_i8skc"]
 [ext_resource type="PackedScene" uid="uid://da5bnobgws7my" path="res://Mobs/test_mob.tscn" id="11_t4iav"]
-[ext_resource type="PackedScene" path="res://Prefabs/gobbo.tscn" id="13_hjark"]
+[ext_resource type="PackedScene" uid="uid://bcvn86g7ofwj2" path="res://Prefabs/gobbo.tscn" id="13_hjark"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_i01ek"]
 
