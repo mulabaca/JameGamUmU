@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c4r6qhnv0vhww"]
+[gd_scene load_steps=7 format=3 uid="uid://br3ksnoxqr405"]
 
 [ext_resource type="Script" path="res://Scripts/entities/gobbo.gd" id="1_de66h"]
 [ext_resource type="Texture2D" uid="uid://cy2fsk0rc2v4i" path="res://Assets/gobbo_sprite.png" id="1_tcscd"]

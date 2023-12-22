@@ -26,6 +26,7 @@ script = ExtResource("1_s1qw0")
 buttonGroup = ExtResource("2_1ihti")
 AdjacentOnly = true
 dayLenght = 10
+coockiesStored = null
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_ca0dn")

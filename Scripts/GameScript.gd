@@ -221,3 +221,11 @@ func changeLight():
 
 func gained_coockies(coockies):
 	coockiesStored += coockies;
+	$"Camera2D/Coockie counter".set_text("🍪" + str(coockiesStored))
+
+func pay_coockies(cost: int) -> bool:
+	if coockiesStored >= cost:
+		coockiesStored -= cost
+		$"Camera2D/Coockie counter".set_text("🍪" + str(coockiesStored))
+		return true
+	return false

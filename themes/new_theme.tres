@@ -77,3 +77,5 @@ Button/styles/focus = ExtResource("1_qfw6c")
 Button/styles/hover = SubResource("StyleBoxFlat_gucq2")
 Button/styles/normal = SubResource("StyleBoxFlat_i1gl6")
 Button/styles/pressed = SubResource("StyleBoxFlat_8dtqo")
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 4
