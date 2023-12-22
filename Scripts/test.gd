@@ -109,8 +109,8 @@ func removeBuilding(body):
 	for i in range(buildingArray.size()-1, -1, -1):
 			if buildingArray[i] == body:
 				buildingArray.remove_at(i)
-	body.queue_free()
 	tileMap.set_cell(2, body.global_position, 0, Vector2i(0,0), 0)
+	body.queue_free()
 #get global coordinates that match the grid
 func world_to_map(world_position: Vector2):
 	return Vector2i(nearest32(world_position.x), nearest32(world_position.y))
