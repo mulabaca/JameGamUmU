@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 var target
 var speed = 200
-var dmg
+var dmg = 5
 var curtarget
 	
 func _physics_process(delta):
@@ -24,6 +24,7 @@ func _on_area_2d_body_entered(body):
 	print("Enemy name1: ", str(body.get_meta("Type")))
 	if "Enemy" in str(body.get_meta("Type")):
 		print("Enemy name: ", str(body.get_meta("Type")))
+		body.changeHP(dmg)
 		queue_free()
 
 

@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://da5bnobgws7my" path="res://Mobs/test_mob.tscn" id="11_t4iav"]
 [ext_resource type="PackedScene" uid="uid://cn2qab3762nnd" path="res://Mobs/gobbo.tscn" id="13_hjark"]
 [ext_resource type="Script" path="res://Scripts/debug_stuff/spawn.gd" id="14_1t5ij"]
-[ext_resource type="PackedScene" uid="uid://dl6r3ucr4x64p" path="res://Towers/Tree_Missile.tscn" id="18_xpkdm"]
+[ext_resource type="PackedScene" path="res://Towers/Tree_Missile.tscn" id="18_xpkdm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_i01ek"]
 

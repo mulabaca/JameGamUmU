@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+@export var maxHealth:int
+var health:int
+
 const movement_speed: float = 20.0
 var movement_target_position: Vector2 = Vector2(0,0)
 var rng:RandomNumberGenerator = RandomNumberGenerator.new()
@@ -11,7 +14,12 @@ func _ready():
 	# and the navigation layout.
 	navigation_agent.path_desired_distance = 4.0
 	navigation_agent.target_desired_distance = 4.0
-
+	# HP
+	health = maxHealth
+	$HealthBar.set_max(maxHealth)
+	$HealthBar.value = maxHealth
+	$HealthBar.visible = false # hide HP until takes damage
+	
 	# Make sure to not await during _ready.
 	call_deferred("actor_setup")
 
@@ -58,6 +66,24 @@ func _physics_process(delta):
 	velocity = current_agent_position.direction_to(next_path_position) * movement_speed
 	move_and_slide()
 
+# Can heal or do damage to enemy here
+func changeHP(damage):
+	# negative damage values should heal enemy
+	health = health - damage
+	
+	# handle healing to full, dying
+	if health <=0:
+		self.queue_free() # queue for safe deletion
+		return # no need to contine
+	
+	elif health >= maxHealth: # heal to full
+		health = maxHealth
+		await get_tree().create_timer(2).timeout
+		$HealthBar.visible = false
+	
+	$HealthBar.visible = true
+	$HealthBar.value = health
+	
 
 func _on_timer_timeout():
 	set_next_target()

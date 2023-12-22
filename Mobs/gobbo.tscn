@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cn2qab3762nnd"]
+[gd_scene load_steps=9 format=3 uid="uid://cn2qab3762nnd"]
 
-[ext_resource type="Script" path="res://Scripts/entities/gobbo.gd" id="1_de66h"]
+[ext_resource type="Script" path="res://Scripts/entities/baseEnemy.gd" id="1_fw6wn"]
 [ext_resource type="Texture2D" uid="uid://cy2fsk0rc2v4i" path="res://Assets/gobbo_sprite.png" id="1_tcscd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vxbbq"]
@@ -29,12 +29,19 @@ animations = [{
 radius = 6.0
 height = 12.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cmrli"]
+bg_color = Color(0.454902, 0, 0, 0.65098)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rtkry"]
+bg_color = Color(0, 0.705882, 0, 0.815686)
+
 [node name="Gobbo" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
 collision_mask = 7
 motion_mode = 1
 wall_min_slide_angle = 0.0
-script = ExtResource("1_de66h")
+script = ExtResource("1_fw6wn")
+maxHealth = 15
 metadata/damage = 10.0
 metadata/Type = "Enemy"
 
@@ -56,5 +63,15 @@ debug_path_custom_color = Color(1, 0, 0, 1)
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2
 autostart = true
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -11.0
+offset_top = -12.0
+offset_right = 11.0
+offset_bottom = -10.0
+theme_override_styles/background = SubResource("StyleBoxFlat_cmrli")
+theme_override_styles/fill = SubResource("StyleBoxFlat_rtkry")
+step = 1.0
+show_percentage = false
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
