@@ -4,8 +4,13 @@ var health
 var maxHealth
 var bodiesInCollision:Array[Node2D] = []
 @export var breakAnimationFrames: int
+@export var resourceGain: int
+@export var resouceCooldown: int
 
 @onready var timer:Timer = $Timer
+@onready var resourceTimer:Timer = $ResourceTimer
+
+signal gained_coockies(cookies:int)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -50,5 +55,9 @@ func _on_timer_timeout():
 
 func showDamage():
 	var frame = floori(breakAnimationFrames - health/maxHealth * breakAnimationFrames)
-	print(frame)
 	$AnimatedSprite2D.set_frame(frame)
+
+
+func _on_resource_timer_timeout():
+	gained_coockies.emit(resourceGain)
+	$ResourceTimer.start()

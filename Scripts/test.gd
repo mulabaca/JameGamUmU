@@ -4,6 +4,7 @@ extends Node2D
 @export var AdjacentOnly: bool
 @export var dayLenght: int
 @export var buildingArray: Array[Node2D] = []
+@export var coockiesStored: int
 
 enum time{MORNING, NOON, AFTERNOON, EVENING, MIDNIGHT, DUSK}
 
@@ -101,7 +102,8 @@ func place(grid_position: Vector2i):
 		add_child(turret_instance)
 		buildingArray.append(turret_instance)
 		print("Building Array", buildingArray)
-
+		if(turret_instance.has_signal("gained_coockies")):
+			turret_instance.gained_coockies.connect(gained_coockies)
 		# Set the cell in the TileMap to indicate that it's occupied by a turret
 		removeAvailability(hoverCell)
 		tileMap.set_cell(2, Vector2i(grid_position.x/32 , grid_position.y/32), 0, Vector2i(8,0), 0)
@@ -216,3 +218,6 @@ func changeLight():
 	tileMap.set_layer_modulate(0, newLight)
 	tileMap.set_layer_modulate(1, newLight)
 	tileMap.set_layer_modulate(2, newLight)
+
+func gained_coockies(coockies):
+	coockiesStored += coockies;
