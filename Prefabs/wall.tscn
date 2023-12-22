@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dif6q4m0i2qss"]
+[gd_scene load_steps=12 format=3 uid="uid://dif6q4m0i2qss"]
 
 [ext_resource type="Texture2D" uid="uid://dkpcb5fe84y7i" path="res://Assets/wall.png" id="1_jrfrt"]
 [ext_resource type="Script" path="res://Scripts/entities/building.gd" id="1_p5kl0"]
@@ -48,14 +48,18 @@ bg_color = Color(0.454902, 0, 0, 0.65098)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kmawo"]
 bg_color = Color(0, 0.705882, 0, 1)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wqrrq"]
+size = Vector2(28, 28)
+
 [node name="wall" type="Area2D"]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_p5kl0")
+breakAnimationFrames = 4
 metadata/maxHealth = 400
 metadata/health = 400
 
-[node name="wallSprite" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_htdbi")
 script = 100
 metadata/MaxHealth = 400
@@ -73,8 +77,16 @@ theme_override_styles/background = SubResource("StyleBoxFlat_y5cnm")
 theme_override_styles/fill = SubResource("StyleBoxFlat_kmawo")
 max_value = 400.0
 step = 1.0
+show_percentage = false
 
 [node name="Timer" type="Timer" parent="." groups=["building"]]
 wait_time = 0.5
 
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_wqrrq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
