@@ -8,8 +8,9 @@ var curr
 var in_range = false
 @onready var shoot_timer = get_node("Timer")
 
-func _ready():
-	call_deferred("shoot")
+#func _ready():
+	#await get_tree().process_frame
+	#call_deferred("shoot")
 	
 func _physics_process(delta):
 	#print("in range: ",in_range)
@@ -54,6 +55,7 @@ func shoot():
 		var Temp_Icicle = icicle.instantiate()
 		Temp_Icicle.dmg = icicle_dmg
 		Temp_Icicle.target = curr
+		await get_tree().process_frame
 		get_node("Icicle_Container").add_child(Temp_Icicle)
 		Temp_Icicle.global_position = $Aim.global_position
 		
