@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wgwfsteag045"
-path="res://.godot/imported/factory.png-0d784069c884c17202b2afd7f3e61bfd.ctex"
+uid="uid://cy2fsk0rc2v4i"
+path="res://.godot/imported/gobbo_sprite.png-faef72673477d1a69238451263019f5b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/factory.png"
-dest_files=["res://.godot/imported/factory.png-0d784069c884c17202b2afd7f3e61bfd.ctex"]
+source_file="res://Assets/gobbo_sprite.png"
+dest_files=["res://.godot/imported/gobbo_sprite.png-faef72673477d1a69238451263019f5b.ctex"]
 
 [params]
 
