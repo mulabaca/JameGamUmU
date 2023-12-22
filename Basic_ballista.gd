@@ -8,6 +8,9 @@ var curr
 var in_range = false
 @onready var shoot_timer = get_node("Timer")
 
+func _ready():
+	call_deferred("shoot")
+	
 func _physics_process(delta):
 	#print("in range: ",in_range)
 	#print(is_instance_valid(curr))
@@ -21,13 +24,16 @@ func _physics_process(delta):
 #this checks once when something enters
 func _on_tower_body_entered(body):
 	#test_Mob is the node in test.gd for spawning mob
-	if "Enemy" in str(body.get_meta("Type")):
+	#for meta
+	#if "Enemy" in body.get_meta("Type")
+	#for groups
+	if body in get_tree().get_nodes_in_group("enemy"):
 		var tempArray = []
 		currTargets = get_node("Tower").get_overlapping_bodies()
 		#this is to remove the tower from its area and to have it only
 		#shoot at Mobs and nothing else
 		for i in currTargets:
-			if i != self and "Enemy" in str(i.get_meta("Type")):
+			if i != self and i in get_tree().get_nodes_in_group("enemy"):
 				tempArray.append(i)
 		#this is due to at the beginning there are no mobs in range
 		var currTarget = null
@@ -39,6 +45,7 @@ func _on_tower_body_entered(body):
 		#print("the target in ballista: ",currTarget)
 		curr = currTarget
 		print("inrange; ",in_range)
+		print("this is the group",get_tree().get_nodes_in_group("enemy"))
 		shoot()
 		
 		

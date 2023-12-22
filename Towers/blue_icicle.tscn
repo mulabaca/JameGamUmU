@@ -4,16 +4,15 @@
 [ext_resource type="Texture2D" uid="uid://dlbx5c4x8wrr1" path="res://Assets/ammunition/ballista_ammo.png" id="1_o1nli"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5yya7"]
-radius = 3.99993
-height = 17.9997
+radius = 2.99995
+height = 15.9997
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ibejy"]
 radius = 5.0
-height = 20.0
+height = 22.0
 
 [node name="Blue_Icicle" type="CharacterBody2D"]
-collision_layer = 4
-collision_mask = 2
+collision_mask = 3
 script = ExtResource("1_4au4n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -33,4 +32,9 @@ position = Vector2(2, 0)
 rotation = 1.5708
 texture = ExtResource("1_o1nli")
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

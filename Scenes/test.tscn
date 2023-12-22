@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bgiu01i2vvt7m" path="res://Assets/menu_background.png" id="2_1otlr"]
 [ext_resource type="Script" path="res://Scripts/drawer.gd" id="2_t6h8n"]
 [ext_resource type="PackedScene" uid="uid://5exh3vxe1lp4" path="res://Prefabs/button.tscn" id="3_vlomp"]
-[ext_resource type="PackedScene" uid="uid://dj0g6mqkvedf" path="res://Prefabs/time_indicator.tscn" id="5_xncab"]
-[ext_resource type="StyleBox" uid="uid://vd1h3tii45lo" path="res://themes/new_style_box_empty.tres" id="7_brwht"]
+[ext_resource type="PackedScene" path="res://Prefabs/time_indicator.tscn" id="5_xncab"]
+[ext_resource type="StyleBox" path="res://themes/new_style_box_empty.tres" id="7_brwht"]
 [ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="7_t2kth"]
 [ext_resource type="Script" path="res://Scripts/entities/turretButton.gd" id="8_74lwp"]
 [ext_resource type="Texture2D" uid="uid://clwg3bymkm5i3" path="res://Assets/factory-icon.png" id="8_ugfjq"]
@@ -184,13 +184,14 @@ mobName = "gobbo"
 
 [node name="enemies" type="Node" parent="."]
 
-[node name="Test_Mob" parent="enemies" instance=ExtResource("11_t4iav")]
+[node name="Test_Mob" parent="enemies" groups=["enemy"] instance=ExtResource("11_t4iav")]
 position = Vector2(-59, 46)
 collision_layer = 2
 collision_mask = 5
 
 [node name="Gobbo" parent="enemies" instance=ExtResource("13_hjark")]
 position = Vector2(-49, 166)
+collision_layer = 3
 collision_mask = 5
 
 [node name="towers" type="Node" parent="."]
