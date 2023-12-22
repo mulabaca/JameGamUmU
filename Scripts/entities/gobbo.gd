@@ -37,7 +37,7 @@ func find_nearest_building(buildingArray, currentPos):
 	return closest
 
 func set_next_target():
-	var rootNode = get_tree().get_root().get_node("Node2D")
+	var rootNode = get_tree().get_root().get_node("World")
 	var closestBuilding = find_nearest_building(rootNode.buildingArray, global_position)
 	if closestBuilding == null:
 		var randX = rng.randi_range(1, 3)

@@ -18,7 +18,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_i01ek"]
 
-[node name="Node2D" type="Node2D"]
+[node name="World" type="Node2D"]
 script = ExtResource("1_s1qw0")
 buttonGroup = ExtResource("2_1ihti")
 AdjacentOnly = true
@@ -176,7 +176,7 @@ theme_override_font_sizes/font_size = 9
 text = "spawn gobbo"
 
 [node name="Test_Mob" parent="." instance=ExtResource("11_t4iav")]
-position = Vector2(-28, 56)
+position = Vector2(-59, 46)
 
 [node name="Basic_ballista" parent="." instance=ExtResource("10_i8skc")]
 position = Vector2(139, 110)

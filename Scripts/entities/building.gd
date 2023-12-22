@@ -20,7 +20,7 @@ func damage():
 			print(body, " has no damage!")
 	$HealthBar.value = health
 	if health <= 0:
-		var rootNode = get_tree().get_root().get_node("Node2D")
+		var rootNode = get_tree().get_root().get_node("World")
 		rootNode.removeBuilding(self)
 
 func _on_body_entered(body):
