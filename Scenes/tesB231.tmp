@@ -25,8 +25,7 @@
 script = ExtResource("1_s1qw0")
 buttonGroup = ExtResource("2_1ihti")
 AdjacentOnly = true
-dayLenght = 360
-coockiesStored = 150
+dayLenght = 10
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_ca0dn")
@@ -95,7 +94,6 @@ theme_override_styles/focus = ExtResource("7_brwht")
 text = "
 "
 script = ExtResource("8_74lwp")
-cost = 200
 worldNode = NodePath("../../../../..")
 metadata/Spawn = "anvil"
 
@@ -123,7 +121,6 @@ layout_mode = 2
 theme_override_styles/focus = ExtResource("7_brwht")
 icon = ExtResource("8_ugfjq")
 script = ExtResource("8_74lwp")
-cost = 100
 worldNode = NodePath("../../../../..")
 metadata/Spawn = "anvil"
 
@@ -151,7 +148,6 @@ text = "
 "
 icon = ExtResource("11_cgftu")
 script = ExtResource("8_74lwp")
-cost = 300
 worldNode = NodePath("../../../../..")
 metadata/Spawn = "wall"
 

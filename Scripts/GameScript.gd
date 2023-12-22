@@ -18,6 +18,8 @@ var dayTime = time.MORNING
 const AVAILABLE = Vector2i(9,0)
 const UNAVAILABLE = Vector2i(10,0)
 
+signal coockies_changed(coockies)
+
 
 
 func _ready():
@@ -26,10 +28,13 @@ func _ready():
 	#print(buttonGroup.get_buttons())
 	for b in buttonGroup.get_buttons():
 		b.pressed.connect(button_pressed)
+		
 	
 	hoverCell = get_hovered_cell(get_global_mouse_position())
 	
 	$TileMap/dayTimer.start(dayLenght/7.0)
+	coockies_changed.emit(coockiesStored)
+	$"Camera2D/Coockie counter".set_text("🍪" + str(coockiesStored))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -95,8 +100,10 @@ func is_cell_availiable(cell: Vector2i) -> bool:
 #place workstation or turret
 func place(grid_position: Vector2i):
 		placing = false
-		buttonGroup.get_pressed_button().set_pressed_no_signal(false)
-	#if cookies >= cost:
+		var pressed =  buttonGroup.get_pressed_button()
+		pay_coockies(pressed.cost)
+		pressed.set_pressed_no_signal(false)
+		
 		var turret_instance = selectedTurretScene.instantiate() #instance() does nothing
 		turret_instance.position = Vector2i(grid_position.x + 16 , grid_position.y + 16);
 		add_child(turret_instance)
@@ -222,10 +229,13 @@ func changeLight():
 func gained_coockies(coockies):
 	coockiesStored += coockies;
 	$"Camera2D/Coockie counter".set_text("🍪" + str(coockiesStored))
+	coockies_changed.emit(coockiesStored)
 
+#returns bool for weather it successfully paid coockies
 func pay_coockies(cost: int) -> bool:
 	if coockiesStored >= cost:
 		coockiesStored -= cost
 		$"Camera2D/Coockie counter".set_text("🍪" + str(coockiesStored))
+		coockies_changed.emit(coockiesStored)
 		return true
 	return false
