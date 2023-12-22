@@ -12,8 +12,11 @@ func _ready():
 	health = self.get_meta("health")
 	maxHealth = self.get_meta("maxHealth")
 	$HealthBar.set_max(maxHealth)
+	$HealthBar.value = health
+	$HealthBar.visible = false
 
 func damage():
+	$HealthBar.visible = true
 	for body in bodiesInCollision:
 		if body.has_meta("damage"):
 			health = health - body.get_meta("damage")
