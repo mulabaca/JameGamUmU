@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dl6r3ucr4x64p"]
+
+[ext_resource type="Script" path="res://Towers/Tree_Missile.gd" id="1_c4pyi"]
+[ext_resource type="Texture2D" uid="uid://dinc2j2shlntm" path="res://Assets/Cannon frames/treemissile1.png" id="1_hla7i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8817b"]
+radius = 17.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w0otm"]
+radius = 64.0078
+
+[node name="StaticBody2D" type="StaticBody2D"]
+script = ExtResource("1_c4pyi")
+
+[node name="Treemissile1" type="Sprite2D" parent="."]
+texture = ExtResource("1_hla7i")
+
+[node name="Tower_Body" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8817b")
+
+[node name="Aim" type="Marker2D" parent="."]
+
+[node name="Tower" type="Area2D" parent="."]
+
+[node name="Tower_Area" type="CollisionShape2D" parent="Tower"]
+shape = SubResource("CircleShape2D_w0otm")
+
+[node name="Tree_container" type="Node" parent="."]
+
+[node name="Timer" type="Timer" parent="."]

@@ -46,6 +46,7 @@ frame_progress = 0.712978
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ocdb5")
+metadata/Type = "Enemy"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 debug_path_custom_color = Color(1, 0, 0, 1)

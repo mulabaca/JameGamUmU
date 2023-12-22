@@ -17,7 +17,9 @@ func _on_pressed():
 	var selectMob = load("res://Mobs/" + mobName + ".tscn")
 	var mobInstance = selectMob.instantiate()
 	mobInstance.position = spawnPos
-	get_tree().root.add_child(mobInstance)
+	mobInstance.set_meta("Type","Enemy")
+	print(get_tree().get_root().get_node("World/enemies").name)
+	get_tree().get_root().get_node("World/enemies").add_child(mobInstance)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

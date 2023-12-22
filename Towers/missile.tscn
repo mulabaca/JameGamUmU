@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfyj8mwrf2mbj"]
+
+[ext_resource type="Texture2D" uid="uid://bwsdf2am4g0gx" path="res://Assets/ammunition/treemissile_ammo1.png" id="1_uc0ei"]
+[ext_resource type="Texture2D" uid="uid://rldh015bx22a" path="res://Assets/ammunition/treemissile_ammo2.png" id="2_cr32x"]
+
+[node name="Missile" type="CharacterBody2D"]
+
+[node name="TreemissileAmmo1" type="Sprite2D" parent="."]
+texture = ExtResource("1_uc0ei")
+
+[node name="TreemissileAmmo2" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_cr32x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
