@@ -12,14 +12,18 @@ func _get_camera_center():
 	var vsize = get_viewport_rect().size
 	return top_left + 0.5*vsize/vtrans.get_scale()
 
-func _on_pressed():
-	var spawnPos = _get_camera_center()
-	var selectMob = load("res://Mobs/" + mobName + ".tscn")
+func spawn_enemy(mob_name:String, spawn_pos:Vector2):
+	var selectMob = load("res://Mobs/" + mob_name + ".tscn")
 	var mobInstance = selectMob.instantiate()
-	mobInstance.position = spawnPos
+	mobInstance.position = spawn_pos
 	print(get_tree().get_root().get_node("World/enemies").name)
 	get_tree().get_root().get_node("World/enemies/").add_child(mobInstance)
 	#get_tree().root.add_child(mobInstance)
+
+func _on_pressed():
+	var spawnPos = _get_camera_center()
+	spawn_enemy(mobName, spawnPos)
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
