@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c1ti7jg3mutfc"]
+[gd_scene load_steps=12 format=3 uid="uid://c1ti7jg3mutfc"]
 
 [ext_resource type="TileSet" uid="uid://chy8k0w1bg5s4" path="res://Assets/Terrain_tile_set.tres" id="1_ca0dn"]
 [ext_resource type="Script" path="res://Scripts/test.gd" id="1_s1qw0"]
@@ -7,8 +7,9 @@
 [ext_resource type="Script" path="res://Scripts/drawer.gd" id="2_t6h8n"]
 [ext_resource type="PackedScene" uid="uid://5exh3vxe1lp4" path="res://Prefabs/button.tscn" id="3_vlomp"]
 [ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="7_t2kth"]
-[ext_resource type="Script" path="res://Prefabs/turretButton.gd" id="8_74lwp"]
+[ext_resource type="Script" path="res://Scripts/entities/turretButton.gd" id="8_74lwp"]
 [ext_resource type="Texture2D" uid="uid://clwg3bymkm5i3" path="res://Assets/factory-icon.png" id="8_ugfjq"]
+[ext_resource type="Theme" uid="uid://dk8t5d0tge33u" path="res://themes/new_theme.tres" id="10_8r6rh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_i01ek"]
 
@@ -110,6 +111,19 @@ offset_right = 54.925
 offset_bottom = 55.905
 scale = Vector2(0.5, 0.5)
 text = "100🍪"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera2D/Menu/WorkStationMenu"]
+layout_mode = 0
+offset_left = -97.0
+offset_top = 255.0
+offset_right = -1.0
+offset_bottom = 320.0
+theme = ExtResource("10_8r6rh")
+
+[node name="Button" type="Button" parent="Camera2D/Menu/WorkStationMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "spawn gobbo"
 
 [connection signal="timeout" from="Camera2D/Timer" to="Camera2D" method="_on_timer_timeout"]
 [connection signal="pressed" from="Camera2D/Menu/WorkStationMenu" to="Camera2D/Menu" method="_on_work_station_menu_pressed"]
