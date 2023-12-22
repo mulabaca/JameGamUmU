@@ -72,6 +72,9 @@ func button_pressed():
 		
 	elif buttonName == "FactoryButton":
 		selectedTurretScene = load("res://Prefabs/factory.tscn")
+	
+	elif buttonName == "WallButton":
+		selectedTurretScene = load("res://Prefabs/wall.tscn")
 
 
 

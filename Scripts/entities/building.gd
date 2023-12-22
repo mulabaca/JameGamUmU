@@ -10,6 +10,7 @@ var bodiesInCollision:Array[Node2D] = []
 func _ready():
 	health = self.get_meta("health")
 	maxHealth = self.get_meta("maxHealth")
+	$HealthBar.set_max(maxHealth)
 
 func damage():
 	for body in bodiesInCollision:
