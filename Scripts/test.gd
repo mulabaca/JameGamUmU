@@ -59,19 +59,23 @@ func _process(delta):
 func button_pressed():
 	if !placing:
 		settingPlacing = true
-	else:
-		placing = false;
-		removeAvailability(hoverCell);
 
 	#get turret from button here
 	var currButton : BaseButton = buttonGroup.get_pressed_button()
-	var buttonName = currButton.getName()
-	#print("Button name:", buttonName)
-	if buttonName == "AnvilButton":
-		selectedTurretScene = load("res://Prefabs/anvil.tscn")
+	if currButton != null:
+		var buttonName = currButton.getName()
+		#print("Button name:", buttonName)
+		if buttonName == "AnvilButton":
+			selectedTurretScene = load("res://Prefabs/anvil.tscn")
+			
+		elif buttonName == "FactoryButton":
+			selectedTurretScene = load("res://Prefabs/factory.tscn")
 		
-	elif buttonName == "FactoryButton":
-		selectedTurretScene = load("res://Prefabs/factory.tscn")
+		elif buttonName == "WallButton":
+			selectedTurretScene = load("res://Prefabs/wall.tscn")
+	else:
+		placing = false;
+		removeAvailability(hoverCell);
 
 
 
@@ -109,8 +113,10 @@ func removeBuilding(body):
 	for i in range(buildingArray.size()-1, -1, -1):
 			if buildingArray[i] == body:
 				buildingArray.remove_at(i)
+	tileMap.set_cell(0, get_hovered_cell(body.global_position), 0, Vector2i(8,0), 0)
+	tileMap.erase_cell(2, get_hovered_cell(body.global_position))
 	body.queue_free()
-	tileMap.set_cell(2, body.global_position, 0, Vector2i(0,0), 0)
+	
 #get global coordinates that match the grid
 func world_to_map(world_position: Vector2):
 	return Vector2i(nearest32(world_position.x), nearest32(world_position.y))

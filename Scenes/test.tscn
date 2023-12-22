@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c1ti7jg3mutfc"]
+[gd_scene load_steps=18 format=3 uid="uid://c1ti7jg3mutfc"]
 
 [ext_resource type="TileSet" uid="uid://chy8k0w1bg5s4" path="res://Assets/Terrain_tile_set.tres" id="1_ca0dn"]
 [ext_resource type="Script" path="res://Scripts/test.gd" id="1_s1qw0"]
@@ -6,14 +6,16 @@
 [ext_resource type="Texture2D" uid="uid://bgiu01i2vvt7m" path="res://Assets/menu_background.png" id="2_1otlr"]
 [ext_resource type="Script" path="res://Scripts/drawer.gd" id="2_t6h8n"]
 [ext_resource type="PackedScene" uid="uid://5exh3vxe1lp4" path="res://Prefabs/button.tscn" id="3_vlomp"]
-[ext_resource type="PackedScene" path="res://Prefabs/time_indicator.tscn" id="5_xncab"]
+[ext_resource type="PackedScene" uid="uid://dj0g6mqkvedf" path="res://Prefabs/time_indicator.tscn" id="5_xncab"]
+[ext_resource type="StyleBox" uid="uid://vd1h3tii45lo" path="res://themes/new_style_box_empty.tres" id="7_brwht"]
 [ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="7_t2kth"]
 [ext_resource type="Script" path="res://Scripts/entities/turretButton.gd" id="8_74lwp"]
 [ext_resource type="Texture2D" uid="uid://clwg3bymkm5i3" path="res://Assets/factory-icon.png" id="8_ugfjq"]
 [ext_resource type="Theme" uid="uid://dk8t5d0tge33u" path="res://themes/new_theme.tres" id="10_8r6rh"]
 [ext_resource type="PackedScene" uid="uid://uyeypu3hd8tm" path="res://Towers/basic_ballista.tscn" id="10_i8skc"]
+[ext_resource type="Texture2D" uid="uid://chyqviqfj8s3y" path="res://Assets/wall-icon.png" id="11_cgftu"]
 [ext_resource type="PackedScene" uid="uid://da5bnobgws7my" path="res://Mobs/test_mob.tscn" id="11_t4iav"]
-[ext_resource type="PackedScene" uid="uid://cqm0wauql3bdd" path="res://Prefabs/gobbo.tscn" id="13_hjark"]
+[ext_resource type="PackedScene" uid="uid://dcic8fp0golr5" path="res://Prefabs/gobbo.tscn" id="13_hjark"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_i01ek"]
 
@@ -65,6 +67,7 @@ offset_left = -320.0
 offset_top = -180.0
 offset_right = -312.0
 offset_bottom = -159.0
+theme_override_styles/focus = ExtResource("7_brwht")
 flat = true
 
 [node name="menu" type="Sprite2D" parent="Camera2D/Menu/WorkStationMenu"]
@@ -80,10 +83,12 @@ offset_top = 3.0
 offset_right = -7.0
 offset_bottom = 75.0
 theme_override_constants/h_separation = 14
+theme_override_constants/v_separation = 14
 columns = 2
 
 [node name="AnvilButton" parent="Camera2D/Menu/WorkStationMenu/GridContainer" instance=ExtResource("3_vlomp")]
 layout_mode = 2
+theme_override_styles/focus = ExtResource("7_brwht")
 text = "
 "
 script = ExtResource("8_74lwp")
@@ -110,20 +115,57 @@ horizontal_alignment = 1
 
 [node name="FactoryButton" parent="Camera2D/Menu/WorkStationMenu/GridContainer" instance=ExtResource("3_vlomp")]
 layout_mode = 2
+theme_override_styles/focus = ExtResource("7_brwht")
 icon = ExtResource("8_ugfjq")
 script = ExtResource("8_74lwp")
 metadata/Spawn = "anvil"
 
 [node name="Label" type="Label" parent="Camera2D/Menu/WorkStationMenu/GridContainer/FactoryButton"]
-layout_mode = 0
-offset_left = 4.925
-offset_top = 32.905
-offset_right = 54.925
-offset_bottom = 55.905
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -9.57
+offset_top = -1.38
+offset_right = 31.43
+offset_bottom = 21.62
+grow_horizontal = 2
+grow_vertical = 0
 scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 2
 text = "100🍪"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Camera2D/Menu/WorkStationMenu"]
+[node name="WallButton" parent="Camera2D/Menu/WorkStationMenu/GridContainer" instance=ExtResource("3_vlomp")]
+layout_mode = 2
+theme_override_styles/focus = ExtResource("7_brwht")
+text = "
+"
+icon = ExtResource("11_cgftu")
+script = ExtResource("8_74lwp")
+metadata/Spawn = "wall"
+
+[node name="Label" type="Label" parent="Camera2D/Menu/WorkStationMenu/GridContainer/WallButton"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -9.57
+offset_top = -1.38
+offset_right = 31.43
+offset_bottom = 21.62
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 2
+text = "50🍪"
+label_settings = SubResource("LabelSettings_i01ek")
+horizontal_alignment = 1
+
+[node name="DebugMenu" type="VBoxContainer" parent="Camera2D/Menu/WorkStationMenu"]
 layout_mode = 0
 offset_left = -97.0
 offset_top = 255.0
@@ -131,7 +173,7 @@ offset_right = -1.0
 offset_bottom = 320.0
 theme = ExtResource("10_8r6rh")
 
-[node name="Button" type="Button" parent="Camera2D/Menu/WorkStationMenu/VBoxContainer"]
+[node name="Button" type="Button" parent="Camera2D/Menu/WorkStationMenu/DebugMenu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 9
 text = "spawn gobbo"
