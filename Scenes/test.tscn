@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c1ti7jg3mutfc"]
+[gd_scene load_steps=19 format=3 uid="uid://c1ti7jg3mutfc"]
 
 [ext_resource type="TileSet" uid="uid://chy8k0w1bg5s4" path="res://Assets/Terrain_tile_set.tres" id="1_ca0dn"]
 [ext_resource type="Script" path="res://Scripts/GameScript.gd" id="1_s1qw0"]
@@ -17,9 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://da5bnobgws7my" path="res://Mobs/test_mob.tscn" id="11_t4iav"]
 [ext_resource type="PackedScene" uid="uid://cn2qab3762nnd" path="res://Mobs/gobbo.tscn" id="13_hjark"]
 [ext_resource type="Script" path="res://Scripts/debug_stuff/spawn.gd" id="14_1t5ij"]
-[ext_resource type="PackedScene" path="res://Towers/Tree_Missile.tscn" id="18_xpkdm"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_i01ek"]
+[ext_resource type="PackedScene" uid="uid://dl6r3ucr4x64p" path="res://Towers/Tree_Missile.tscn" id="18_xpkdm"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_s1qw0")
@@ -99,25 +97,6 @@ cost = 200
 worldNode = NodePath("../../../../..")
 metadata/Spawn = "anvil"
 
-[node name="Label" type="Label" parent="Camera2D/Menu/WorkStationMenu/GridContainer/AnvilButton"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -9.57
-offset_top = -1.38
-offset_right = 31.43
-offset_bottom = 21.62
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(0.5, 0.5)
-theme_override_font_sizes/font_size = 2
-text = "50🍪"
-label_settings = SubResource("LabelSettings_i01ek")
-horizontal_alignment = 1
-
 [node name="FactoryButton" parent="Camera2D/Menu/WorkStationMenu/GridContainer" node_paths=PackedStringArray("worldNode") instance=ExtResource("3_vlomp")]
 layout_mode = 2
 theme_override_styles/focus = ExtResource("7_brwht")
@@ -126,23 +105,6 @@ script = ExtResource("8_74lwp")
 cost = 100
 worldNode = NodePath("../../../../..")
 metadata/Spawn = "anvil"
-
-[node name="Label" type="Label" parent="Camera2D/Menu/WorkStationMenu/GridContainer/FactoryButton"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -9.57
-offset_top = -1.38
-offset_right = 31.43
-offset_bottom = 21.62
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(0.5, 0.5)
-theme_override_font_sizes/font_size = 2
-text = "100🍪"
 
 [node name="WallButton" parent="Camera2D/Menu/WorkStationMenu/GridContainer" node_paths=PackedStringArray("worldNode") instance=ExtResource("3_vlomp")]
 layout_mode = 2
@@ -154,25 +116,6 @@ script = ExtResource("8_74lwp")
 cost = 300
 worldNode = NodePath("../../../../..")
 metadata/Spawn = "wall"
-
-[node name="Label" type="Label" parent="Camera2D/Menu/WorkStationMenu/GridContainer/WallButton"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -9.57
-offset_top = -1.38
-offset_right = 31.43
-offset_bottom = 21.62
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(0.5, 0.5)
-theme_override_font_sizes/font_size = 2
-text = "50🍪"
-label_settings = SubResource("LabelSettings_i01ek")
-horizontal_alignment = 1
 
 [node name="DebugMenu" type="VBoxContainer" parent="Camera2D/Menu/WorkStationMenu"]
 layout_mode = 0
@@ -190,9 +133,9 @@ script = ExtResource("14_1t5ij")
 mobName = "gobbo"
 
 [node name="Coockie counter" type="Label" parent="Camera2D"]
-offset_left = -272.0
+offset_left = -158.75
 offset_top = -179.0
-offset_right = -209.0
+offset_right = -95.75
 offset_bottom = -156.0
 theme = ExtResource("10_8r6rh")
 text = "🍪0"
@@ -201,12 +144,9 @@ text = "🍪0"
 
 [node name="Test_Mob" parent="enemies" groups=["enemy"] instance=ExtResource("11_t4iav")]
 position = Vector2(-59, 46)
-collision_layer = 2
-collision_mask = 7
 
 [node name="Gobbo" parent="enemies" instance=ExtResource("13_hjark")]
 position = Vector2(-49, 166)
-collision_layer = 3
 collision_mask = 5
 
 [node name="towers" type="Node" parent="."]

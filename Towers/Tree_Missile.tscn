@@ -10,6 +10,7 @@ radius = 17.0
 radius = 64.0078
 
 [node name="StaticBody2D" type="StaticBody2D"]
+collision_mask = 3
 script = ExtResource("1_c4pyi")
 
 [node name="Treemissile1" type="Sprite2D" parent="."]
@@ -21,6 +22,7 @@ shape = SubResource("CircleShape2D_8817b")
 [node name="Aim" type="Marker2D" parent="."]
 
 [node name="Tower" type="Area2D" parent="."]
+collision_mask = 3
 
 [node name="Tower_Area" type="CollisionShape2D" parent="Tower"]
 shape = SubResource("CircleShape2D_w0otm")

@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://rldh015bx22a" path="res://Assets/ammunition/treemissile_ammo2.png" id="2_cr32x"]
 
 [node name="Missile" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 2
 
 [node name="TreemissileAmmo1" type="Sprite2D" parent="."]
 texture = ExtResource("1_uc0ei")
