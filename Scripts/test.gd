@@ -2,6 +2,7 @@ extends Node2D
 
 @export var buttonGroup: ButtonGroup
 @export var AdjacentOnly: bool
+@export var buildingArray: Array[Node2D] = []
 
 var selectedTurretScene = preload("res://Prefabs/anvil.tscn") #replace with null
 var tileMap = null
@@ -17,7 +18,7 @@ const UNAVAILABLE = Vector2i(10,0)
 func _ready():
 	# Assuming TileMap is a child of the main scene
 	tileMap = $TileMap as Node2D
-	print(buttonGroup.get_buttons())
+	#print(buttonGroup.get_buttons())
 	for b in buttonGroup.get_buttons():
 		b.pressed.connect(button_pressed)
 	
@@ -32,7 +33,7 @@ func _process(delta):
 		
 		if (Input.is_action_pressed("placeTurret")):
 			var grid_position = world_to_map(mouse_position)
-			print(Vector2i(grid_position.x/32, grid_position.y/32))
+			#print(Vector2i(grid_position.x/32, grid_position.y/32))
 			
 			if (!is_position_occupied(grid_position, 2)):
 				if AdjacentOnly:
@@ -57,7 +58,7 @@ func button_pressed():
 	#get turret from button here
 	var currButton : BaseButton = buttonGroup.get_pressed_button()
 	var buttonName = currButton.getName()
-	print("Button name:", buttonName)
+	#print("Button name:", buttonName)
 	if buttonName == "AnvilButton":
 		selectedTurretScene = load("res://Prefabs/anvil.tscn")
 		
@@ -73,8 +74,8 @@ func is_position_occupied(tilePosition: Vector2i, layer: int) -> bool:
 #same as above, but with atlas coordinates
 func is_cell_availiable(cell: Vector2i) -> bool:
 	var tile_index = tileMap.get_cell_source_id(2, cell)
-	print(cell)
-	print(tile_index)
+	#print(cell)
+	#print(tile_index)
 	
 	return tile_index == -1
 	
@@ -86,6 +87,8 @@ func place(grid_position: Vector2i):
 		var turret_instance = selectedTurretScene.instantiate() #instance() does nothing
 		turret_instance.position = Vector2i(grid_position.x + 16 , grid_position.y + 16);
 		add_child(turret_instance)
+		buildingArray.append(turret_instance)
+		print("Building Array", buildingArray)
 
 		# Set the cell in the TileMap to indicate that it's occupied by a turret
 		removeAvailability(hoverCell)
@@ -94,6 +97,12 @@ func place(grid_position: Vector2i):
 		# Deduct turret cost from player resources
 		#playerResources -= turretCost
 
+func removeBuilding(body):
+	for i in range(buildingArray.size()-1, -1, -1):
+			if buildingArray[i] == body:
+				buildingArray.remove_at(i)
+	body.queue_free()
+	tileMap.set_cell(2, body.global_position, 0, Vector2i(0,0), 0)
 #get global coordinates that match the grid
 func world_to_map(world_position: Vector2):
 	return Vector2i(nearest32(world_position.x), nearest32(world_position.y))
@@ -119,7 +128,7 @@ func showOnCursor(turret: String, mousePosition: Vector2):
 
 func showAvailability(cell: Vector2i):
 	var availability = getAvailability(cell)
-	print(availability)
+	#print(availability)
 	tileMap.set_cell(3, cell, 0, availability, 0)
 	
 func removeAvailability(cell: Vector2i):
@@ -133,7 +142,7 @@ func getAvailability(cell: Vector2i):
 	if AdjacentOnly:
 		for c in tileMap.get_surrounding_cells(cell):
 			if !is_cell_availiable(c):
-				print(c)
+				#print(c)
 				return AVAILABLE
 		return UNAVAILABLE
 	

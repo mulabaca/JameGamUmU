@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://uyeypu3hd8tm"]
+
+[ext_resource type="Script" path="res://Basic_ballista.gd" id="1_vx2h6"]
+[ext_resource type="Texture2D" uid="uid://du45iv02tjinv" path="res://Assets/ballista_frames/christmas_ballista_starting.png" id="2_04yaw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_itse3"]
+size = Vector2(32, 29)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yxljt"]
+radius = 82.0061
+
+[node name="Basic_ballista" type="StaticBody2D"]
+rotation = 1.5708
+script = ExtResource("1_vx2h6")
+
+[node name="Tower_Body" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_itse3")
+
+[node name="Aim" type="Marker2D" parent="."]
+position = Vector2(2.62268e-07, 6)
+
+[node name="ChristmasBallistaStarting" type="Sprite2D" parent="."]
+texture = ExtResource("2_04yaw")
+
+[node name="Tower" type="Area2D" parent="."]
+position = Vector2(-6.99382e-07, -16)
+
+[node name="Tower_Area" type="CollisionShape2D" parent="Tower"]
+position = Vector2(7.15256e-07, 16)
+shape = SubResource("CircleShape2D_yxljt")
+
+[node name="Icicle_Container" type="Node" parent="."]
+
+[connection signal="body_entered" from="Tower" to="." method="_on_tower_body_entered"]
+[connection signal="body_exited" from="Tower" to="." method="_on_tower_body_exited"]
