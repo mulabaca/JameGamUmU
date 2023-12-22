@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 var target
-var speed = 50
+var speed = 200
 var dmg
 var curtarget
 	
