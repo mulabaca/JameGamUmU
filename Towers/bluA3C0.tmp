@@ -4,12 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://dlbx5c4x8wrr1" path="res://Assets/ammunition/ballista_ammo.png" id="1_o1nli"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5yya7"]
-radius = 2.99995
-height = 15.9997
+radius = 3.99993
+height = 17.9997
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ibejy"]
 radius = 5.0
-height = 22.0
+height = 20.0
 
 [node name="Blue_Icicle" type="CharacterBody2D"]
 script = ExtResource("1_4au4n")

@@ -13,7 +13,7 @@
 [ext_resource type="Theme" uid="uid://dk8t5d0tge33u" path="res://themes/new_theme.tres" id="10_8r6rh"]
 [ext_resource type="PackedScene" uid="uid://uyeypu3hd8tm" path="res://Towers/basic_ballista.tscn" id="10_i8skc"]
 [ext_resource type="PackedScene" uid="uid://da5bnobgws7my" path="res://Mobs/test_mob.tscn" id="11_t4iav"]
-[ext_resource type="PackedScene" path="res://Prefabs/gobbo.tscn" id="13_hjark"]
+[ext_resource type="PackedScene" uid="uid://cqm0wauql3bdd" path="res://Prefabs/gobbo.tscn" id="13_hjark"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_i01ek"]
 
@@ -136,14 +136,18 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 9
 text = "spawn gobbo"
 
-[node name="Test_Mob" parent="." instance=ExtResource("11_t4iav")]
+[node name="enemies" type="Node" parent="."]
+
+[node name="Test_Mob" parent="enemies" instance=ExtResource("11_t4iav")]
 position = Vector2(-59, 46)
 
-[node name="Basic_ballista" parent="." instance=ExtResource("10_i8skc")]
-position = Vector2(139, 110)
-
-[node name="Gobbo" parent="." instance=ExtResource("13_hjark")]
+[node name="Gobbo" parent="enemies" instance=ExtResource("13_hjark")]
 position = Vector2(-49, 166)
+
+[node name="towers" type="Node" parent="."]
+
+[node name="Basic_ballista" parent="towers" instance=ExtResource("10_i8skc")]
+position = Vector2(139, 110)
 
 [connection signal="timeout" from="TileMap/dayTimer" to="." method="_on_day_timer_timeout"]
 [connection signal="timeout" from="Camera2D/Timer" to="Camera2D" method="_on_timer_timeout"]
