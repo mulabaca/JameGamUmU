@@ -15,10 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://da5bnobgws7my" path="res://Mobs/test_mob.tscn" id="11_t4iav"]
 [ext_resource type="PackedScene" uid="uid://bcvn86g7ofwj2" path="res://Prefabs/gobbo.tscn" id="13_hjark"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rsvol"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q7kd1"]
-
 [sub_resource type="LabelSettings" id="LabelSettings_i01ek"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5ymdl"]
@@ -87,6 +83,7 @@ offset_top = 3.0
 offset_right = -7.0
 offset_bottom = 75.0
 theme_override_constants/h_separation = 14
+theme_override_constants/v_separation = 14
 columns = 2
 
 [node name="AnvilButton" parent="Camera2D/Menu/WorkStationMenu/GridContainer" instance=ExtResource("3_vlomp")]
@@ -124,12 +121,20 @@ script = ExtResource("8_74lwp")
 metadata/Spawn = "anvil"
 
 [node name="Label" type="Label" parent="Camera2D/Menu/WorkStationMenu/GridContainer/FactoryButton"]
-layout_mode = 0
-offset_left = 4.925
-offset_top = 32.905
-offset_right = 54.925
-offset_bottom = 55.905
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -9.57
+offset_top = -1.38
+offset_right = 31.43
+offset_bottom = 21.62
+grow_horizontal = 2
+grow_vertical = 0
 scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 2
 text = "100🍪"
 
 [node name="DebugMenu" type="VBoxContainer" parent="Camera2D/Menu/WorkStationMenu"]
