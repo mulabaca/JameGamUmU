@@ -16,6 +16,7 @@
 script = ExtResource("1_s1qw0")
 buttonGroup = ExtResource("2_1ihti")
 AdjacentOnly = true
+dayLenght = 60
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_ca0dn")
@@ -32,6 +33,8 @@ layer_2/tile_data = PackedInt32Array(131075, 131072, 0, 65541, 131072, 0, 65542,
 layer_3/name = "availability"
 layer_3/z_index = 1
 layer_3/tile_data = PackedInt32Array()
+
+[node name="dayTimer" type="Timer" parent="TileMap"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
@@ -111,5 +114,6 @@ offset_bottom = 55.905
 scale = Vector2(0.5, 0.5)
 text = "100🍪"
 
+[connection signal="timeout" from="TileMap/dayTimer" to="." method="_on_day_timer_timeout"]
 [connection signal="timeout" from="Camera2D/Timer" to="Camera2D" method="_on_timer_timeout"]
 [connection signal="pressed" from="Camera2D/Menu/WorkStationMenu" to="Camera2D/Menu" method="_on_work_station_menu_pressed"]

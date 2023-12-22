@@ -2,12 +2,16 @@ extends Node2D
 
 @export var buttonGroup: ButtonGroup
 @export var AdjacentOnly: bool
+@export var dayLenght: int
+
+enum time{MORNING, NOON, AFTERNOON, EVENING, MIDNIGHT, DUSK}
 
 var selectedTurretScene = preload("res://Prefabs/anvil.tscn") #replace with null
 var tileMap = null
 var placing = false
 var settingPlacing = false
 var hoverCell = null;
+var dayTime = time.MORNING
 
 const AVAILABLE = Vector2i(9,0)
 const UNAVAILABLE = Vector2i(10,0)
@@ -22,6 +26,8 @@ func _ready():
 		b.pressed.connect(button_pressed)
 	
 	hoverCell = get_hovered_cell(get_global_mouse_position())
+	
+	$TileMap/dayTimer.start(dayLenght/7.0)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -45,6 +51,8 @@ func _process(delta):
 	elif Input.is_action_just_released("placeTurret") and settingPlacing:
 		settingPlacing = false
 		placing = true
+	
+	changeLight()
 
 
 func button_pressed():
@@ -138,3 +146,58 @@ func getAvailability(cell: Vector2i):
 		return UNAVAILABLE
 	
 	return AVAILABLE
+
+
+
+func _on_day_timer_timeout():
+	
+	match dayTime:
+		time.DUSK:
+			dayTime = time.MORNING
+		time.MIDNIGHT:
+			dayTime = time.DUSK
+		time.EVENING:
+			dayTime = time.MIDNIGHT
+		time.AFTERNOON:
+			dayTime = time.EVENING
+		time.NOON:
+			dayTime = time.AFTERNOON
+		time.MORNING:
+			dayTime = time.NOON
+	
+	$TileMap/dayTimer.start(dayLenght/7.0)
+
+func changeLight():
+	var t = $TileMap/dayTimer.get_time_left()/(dayLenght/7.0)
+	var newLight = Color(1.0, 1.0, 1.0)
+	match dayTime:
+		time.DUSK:
+			const B = Color(0.8,0.8,0.8) #Dusk
+			const A = Color(1.0,0.95,0.9) #Morning
+			newLight = B*t + A*(1.0-t)	
+		
+		time.MIDNIGHT:
+			const B = Color(0.4,0.4,0.4) #Midnight
+			const A = Color(0.8,0.8,0.8) #Dusk
+			newLight = B*t + A*(1.0-t)
+		
+		time.EVENING:
+			newLight = Color(0.4,0.4,0.4)
+		
+		time.AFTERNOON:
+			const B = Color(1.0,0.68,0.5) #Afternoon
+			const A = Color(0.4,0.4,0.4) #Evening
+			newLight = B*t + A*(1.0-t)
+		time.NOON:
+			const B = Color(1.0,1.0,1.0) #Noon
+			const A = Color(1.0,0.68,0.5) #Afternoon
+			newLight = B*t + A*(1.0-t)
+		time.MORNING:
+			const B = Color(1.0,0.95,0.9) #Morning
+			const A = Color(1.0,1.0,1.0) #Noon
+			newLight = B*t + A*(1.0-t)
+	
+	print(newLight)
+	tileMap.set_layer_modulate(0, newLight)
+	tileMap.set_layer_modulate(1, newLight)
+	tileMap.set_layer_modulate(2, newLight)
