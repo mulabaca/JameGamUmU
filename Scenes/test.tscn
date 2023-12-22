@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c1ti7jg3mutfc"]
+[gd_scene load_steps=19 format=3 uid="uid://c1ti7jg3mutfc"]
 
 [ext_resource type="TileSet" uid="uid://chy8k0w1bg5s4" path="res://Assets/Terrain_tile_set.tres" id="1_ca0dn"]
 [ext_resource type="Script" path="res://Scripts/test.gd" id="1_s1qw0"]
@@ -15,7 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://uyeypu3hd8tm" path="res://Towers/basic_ballista.tscn" id="10_i8skc"]
 [ext_resource type="Texture2D" uid="uid://chyqviqfj8s3y" path="res://Assets/wall-icon.png" id="11_cgftu"]
 [ext_resource type="PackedScene" uid="uid://da5bnobgws7my" path="res://Mobs/test_mob.tscn" id="11_t4iav"]
-[ext_resource type="PackedScene" uid="uid://dcic8fp0golr5" path="res://Prefabs/gobbo.tscn" id="13_hjark"]
+[ext_resource type="PackedScene" uid="uid://dcic8fp0golr5" path="res://Mobs/gobbo.tscn" id="13_hjark"]
+[ext_resource type="Script" path="res://Scripts/debug_stuff/spawn.gd" id="14_1t5ij"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_i01ek"]
 
@@ -173,10 +174,12 @@ offset_right = -1.0
 offset_bottom = 320.0
 theme = ExtResource("10_8r6rh")
 
-[node name="Button" type="Button" parent="Camera2D/Menu/WorkStationMenu/DebugMenu"]
+[node name="spawnGobbo" type="Button" parent="Camera2D/Menu/WorkStationMenu/DebugMenu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 9
 text = "spawn gobbo"
+script = ExtResource("14_1t5ij")
+mobName = "gobbo"
 
 [node name="enemies" type="Node" parent="."]
 
@@ -194,3 +197,4 @@ position = Vector2(139, 110)
 [connection signal="timeout" from="TileMap/dayTimer" to="." method="_on_day_timer_timeout"]
 [connection signal="timeout" from="Camera2D/Timer" to="Camera2D" method="_on_timer_timeout"]
 [connection signal="pressed" from="Camera2D/Menu/WorkStationMenu" to="Camera2D/Menu" method="_on_work_station_menu_pressed"]
+[connection signal="pressed" from="Camera2D/Menu/WorkStationMenu/DebugMenu/spawnGobbo" to="Camera2D/Menu/WorkStationMenu/DebugMenu/spawnGobbo" method="_on_pressed"]
