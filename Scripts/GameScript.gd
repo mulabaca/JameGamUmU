@@ -120,7 +120,6 @@ func place(grid_position: Vector2i):
 		add_child(turret_instance)
 		buildingArray.append(turret_instance)
 		print("Building Array", buildingArray)
-		print(turret_instance.resource)
 		match turret_instance.resource:
 			1:
 				turret_instance.gained_cookies.connect(gained_cookies)
@@ -128,6 +127,11 @@ func place(grid_position: Vector2i):
 				turret_instance.gained_metal.connect(gained_metal)
 			3:
 				turret_instance.gained_plush.connect(gained_plush)
+				
+		if dayTime < time.EVENING or dayTime == time.DUSK:
+			turret_instance.startWorking()
+		else:
+			turret_instance.stopWorking()
 		# Set the cell in the TileMap to indicate that it's occupied by a turret
 		removeAvailability(hoverCell)
 		tileMap.set_cell(2, Vector2i(grid_position.x/32 , grid_position.y/32), 0, Vector2i(8,0), 0)
@@ -197,11 +201,15 @@ func _on_day_timer_timeout():
 		time.MIDNIGHT:
 			dayTime = time.DUSK
 			$Camera2D/TimeIndicator.set_day()
+			for building in buildingArray:
+				building.startWorking()
 		time.EVENING:
 			dayTime = time.MIDNIGHT
 		time.AFTERNOON:
 			dayTime = time.EVENING
 			$Camera2D/TimeIndicator.set_night()
+			for building in buildingArray:
+				building.stopWorking()
 		time.NOON:
 			dayTime = time.AFTERNOON
 		time.MORNING:

@@ -27,7 +27,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_j5i0p")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Default",
 "speed": 0.0
 }, {
 "frames": [{
@@ -47,7 +47,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_844lh")
 }],
 "loop": true,
-"name": &"working",
+"name": &"Working",
 "speed": 5.0
 }]
 
@@ -73,6 +73,7 @@ resource = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5r8dy")
+animation = &"Default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)

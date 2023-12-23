@@ -6,6 +6,7 @@ var bodiesInCollision:Array[Node2D] = []
 @export var breakAnimationFrames: int
 @export var resourceGain: int
 @export var resouceCooldown: int
+var working = true
 
 @onready var timer:Timer = $Timer
 @onready var resourceTimer:Timer = $ResourceTimer
@@ -62,18 +63,30 @@ func showDamage():
 
 
 func _on_resource_timer_timeout():
-	match resource:
-		ResourceType.COOKIES:
-			gained_cookies.emit(resourceGain)
-		ResourceType.METALTOYS:
-			gained_metal.emit(resourceGain)
-		ResourceType.PLUSHIES:
-			gained_plush.emit(resourceGain)
+	if working:
+		match resource:
+			ResourceType.COOKIES:
+				gained_cookies.emit(resourceGain)
+			ResourceType.METALTOYS:
+				gained_metal.emit(resourceGain)
+			ResourceType.PLUSHIES:
+				gained_plush.emit(resourceGain)
 		
-	$Label.visible = true
-	$ResourceTimer.start()
-	$labelCooldown.start()
+		$Label.visible = true
+		$ResourceTimer.start()
+		$labelCooldown.start()
 	
 
 func _on_label_cooldown_timeout():
 	$Label.visible = false
+	
+func stopWorking():
+	working = false
+	$AnimatedSprite2D.set_animation("Default")
+	$AnimatedSprite2D.play()
+
+func startWorking():
+	working = true
+	$ResourceTimer.start()
+	$AnimatedSprite2D.set_animation("Working")
+	$AnimatedSprite2D.play()
