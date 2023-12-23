@@ -1,0 +1,115 @@
+[gd_scene load_steps=13 format=3 uid="uid://cd3aqhfd587ua"]
+
+[ext_resource type="Script" path="res://Scripts/entities/building.gd" id="1_qqr5j"]
+[ext_resource type="Texture2D" uid="uid://bi6p7iiexkohy" path="res://Assets/Sewing_machine_sprite.png" id="1_s3220"]
+[ext_resource type="Theme" uid="uid://dk8t5d0tge33u" path="res://themes/new_theme.tres" id="3_7on33"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5i0p"]
+atlas = ExtResource("1_s3220")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hltfn"]
+atlas = ExtResource("1_s3220")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yov0x"]
+atlas = ExtResource("1_s3220")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_844lh"]
+atlas = ExtResource("1_s3220")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5r8dy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5i0p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hltfn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yov0x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_844lh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yov0x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_844lh")
+}],
+"loop": true,
+"name": &"working",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oolux"]
+size = Vector2(28, 21)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vg5vk"]
+bg_color = Color(0.454902, 0, 0, 0.65098)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2gv5h"]
+bg_color = Color(0, 0.705882, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d76kr"]
+size = Vector2(26, 19)
+
+[node name="sewingMachine" type="StaticBody2D"]
+script = ExtResource("1_qqr5j")
+resource = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5r8dy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_oolux")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -12.0
+offset_top = 9.0
+offset_right = 13.0
+offset_bottom = 13.0
+theme_override_styles/background = SubResource("StyleBoxFlat_vg5vk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2gv5h")
+step = 1.0
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="." groups=["building"]]
+wait_time = 0.5
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_d76kr")
+
+[node name="ResourceTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -16.0
+offset_top = -27.0
+offset_right = 24.0
+offset_bottom = -4.0
+theme = ExtResource("3_7on33")
+text = "+🧸"
+
+[node name="labelCooldown" type="Timer" parent="."]
+wait_time = 0.3
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="ResourceTimer" to="." method="_on_resource_timer_timeout"]
+[connection signal="timeout" from="labelCooldown" to="." method="_on_label_cooldown_timeout"]

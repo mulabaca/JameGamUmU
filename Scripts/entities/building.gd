@@ -10,7 +10,11 @@ var bodiesInCollision:Array[Node2D] = []
 @onready var timer:Timer = $Timer
 @onready var resourceTimer:Timer = $ResourceTimer
 
+enum ResourceType{COOCKIES, METALTOYS, PLUSHIES, NONE}
+@export var resource: ResourceType
 signal gained_coockies(cookies:int)
+signal gained_metal(metal:int)
+signal gained_plush(plushies:int)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -59,5 +63,18 @@ func showDamage():
 
 
 func _on_resource_timer_timeout():
-	gained_coockies.emit(resourceGain)
+	match resource:
+		ResourceType.COOCKIES:
+			gained_coockies.emit(resourceGain)
+		ResourceType.METALTOYS:
+			gained_metal.emit(resourceGain)
+		ResourceType.PLUSHIES:
+			gained_plush.emit(resourceGain)
+		
+	$Label.visible = true
 	$ResourceTimer.start()
+	$labelCooldown.start()
+	
+
+func _on_label_cooldown_timeout():
+	$Label.visible = false

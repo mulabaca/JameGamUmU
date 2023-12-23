@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://2kxxsudhcxst"]
+[gd_scene load_steps=11 format=3 uid="uid://2kxxsudhcxst"]
 
 [ext_resource type="Texture2D" uid="uid://wgwfsteag045" path="res://Assets/factory_sprite.png" id="1_iaaop"]
 [ext_resource type="Script" path="res://Scripts/entities/building.gd" id="1_r8p3j"]
+[ext_resource type="Theme" uid="uid://dk8t5d0tge33u" path="res://themes/new_theme.tres" id="3_y1s5p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mp204"]
 atlas = ExtResource("1_iaaop")
@@ -41,8 +42,8 @@ size = Vector2(25, 18)
 [node name="Factory" type="Area2D"]
 collision_mask = 3
 script = ExtResource("1_r8p3j")
-resourceGain = 1
-resouceCooldown = 1
+resourceGain = 5
+resouceCooldown = 3
 metadata/maxHealth = 100
 metadata/health = 100
 
@@ -78,7 +79,20 @@ shape = SubResource("RectangleShape2D_jympb")
 one_shot = true
 autostart = true
 
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -16.0
+offset_top = -27.0
+offset_right = 24.0
+offset_bottom = -4.0
+theme = ExtResource("3_y1s5p")
+text = "+🍪"
+
+[node name="labelCooldown" type="Timer" parent="."]
+wait_time = 0.3
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="ResourceTimer" to="." method="_on_resource_timer_timeout"]
+[connection signal="timeout" from="labelCooldown" to="." method="_on_label_cooldown_timeout"]
