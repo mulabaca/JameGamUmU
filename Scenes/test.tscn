@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c1ti7jg3mutfc"]
+[gd_scene load_steps=20 format=3 uid="uid://c1ti7jg3mutfc"]
 
 [ext_resource type="TileSet" uid="uid://chy8k0w1bg5s4" path="res://Assets/Terrain_tile_set.tres" id="1_ca0dn"]
 [ext_resource type="Script" path="res://Scripts/GameScript.gd" id="1_s1qw0"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://uyeypu3hd8tm" path="res://Towers/basic_ballista.tscn" id="10_i8skc"]
 [ext_resource type="Texture2D" uid="uid://chyqviqfj8s3y" path="res://Assets/wall-icon.png" id="11_cgftu"]
 [ext_resource type="PackedScene" uid="uid://da5bnobgws7my" path="res://Mobs/test_mob.tscn" id="11_t4iav"]
+[ext_resource type="Texture2D" uid="uid://b2oagf2i8v03m" path="res://Assets/Sewing_machine_icon.png" id="12_f14ai"]
 [ext_resource type="PackedScene" uid="uid://cn2qab3762nnd" path="res://Mobs/gobbo.tscn" id="13_hjark"]
 [ext_resource type="Script" path="res://Scripts/debug_stuff/spawn.gd" id="14_1t5ij"]
 [ext_resource type="PackedScene" uid="uid://dl6r3ucr4x64p" path="res://Towers/Tree_Missile.tscn" id="18_xpkdm"]
@@ -24,7 +25,7 @@ script = ExtResource("1_s1qw0")
 buttonGroup = ExtResource("2_1ihti")
 AdjacentOnly = true
 dayLenght = 360
-coockiesStored = 150
+cookiesStored = 150
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_ca0dn")
@@ -93,7 +94,7 @@ theme_override_styles/focus = ExtResource("7_brwht")
 text = "
 "
 script = ExtResource("8_74lwp")
-cost = 200
+cost = 300
 worldNode = NodePath("../../../../..")
 metadata/Spawn = "anvil"
 
@@ -106,6 +107,17 @@ cost = 100
 worldNode = NodePath("../../../../..")
 metadata/Spawn = "anvil"
 
+[node name="SewingButton" parent="Camera2D/Menu/WorkStationMenu/GridContainer" node_paths=PackedStringArray("worldNode") instance=ExtResource("3_vlomp")]
+layout_mode = 2
+theme_override_styles/focus = ExtResource("7_brwht")
+text = "
+"
+icon = ExtResource("12_f14ai")
+script = ExtResource("8_74lwp")
+cost = 200
+worldNode = NodePath("../../../../..")
+metadata/Spawn = "Sewing"
+
 [node name="WallButton" parent="Camera2D/Menu/WorkStationMenu/GridContainer" node_paths=PackedStringArray("worldNode") instance=ExtResource("3_vlomp")]
 layout_mode = 2
 theme_override_styles/focus = ExtResource("7_brwht")
@@ -113,7 +125,7 @@ text = "
 "
 icon = ExtResource("11_cgftu")
 script = ExtResource("8_74lwp")
-cost = 300
+cost = 50
 worldNode = NodePath("../../../../..")
 metadata/Spawn = "wall"
 
@@ -132,13 +144,29 @@ text = "spawn gobbo"
 script = ExtResource("14_1t5ij")
 mobName = "gobbo"
 
-[node name="Coockie counter" type="Label" parent="Camera2D"]
+[node name="Cookie counter" type="Label" parent="Camera2D"]
 offset_left = -158.75
 offset_top = -179.0
 offset_right = -95.75
 offset_bottom = -156.0
 theme = ExtResource("10_8r6rh")
 text = "🍪0"
+
+[node name="Metal counter" type="Label" parent="Camera2D"]
+offset_left = 256.0
+offset_top = -180.0
+offset_right = 319.0
+offset_bottom = -157.0
+theme = ExtResource("10_8r6rh")
+text = "🤖0"
+
+[node name="Plush counter" type="Label" parent="Camera2D"]
+offset_left = 190.0
+offset_top = -180.0
+offset_right = 253.0
+offset_bottom = -157.0
+theme = ExtResource("10_8r6rh")
+text = "🧸0"
 
 [node name="enemies" type="Node" parent="."]
 

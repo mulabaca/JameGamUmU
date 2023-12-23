@@ -1,7 +1,7 @@
 extends Area2D
 
-var health
-var maxHealth
+@export var health: int
+@export var maxHealth: int
 var bodiesInCollision:Array[Node2D] = []
 @export var breakAnimationFrames: int
 @export var resourceGain: int
@@ -10,16 +10,15 @@ var bodiesInCollision:Array[Node2D] = []
 @onready var timer:Timer = $Timer
 @onready var resourceTimer:Timer = $ResourceTimer
 
-enum ResourceType{COOCKIES, METALTOYS, PLUSHIES, NONE}
+enum ResourceType{NONE, COOKIES, METALTOYS, PLUSHIES}
 @export var resource: ResourceType
-signal gained_coockies(cookies:int)
+signal gained_cookies(cookies:int)
 signal gained_metal(metal:int)
 signal gained_plush(plushies:int)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	health = self.get_meta("health")
-	maxHealth = self.get_meta("maxHealth")
+	
 	$HealthBar.set_max(maxHealth)
 	$HealthBar.value = health
 	$HealthBar.visible = false
@@ -64,8 +63,8 @@ func showDamage():
 
 func _on_resource_timer_timeout():
 	match resource:
-		ResourceType.COOCKIES:
-			gained_coockies.emit(resourceGain)
+		ResourceType.COOKIES:
+			gained_cookies.emit(resourceGain)
 		ResourceType.METALTOYS:
 			gained_metal.emit(resourceGain)
 		ResourceType.PLUSHIES:

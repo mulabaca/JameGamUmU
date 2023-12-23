@@ -42,8 +42,11 @@ size = Vector2(25, 18)
 [node name="Factory" type="Area2D"]
 collision_mask = 3
 script = ExtResource("1_r8p3j")
+health = 100
+maxHealth = 100
 resourceGain = 5
 resouceCooldown = 3
+resource = 1
 metadata/maxHealth = 100
 metadata/health = 100
 

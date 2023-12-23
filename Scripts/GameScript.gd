@@ -4,7 +4,9 @@ extends Node2D
 @export var AdjacentOnly: bool
 @export var dayLenght: int
 @export var buildingArray: Array[Node2D] = []
-@export var coockiesStored: int
+@export var cookiesStored: int
+@export var requiredMetalToys: int
+@export var requiredPlushies: int
 
 enum time{MORNING, NOON, AFTERNOON, EVENING, MIDNIGHT, DUSK}
 
@@ -15,10 +17,14 @@ var settingPlacing = false
 var hoverCell = null;
 var dayTime = time.MORNING
 
+#toys
+var metalStored = 0
+var plushStored = 0
+
 const AVAILABLE = Vector2i(9,0)
 const UNAVAILABLE = Vector2i(10,0)
 
-signal coockies_changed(coockies)
+signal cookies_changed(cookies)
 
 
 
@@ -33,8 +39,10 @@ func _ready():
 	hoverCell = get_hovered_cell(get_global_mouse_position())
 	
 	$TileMap/dayTimer.start(dayLenght/7.0)
-	coockies_changed.emit(coockiesStored)
-	$"Camera2D/Coockie counter".set_text("🍪" + str(coockiesStored))
+	cookies_changed.emit(cookiesStored)
+	$"Camera2D/Cookie counter".set_text("🍪" + str(cookiesStored))
+	$"Camera2D/Metal counter".set_text("🤖0/"+str(requiredMetalToys))
+	$"Camera2D/Plush counter".set_text("🧸0/"+str(requiredPlushies))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -79,6 +87,9 @@ func button_pressed():
 		
 		elif buttonName == "WallButton":
 			selectedTurretScene = load("res://Prefabs/wall.tscn")
+			
+		elif buttonName == "SewingButton":
+			selectedTurretScene = load("res://Prefabs/sewing_machine.tscn")
 	else:
 		placing = false;
 		removeAvailability(hoverCell);
@@ -101,7 +112,7 @@ func is_cell_availiable(cell: Vector2i) -> bool:
 func place(grid_position: Vector2i):
 		placing = false
 		var pressed =  buttonGroup.get_pressed_button()
-		pay_coockies(pressed.cost)
+		pay_cookies(pressed.cost)
 		pressed.set_pressed_no_signal(false)
 		
 		var turret_instance = selectedTurretScene.instantiate() #instance() does nothing
@@ -109,8 +120,14 @@ func place(grid_position: Vector2i):
 		add_child(turret_instance)
 		buildingArray.append(turret_instance)
 		print("Building Array", buildingArray)
-		if(turret_instance.has_signal("gained_coockies")):
-			turret_instance.gained_coockies.connect(gained_coockies)
+		print(turret_instance.resource)
+		match turret_instance.resource:
+			1:
+				turret_instance.gained_cookies.connect(gained_cookies)
+			2:
+				turret_instance.gained_metal.connect(gained_metal)
+			3:
+				turret_instance.gained_plush.connect(gained_plush)
 		# Set the cell in the TileMap to indicate that it's occupied by a turret
 		removeAvailability(hoverCell)
 		tileMap.set_cell(2, Vector2i(grid_position.x/32 , grid_position.y/32), 0, Vector2i(8,0), 0)
@@ -226,16 +243,24 @@ func changeLight():
 	tileMap.set_layer_modulate(1, newLight)
 	tileMap.set_layer_modulate(2, newLight)
 
-func gained_coockies(coockies):
-	coockiesStored += coockies;
-	$"Camera2D/Coockie counter".set_text("🍪" + str(coockiesStored))
-	coockies_changed.emit(coockiesStored)
+func gained_cookies(cookies):
+	cookiesStored += cookies;
+	$"Camera2D/Cookie counter".set_text("🍪" + str(cookiesStored))
+	cookies_changed.emit(cookiesStored)
 
-#returns bool for weather it successfully paid coockies
-func pay_coockies(cost: int) -> bool:
-	if coockiesStored >= cost:
-		coockiesStored -= cost
-		$"Camera2D/Coockie counter".set_text("🍪" + str(coockiesStored))
-		coockies_changed.emit(coockiesStored)
+#returns bool for weather it successfully paid cookies
+func pay_cookies(cost: int) -> bool:
+	if cookiesStored >= cost:
+		cookiesStored -= cost
+		$"Camera2D/Cookie counter".set_text("🍪" + str(cookiesStored))
+		cookies_changed.emit(cookiesStored)
 		return true
 	return false
+
+func gained_metal(metal: int):
+	metalStored += metal;
+	$"Camera2D/Metal counter".set_text("🤖"+str(metalStored)+"/"+str(requiredMetalToys))
+
+func gained_plush(plush: int):
+	plushStored += plush
+	$"Camera2D/Plush counter".set_text("🧸"+str(plushStored)+"/"+str(requiredPlushies))

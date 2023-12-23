@@ -63,9 +63,13 @@ bg_color = Color(0, 0.705882, 0, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d76kr"]
 size = Vector2(26, 19)
 
-[node name="sewingMachine" type="StaticBody2D"]
+[node name="sewingMachine" type="Area2D"]
 script = ExtResource("1_qqr5j")
-resource = 2
+health = 100
+maxHealth = 100
+resourceGain = 1
+resouceCooldown = 10
+resource = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5r8dy")
