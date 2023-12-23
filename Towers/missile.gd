@@ -1,11 +1,12 @@
 extends CharacterBody2D
 
-
 var target
 var speed = 200
-var dmg = 5
+var dmg = 1
+var exploding_area = []
 @onready var curtarget
-	
+@onready var boom_timer = get_node("Timer")
+
 func _physics_process(delta):
 	#print("damage: ", dmg)
 	#print("target: ", target)
@@ -20,24 +21,34 @@ func _physics_process(delta):
 		look_at(curtarget.position)
 		move_and_slide()
 	else:
-		queue_free()
-
-#the body for this is the icicle itsself
+		if boom_timer.is_stopped():
+			boom_timer.start()
+	
 func _on_area_2d_body_entered(body):
-	#print("enemy body in entered: ", curtarget)
+	print("enemy body in entered: ", curtarget)
 	#print("Enemy name1: ", str(curtarget.get_meta("Type")))
-	#print("this is the group",get_tree().get_nodes_in_group("enemy"))
+	print("this is the group",get_tree().get_nodes_in_group("enemy"))
 	if is_instance_valid(body) and curtarget != null:
 		#for meta
 		# if "Enemy" in bocy.get_meta("Type")
 		#for groups
+		print("the name of touched",body.name)
 		if body in get_tree().get_nodes_in_group("enemy"):
-			body.changeHP(dmg)
-			queue_free()
+			for i in exploding_area:
+				i.changeHP(dmg)
+			var boom = get_node("AnimatedSprite2D")
+			boom.play("exploding")
+			if boom_timer.is_stopped():
+				boom_timer.start()
+			#queue_free()
 
-func gone():
-	var R = curtarget.instance()
-	get_parent().call_deffered("add_child", R)
-	
+
+
+func _on_explosion_area_body_entered(body):
+	if body in get_tree().get_nodes_in_group("enemy"):
+		exploding_area.append(body)
+	print("explode area: ",exploding_area)
+
+
 func _on_timer_timeout():
 	queue_free()
