@@ -1,17 +1,96 @@
-[gd_scene load_steps=3 format=3 uid="uid://cfyj8mwrf2mbj"]
+[gd_scene load_steps=15 format=3 uid="uid://cfyj8mwrf2mbj"]
 
+[ext_resource type="Script" path="res://Towers/missile.gd" id="1_464c0"]
 [ext_resource type="Texture2D" uid="uid://bwsdf2am4g0gx" path="res://Assets/ammunition/treemissile_ammo1.png" id="1_uc0ei"]
 [ext_resource type="Texture2D" uid="uid://rldh015bx22a" path="res://Assets/ammunition/treemissile_ammo2.png" id="2_cr32x"]
+[ext_resource type="Texture2D" uid="uid://buyhprk2804ed" path="res://Assets/explosion_frames/explosion0.png" id="2_dcqd1"]
+[ext_resource type="Texture2D" uid="uid://job7e3i0g3si" path="res://Assets/explosion_frames/explosion1.png" id="3_5cssq"]
+[ext_resource type="Texture2D" uid="uid://ckjsh7stg06s1" path="res://Assets/explosion_frames/explosion2.png" id="4_0r4gq"]
+[ext_resource type="Texture2D" uid="uid://bix7xdq0ixs7r" path="res://Assets/explosion_frames/explosion3.png" id="5_bxnpx"]
+[ext_resource type="Texture2D" uid="uid://b5jhjjotst5me" path="res://Assets/explosion_frames/explosion4.png" id="6_1j2p8"]
+[ext_resource type="Texture2D" uid="uid://d2caw4ujpqd1j" path="res://Assets/explosion_frames/explosion5.png" id="7_n4csn"]
+[ext_resource type="Texture2D" uid="uid://biqhy1y2751yl" path="res://Assets/explosion_frames/explosion6.png" id="8_rro1x"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w2iix"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_dcqd1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5cssq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_0r4gq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_bxnpx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_1j2p8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_n4csn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_rro1x")
+}],
+"loop": true,
+"name": &"exploding",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_uc0ei")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_cr32x")
+}],
+"loop": true,
+"name": &"missile_flying",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mqocu"]
+height = 32.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d2yoa"]
+radius = 12.0
+height = 36.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a0hqt"]
+radius = 58.0
 
 [node name="Missile" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 2
+script = ExtResource("1_464c0")
 
-[node name="TreemissileAmmo1" type="Sprite2D" parent="."]
-texture = ExtResource("1_uc0ei")
-
-[node name="TreemissileAmmo2" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("2_cr32x")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_w2iix")
+animation = &"exploding"
+autoplay = "missile_flying"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_mqocu")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_d2yoa")
+
+[node name="explosion_area" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="collision_explosion" type="CollisionShape2D" parent="explosion_area"]
+shape = SubResource("CircleShape2D_a0hqt")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="explosion_area" to="." method="_on_explosion_area_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
