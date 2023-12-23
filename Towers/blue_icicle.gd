@@ -31,7 +31,7 @@ func _on_area_2d_body_entered(body):
 		#for meta
 		# if "Enemy" in bocy.get_meta("Type")
 		#for groups
-		if body in get_tree().get_nodes_in_group("enemy"):
+		if body.is_in_group("enemy"):
 			body.changeHP(dmg)
 			queue_free()
 

@@ -33,9 +33,10 @@ func _on_area_2d_body_entered(body):
 		# if "Enemy" in bocy.get_meta("Type")
 		#for groups
 		print("the name of touched",body.name)
-		if body in get_tree().get_nodes_in_group("enemy"):
+		if body.is_in_group("enemy"):
 			for i in exploding_area:
-				i.changeHP(dmg)
+				if is_instance_valid(i):
+					i.changeHP(dmg)
 			var boom = get_node("AnimatedSprite2D")
 			boom.play("exploding")
 			if boom_timer.is_stopped():
@@ -45,7 +46,7 @@ func _on_area_2d_body_entered(body):
 
 
 func _on_explosion_area_body_entered(body):
-	if body in get_tree().get_nodes_in_group("enemy"):
+	if body.is_in_group("enemy"):
 		exploding_area.append(body)
 	print("explode area: ",exploding_area)
 

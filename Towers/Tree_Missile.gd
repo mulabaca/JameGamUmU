@@ -43,7 +43,8 @@ func _on_tower_body_entered(body):
 		curr = currTarget
 		print("inrange; ",in_range)
 		print("this is the group",get_tree().get_nodes_in_group("enemy"))
-		shoot()
+		if $Timer.is_stopped():
+			shoot()
 
 func shoot():
 	if curr != null:

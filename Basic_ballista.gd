@@ -6,7 +6,7 @@ var pathName
 var currTargets = []
 var curr
 var in_range = false
-@onready var shoot_timer = get_node("Timer")
+@onready var shoot_timer:Timer = $Timer
 
 #func _ready():
 	#await get_tree().process_frame
@@ -28,13 +28,13 @@ func _on_tower_body_entered(body):
 	#for meta
 	#if "Enemy" in body.get_meta("Type")
 	#for groups
-	if body in get_tree().get_nodes_in_group("enemy"):
+	if body.is_in_group("enemy"):
 		var tempArray = []
 		currTargets = get_node("Tower").get_overlapping_bodies()
 		#this is to remove the tower from its area and to have it only
 		#shoot at Mobs and nothing else
 		for i in currTargets:
-			if i != self and i in get_tree().get_nodes_in_group("enemy"):
+			if i != self and i.is_in_group("enemy"):
 				tempArray.append(i)
 		#this is due to at the beginning there are no mobs in range
 		var currTarget = null
@@ -47,7 +47,8 @@ func _on_tower_body_entered(body):
 		curr = currTarget
 		#print("inrange; ",in_range)
 		#print("this is the group",get_tree().get_nodes_in_group("enemy"))
-		shoot()
+		if shoot_timer.is_stopped():
+			shoot()
 		
 		
 func shoot():
