@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dl6r3ucr4x64p"]
+[gd_scene load_steps=8 format=3 uid="uid://dl6r3ucr4x64p"]
 
 [ext_resource type="Script" path="res://Towers/Tree_Missile.gd" id="1_c4pyi"]
 [ext_resource type="Texture2D" uid="uid://dinc2j2shlntm" path="res://Assets/Cannon frames/treemissile1.png" id="1_hla7i"]
 [ext_resource type="Texture2D" uid="uid://bv07lg525k863" path="res://Assets/Cannon frames/treemissile2.png" id="3_mp6i8"]
+[ext_resource type="PackedScene" uid="uid://ctpmsrrn0x3o6" path="res://Towers/health_module.tscn" id="4_bnp27"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ilwns"]
 animations = [{
@@ -36,11 +37,13 @@ autoplay = "tree_launcher"
 frame_progress = 0.285961
 
 [node name="Tower_Body" type="CollisionShape2D" parent="."]
+scale = Vector2(0.9, 0.9)
 shape = SubResource("CircleShape2D_8817b")
 
 [node name="Aim" type="Marker2D" parent="."]
 
 [node name="Tower" type="Area2D" parent="."]
+visible = false
 collision_mask = 3
 
 [node name="Tower_Area" type="CollisionShape2D" parent="Tower"]
@@ -50,6 +53,10 @@ shape = SubResource("CircleShape2D_w0otm")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 4.0
+
+[node name="HealthModule" parent="." instance=ExtResource("4_bnp27")]
+health = 1000
+maxHealth = 1000
 
 [connection signal="body_entered" from="Tower" to="." method="_on_tower_body_entered"]
 [connection signal="body_exited" from="Tower" to="." method="_on_tower_body_exited"]

@@ -125,7 +125,7 @@ func place(grid_position: Vector2i):
 		add_child(turret_instance)
 		buildingArray.append(turret_instance)
 		print("Building Array", buildingArray)
-		if turret_instance.is_in_group("resourceBuilding"):
+		if turret_instance.is_in_group("resourceBuilding") && turret_instance.resource != 0:
 			match turret_instance.resource:
 				1:
 					turret_instance.gained_cookies.connect(gained_cookies)

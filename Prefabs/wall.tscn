@@ -54,6 +54,8 @@ size = Vector2(28, 28)
 [node name="wall" type="Area2D"]
 collision_mask = 3
 script = ExtResource("1_p5kl0")
+health = 400
+maxHealth = 400
 breakAnimationFrames = 4
 metadata/maxHealth = 400
 metadata/health = 400
@@ -82,6 +84,7 @@ show_percentage = false
 wait_time = 0.5
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_wqrrq")
