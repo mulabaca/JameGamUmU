@@ -8,7 +8,9 @@ var pathName
 var currTargets = []
 var curr
 var in_range = false
+
 @onready var shoot_timer:Timer = $Timer
+@onready var minigunSprite:AnimatedSprite2D = $minigun_shooting
 
 func _physics_process(_delta):
 	#print("in range: ",in_range)
@@ -64,7 +66,7 @@ func shoot():
 		get_node("Bullet_Container").add_child(Temp_bullet)
 		Temp_bullet.global_position = $Aim.global_position
 		
-		
+	
 func _on_tower_body_exited(body):
 	currTargets = get_node("Tower").get_overlapping_bodies()
 	#print("out range; ",in_range)
@@ -72,6 +74,6 @@ func _on_tower_body_exited(body):
 	if curr == body:
 		curr = null
 
-
 func _on_timer_timeout():
 	shoot()
+	
