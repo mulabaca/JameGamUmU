@@ -12,7 +12,7 @@ size = Vector2(31, 28.9999)
 radius = 144.014
 
 [node name="Basic_ballista" type="StaticBody2D"]
-collision_mask = 3
+collision_mask = 2
 script = ExtResource("1_vx2h6")
 
 [node name="Tower_Body" type="CollisionShape2D" parent="."]

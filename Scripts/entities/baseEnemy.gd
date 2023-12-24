@@ -48,9 +48,7 @@ func set_next_target():
 	var rootNode = get_tree().get_root().get_node("World")
 	var closestBuilding = find_nearest_building(rootNode.buildingArray, global_position)
 	if closestBuilding == null:
-		var randX = rng.randi_range(1, 3)
-		var randY = rng.randi_range(1, 3)
-		set_movement_target(Vector2(randX, randY))
+		set_movement_target(Vector2(80, 15))
 	elif movement_target_position != closestBuilding.global_position:
 		#print("Setting target")
 		set_movement_target(closestBuilding.global_position)

@@ -26,7 +26,7 @@ size = Vector2(29, 14)
 radius = 64.0703
 
 [node name="minigun" type="StaticBody2D"]
-collision_mask = 3
+collision_mask = 2
 script = ExtResource("1_tkjdu")
 
 [node name="minigun_shooting" type="AnimatedSprite2D" parent="."]
@@ -42,7 +42,7 @@ position = Vector2(0.5, 1)
 shape = SubResource("RectangleShape2D_m8co2")
 
 [node name="Tower" type="Area2D" parent="."]
-collision_mask = 3
+collision_mask = 2
 
 [node name="Tower_Area" type="CollisionShape2D" parent="Tower"]
 shape = SubResource("CircleShape2D_6oipa")

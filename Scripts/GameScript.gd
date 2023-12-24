@@ -41,6 +41,7 @@ func _ready():
 	$"Camera2D/Cookie counter".set_text("🍪" + str(cookiesStored))
 	$"Camera2D/Metal counter".set_text("🤖0/"+str(requiredMetalToys))
 	$"Camera2D/Plush counter".set_text("🧸0/"+str(requiredPlushies))
+	$santaBag.loose_toys.connect(loose_toys)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -287,3 +288,11 @@ func game_over():
 		get_tree().change_scene_to_file("res://Scenes/End_Screen.tscn")
 	else:
 		get_tree().change_scene_to_file("res://Scenes/End_Screen_lose.tscn")
+
+func loose_toys():
+	if metalStored != 0:
+		metalStored -= 1
+	if plushStored != 0:
+		plushStored -= 1
+	$"Camera2D/Metal counter".set_text("🤖"+str(metalStored)+"/"+str(requiredMetalToys))
+	$"Camera2D/Plush counter".set_text("🧸"+str(plushStored)+"/"+str(requiredPlushies))

@@ -69,7 +69,7 @@ script = ExtResource("1_qqr5j")
 health = 100
 maxHealth = 100
 resourceGain = 1
-resouceCooldown = 10
+resouceCooldown = 5
 resource = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
