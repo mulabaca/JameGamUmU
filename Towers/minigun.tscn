@@ -23,7 +23,7 @@ animations = [{
 size = Vector2(29, 14)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6oipa"]
-radius = 107.019
+radius = 83.006
 
 [node name="minigun" type="StaticBody2D"]
 collision_mask = 3
