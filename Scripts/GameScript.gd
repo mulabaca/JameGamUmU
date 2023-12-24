@@ -201,9 +201,15 @@ func getAvailability(cell: Vector2i):
 	return AVAILABLE
 
 func createNewSpawner():
-	var power = rng.randi_range(0,200)
-	var x = rng.randf_range(0, 1) * power + 100
-	var y = rng.randf_range(0, 1) * power + 100
+	var vertical = rng.randi_range(0,1)
+	var x = 500
+	var y = 500
+	if vertical == 0:
+		x = rng.randi_range(-500,500)
+		y = rng.randi_range(300,400)
+	elif vertical == 1:
+		x = rng.randi_range(300,400)
+		y = rng.randi_range(-500,500)
 	var signx = rng.randi_range(0, 1)
 	var signy = rng.randi_range(0, 1)
 	if signx == 0:
