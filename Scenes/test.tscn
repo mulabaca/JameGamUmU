@@ -22,7 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://bv07lg525k863" path="res://Assets/Cannon frames/treemissile2.png" id="17_76u45"]
 [ext_resource type="PackedScene" uid="uid://dl6r3ucr4x64p" path="res://Towers/Tree_Missile.tscn" id="18_xpkdm"]
 [ext_resource type="PackedScene" uid="uid://u4ppspvto0oe" path="res://Prefabs/spawner.tscn" id="20_maisa"]
-[ext_resource type="PackedScene" uid="uid://w52a36ufjqna" path="res://Prefabs/calendar.tscn" id="23_6puld"]
+[ext_resource type="PackedScene" path="res://Prefabs/calendar.tscn" id="23_6puld"]
 [ext_resource type="PackedScene" uid="uid://bgtp0ya0p67a" path="res://Towers/minigun.tscn" id="24_a1i63"]
 
 [node name="World" type="Node2D"]
