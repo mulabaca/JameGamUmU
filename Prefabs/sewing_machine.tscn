@@ -27,7 +27,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_j5i0p")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Default",
 "speed": 0.0
 }, {
 "frames": [{
@@ -47,7 +47,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_844lh")
 }],
 "loop": true,
-"name": &"working",
+"name": &"Working",
 "speed": 5.0
 }]
 
@@ -63,7 +63,7 @@ bg_color = Color(0, 0.705882, 0, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d76kr"]
 size = Vector2(26, 19)
 
-[node name="sewingMachine" type="Area2D"]
+[node name="sewingMachine" type="Area2D" groups=["resourceBuilding"]]
 script = ExtResource("1_qqr5j")
 health = 100
 maxHealth = 100
@@ -73,6 +73,7 @@ resource = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5r8dy")
+animation = &"Default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)

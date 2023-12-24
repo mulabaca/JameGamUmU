@@ -71,7 +71,7 @@ bg_color = Color(0, 0.705882, 0, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_25eh2"]
 size = Vector2(23.5, 16)
 
-[node name="Anvil" type="Area2D"]
+[node name="Anvil" type="Area2D" groups=["resourceBuilding"]]
 script = ExtResource("1_fmns2")
 health = 200
 maxHealth = 200
@@ -79,9 +79,9 @@ resourceGain = 1
 resouceCooldown = 10
 resource = 2
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hobx2")
-animation = &"Default"
+animation = &"Working"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0.5)

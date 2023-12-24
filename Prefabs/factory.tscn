@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://2kxxsudhcxst"]
+[gd_scene load_steps=13 format=3 uid="uid://2kxxsudhcxst"]
 
 [ext_resource type="Texture2D" uid="uid://wgwfsteag045" path="res://Assets/factory_sprite.png" id="1_iaaop"]
 [ext_resource type="Script" path="res://Scripts/entities/building.gd" id="1_r8p3j"]
@@ -9,6 +9,14 @@ atlas = ExtResource("1_iaaop")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mg5xb"]
+atlas = ExtResource("1_iaaop")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_taydv"]
+atlas = ExtResource("1_iaaop")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmixw"]
 atlas = ExtResource("1_iaaop")
 region = Rect2(32, 0, 32, 32)
 
@@ -23,7 +31,18 @@ animations = [{
 "texture": SubResource("AtlasTexture_mg5xb")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Default",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_taydv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmixw")
+}],
+"loop": true,
+"name": &"Working",
 "speed": 3.0
 }]
 
@@ -39,7 +58,7 @@ bg_color = Color(0, 0.705882, 0, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jympb"]
 size = Vector2(25, 18)
 
-[node name="Factory" type="Area2D"]
+[node name="Factory" type="Area2D" groups=["resourceBuilding"]]
 collision_mask = 3
 script = ExtResource("1_r8p3j")
 health = 100
@@ -52,8 +71,8 @@ metadata/health = 100
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wc72b")
-autoplay = "default"
-frame_progress = 0.224041
+animation = &"Working"
+autoplay = "Default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, -0.5)
