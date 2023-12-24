@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bgtp0ya0p67a"]
+[gd_scene load_steps=8 format=3 uid="uid://c006bubs0qaue"]
 
 [ext_resource type="Script" path="res://Towers/minigun.gd" id="1_tkjdu"]
 [ext_resource type="Texture2D" uid="uid://lkkr4v33sumi" path="res://Assets/minigun_frames/minigunstart.png" id="2_7bn7x"]
-[ext_resource type="PackedScene" uid="uid://ctpmsrrn0x3o6" path="res://Towers/health_module.tscn" id="2_s1yad"]
+[ext_resource type="PackedScene" path="res://Towers/health_module.tscn" id="2_s1yad"]
 [ext_resource type="Texture2D" uid="uid://bfkpceopqbmwg" path="res://Assets/minigun_frames/minigunend.png" id="3_dwial"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jh7h3"]
@@ -16,7 +16,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"shooting",
-"speed": 5.0
+"speed": 8.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m8co2"]
@@ -33,7 +33,6 @@ script = ExtResource("1_tkjdu")
 rotation = 1.5708
 sprite_frames = SubResource("SpriteFrames_jh7h3")
 animation = &"shooting"
-autoplay = "shooting"
 frame_progress = 0.676993
 
 [node name="Aim" type="Marker2D" parent="."]
@@ -55,9 +54,9 @@ shape = SubResource("CircleShape2D_6oipa")
 wait_time = 0.1
 
 [node name="HealthModule" parent="." instance=ExtResource("2_s1yad")]
-health = 500
 maxHealth = 500
 
+[connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="body_entered" from="Tower" to="." method="_on_tower_body_entered"]
 [connection signal="body_exited" from="Tower" to="." method="_on_tower_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
