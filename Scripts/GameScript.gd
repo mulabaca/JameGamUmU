@@ -94,6 +94,8 @@ func button_pressed():
 			
 			5:
 				selectedTurretScene = load("res://Towers/Tree_Missile.tscn")
+			6:
+				selectedTurretScene = load("res://Towers/minigun.tscn")
 	else:
 		placing = false;
 		removeAvailability(hoverCell);
