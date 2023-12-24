@@ -313,3 +313,7 @@ func loose_toys():
 		plushStored -= 1
 	$"Camera2D/Metal counter".set_text("🤖"+str(metalStored)+"/"+str(requiredMetalToys))
 	$"Camera2D/Plush counter".set_text("🧸"+str(plushStored)+"/"+str(requiredPlushies))
+
+
+func _on_audio_stream_player_finished():
+	$AudioStreamPlayer.play()
