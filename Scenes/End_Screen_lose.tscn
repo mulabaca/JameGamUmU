@@ -61,6 +61,10 @@ theme = ExtResource("4_6ud3d")
 layout_mode = 2
 text = "Restart"
 
+[node name="Credits" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
 [node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Quit"
@@ -70,4 +74,5 @@ stream = ExtResource("6_s2bgp")
 volume_db = -5.0
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ReStartButton" to="." method="_on_re_start_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

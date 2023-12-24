@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdcuswinn16m2"]
+[gd_scene load_steps=4 format=3 uid="uid://dirlxcbysoft7"]
 
 [ext_resource type="Theme" uid="uid://dk8t5d0tge33u" path="res://themes/new_theme.tres" id="1_odo5o"]
+[ext_resource type="Script" path="res://Scripts/credits.gd" id="1_yv24x"]
 [ext_resource type="Texture2D" uid="uid://c0rx61wdmktch" path="res://Assets/x.png" id="2_g74lm"]
 
 [node name="Credits" type="Control"]
@@ -10,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_yv24x")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -46,8 +48,8 @@ bbcode_enabled = true
 text = "[center][b]CREDITS[/b]
 
 Sera Vallee
-Reyes Bac
-Huu Hyunh
+Reyes Palomera
+Huu Huynh
 Justin Norton
 
 [b]Music[/b]
@@ -74,3 +76,5 @@ offset_bottom = 97.0
 grow_horizontal = 0
 icon = ExtResource("2_g74lm")
 expand_icon = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
