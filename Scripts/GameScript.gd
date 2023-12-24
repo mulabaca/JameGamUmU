@@ -134,7 +134,7 @@ func place(grid_position: Vector2i):
 				3:
 					turret_instance.gained_plush.connect(gained_plush)
 			
-			if dayTime < time.EVENING or dayTime == time.DUSK:
+			if dayTime < time.EVENING or dayTime == time.DAWN:
 				turret_instance.startWorking()
 			else:
 				turret_instance.stopWorking()

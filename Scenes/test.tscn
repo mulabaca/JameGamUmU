@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c1ti7jg3mutfc"]
+[gd_scene load_steps=24 format=3 uid="uid://c1ti7jg3mutfc"]
 
 [ext_resource type="TileSet" uid="uid://chy8k0w1bg5s4" path="res://Assets/Terrain_tile_set.tres" id="1_ca0dn"]
 [ext_resource type="Script" path="res://Scripts/GameScript.gd" id="1_s1qw0"]
@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/drawer.gd" id="2_t6h8n"]
 [ext_resource type="PackedScene" uid="uid://5exh3vxe1lp4" path="res://Prefabs/button.tscn" id="3_vlomp"]
 [ext_resource type="PackedScene" uid="uid://dj0g6mqkvedf" path="res://Prefabs/time_indicator.tscn" id="5_xncab"]
-[ext_resource type="StyleBox" path="res://themes/new_style_box_empty.tres" id="7_brwht"]
+[ext_resource type="StyleBox" uid="uid://vd1h3tii45lo" path="res://themes/new_style_box_empty.tres" id="7_brwht"]
 [ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="7_t2kth"]
 [ext_resource type="Script" path="res://Scripts/entities/turretButton.gd" id="8_74lwp"]
 [ext_resource type="Texture2D" uid="uid://clwg3bymkm5i3" path="res://Assets/factory-icon.png" id="8_ugfjq"]
@@ -103,7 +103,6 @@ text = "
 script = ExtResource("8_74lwp")
 cost = 300
 worldNode = NodePath("../../../../..")
-buildingType = 1
 metadata/Spawn = "anvil"
 
 [node name="FactoryButton" parent="Camera2D/Menu/ButtonMenu/GridContainer" node_paths=PackedStringArray("worldNode") instance=ExtResource("3_vlomp")]
@@ -124,7 +123,6 @@ icon = ExtResource("12_f14ai")
 script = ExtResource("8_74lwp")
 cost = 200
 worldNode = NodePath("../../../../..")
-buildingType = 2
 metadata/Spawn = "Sewing"
 
 [node name="WallButton" parent="Camera2D/Menu/ButtonMenu/GridContainer" node_paths=PackedStringArray("worldNode") instance=ExtResource("3_vlomp")]
@@ -136,7 +134,6 @@ icon = ExtResource("11_cgftu")
 script = ExtResource("8_74lwp")
 cost = 50
 worldNode = NodePath("../../../../..")
-buildingType = 3
 metadata/Spawn = "wall"
 
 [node name="DebugMenu" type="VBoxContainer" parent="Camera2D/Menu/ButtonMenu"]
@@ -196,7 +193,6 @@ icon = ExtResource("16_852w2")
 script = ExtResource("8_74lwp")
 cost = 300
 worldNode = NodePath("../../../../..")
-buildingType = 4
 metadata/Spawn = "anvil"
 
 [node name="TreeButton" parent="Camera2D/Menu2/ButtonMenu/GridContainer" node_paths=PackedStringArray("worldNode") instance=ExtResource("3_vlomp")]
@@ -206,7 +202,6 @@ icon = ExtResource("17_76u45")
 script = ExtResource("8_74lwp")
 cost = 500
 worldNode = NodePath("../../../../..")
-buildingType = 5
 metadata/Spawn = "anvil"
 
 [node name="DebugMenu" type="VBoxContainer" parent="Camera2D/Menu2/ButtonMenu"]
