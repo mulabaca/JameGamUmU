@@ -9,10 +9,9 @@
 size = Vector2(31, 28.9999)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yxljt"]
-radius = 82.0061
+radius = 144.014
 
 [node name="Basic_ballista" type="StaticBody2D"]
-rotation = 1.5708
 collision_mask = 3
 script = ExtResource("1_vx2h6")
 
@@ -28,7 +27,6 @@ rotation = 1.5708
 texture = ExtResource("2_04yaw")
 
 [node name="Tower" type="Area2D" parent="."]
-visible = false
 collision_mask = 2
 
 [node name="Tower_Area" type="CollisionShape2D" parent="Tower"]
