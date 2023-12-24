@@ -70,7 +70,7 @@ script = ExtResource("1_464c0")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 rotation = 1.5708
 sprite_frames = SubResource("SpriteFrames_w2iix")
-animation = &"exploding"
+animation = &"missile_flying"
 autoplay = "missile_flying"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -90,11 +90,9 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="collision_explosion" type="CollisionShape2D" parent="explosion_area"]
-scale = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_a0hqt")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.2
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="explosion_area" to="." method="_on_explosion_area_body_entered"]
