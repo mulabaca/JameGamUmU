@@ -27,6 +27,10 @@ func _physics_process(_delta):
 				tempArray.append(i)
 		if tempArray.size() != 0:
 			curr = tempArray[0]
+			$minigun_shooting.play()
+		else:
+			$minigun_shooting.stop()
+	
 
 func _on_tower_body_entered(_body):
 	var tempArray = []
@@ -52,6 +56,7 @@ func _on_tower_body_entered(_body):
 
 func shoot():
 	if curr != null:
+		$minigun_shooting.play()
 		var Temp_bullet = bullet.instantiate()
 		Temp_bullet.dmg = bullet_dmg
 		Temp_bullet.target = curr
