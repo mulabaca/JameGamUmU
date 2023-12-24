@@ -8,7 +8,7 @@ extends Node2D
 @export var requiredMetalToys: int
 @export var requiredPlushies: int
 
-enum time{MORNING, NOON, AFTERNOON, EVENING, MIDNIGHT, DUSK}
+enum time{DAWN, MORNING, NOON, AFTERNOON, EVENING, MIDNIGHT}
 
 var selectedTurretScene = preload("res://Prefabs/anvil.tscn") #replace with null
 var tileMap = null
@@ -134,7 +134,7 @@ func place(grid_position: Vector2i):
 				3:
 					turret_instance.gained_plush.connect(gained_plush)
 			
-			if dayTime < time.EVENING or dayTime == time.DUSK:
+			if dayTime < time.EVENING or dayTime == time.DAWN:
 				turret_instance.startWorking()
 			else:
 				turret_instance.stopWorking()
@@ -202,10 +202,10 @@ func getAvailability(cell: Vector2i):
 func _on_day_timer_timeout():
 	
 	match dayTime:
-		time.DUSK:
+		time.DAWN:
 			dayTime = time.MORNING
 		time.MIDNIGHT:
-			dayTime = time.DUSK
+			dayTime = time.DAWN
 			$Camera2D/TimeIndicator.set_day()
 			for building in get_tree().get_nodes_in_group("resourceBuilding"):
 				building.startWorking()
@@ -227,14 +227,14 @@ func changeLight():
 	var t = $TileMap/dayTimer.get_time_left()/(dayLenght/7.0)
 	var newLight = Color(1.0, 1.0, 1.0)
 	match dayTime:
-		time.DUSK:
-			const B = Color(0.8,0.8,0.8) #Dusk
+		time.DAWN:
+			const B = Color(0.8,0.8,0.8) #DAWN
 			const A = Color(1.0,0.95,0.9) #Morning
 			newLight = B*t + A*(1.0-t)	
 		
 		time.MIDNIGHT:
 			const B = Color(0.4,0.4,0.4) #Midnight
-			const A = Color(0.8,0.8,0.8) #Dusk
+			const A = Color(0.8,0.8,0.8) #Dawn
 			newLight = B*t + A*(1.0-t)
 		
 		time.EVENING:
