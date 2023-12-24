@@ -49,8 +49,8 @@ func _on_tower_body_entered(body):
 		#currTarget = tempArray[0]
 		#print("the target in ballista: ",currTarget)
 		curr = currTarget
-		print("inrange; ",in_range)
-		print("this is the group",get_tree().get_nodes_in_group("enemy"))
+		#print("inrange; ",in_range)
+		#print("this is the group",get_tree().get_nodes_in_group("enemy"))
 		if $Timer.is_stopped():
 			shoot()
 
@@ -63,10 +63,10 @@ func shoot():
 		get_node("Tree_container").add_child(Temp_missile)
 		Temp_missile.global_position = $Aim.global_position
 		
-func _on_tower_body_exited(body):
+func _on_tower_body_exited(_body):
 	currTargets = get_node("Tower").get_overlapping_bodies()
-	print("out range; ",in_range)
-	print("current targets", currTargets)
+	#print("out range; ",in_range)
+	#print("current targets", currTargets)
 
 
 func _on_timer_timeout():

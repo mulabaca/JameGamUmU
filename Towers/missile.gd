@@ -25,14 +25,14 @@ func _physics_process(_delta):
 			boom_timer.start()
 	
 func _on_area_2d_body_entered(body):
-	print("enemy body in entered: ", curtarget)
+	#print("enemy body in entered: ", curtarget)
 	#print("Enemy name1: ", str(curtarget.get_meta("Type")))
-	print("this is the group",get_tree().get_nodes_in_group("enemy"))
+	#print("this is the group",get_tree().get_nodes_in_group("enemy"))
 	if is_instance_valid(body) and curtarget != null:
 		#for meta
 		# if "Enemy" in bocy.get_meta("Type")
 		#for groups
-		print("the name of touched",body.name)
+		#print("the name of touched",body.name)
 		if body.is_in_group("enemy"):
 			for i in exploding_area:
 				if is_instance_valid(i):
@@ -48,7 +48,7 @@ func _on_area_2d_body_entered(body):
 func _on_explosion_area_body_entered(body):
 	if body.is_in_group("enemy"):
 		exploding_area.append(body)
-	print("explode area: ",exploding_area)
+	#print("explode area: ",exploding_area)
 
 
 func _on_timer_timeout():

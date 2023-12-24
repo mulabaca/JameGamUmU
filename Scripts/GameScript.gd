@@ -217,6 +217,8 @@ func _on_day_timer_timeout():
 			$Camera2D/TimeIndicator.set_night()
 			for building in get_tree().get_nodes_in_group("resourceBuilding"):
 				building.stopWorking()
+			for button in buttonGroup.get_buttons():
+				button.disabled = true
 		time.NOON:
 			dayTime = time.AFTERNOON
 		time.MORNING:

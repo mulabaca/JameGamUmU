@@ -52,7 +52,7 @@ func set_next_target():
 		var randY = rng.randi_range(1, 3)
 		set_movement_target(Vector2(randX, randY))
 	elif movement_target_position != closestBuilding.global_position:
-		print("Setting target")
+		#print("Setting target")
 		set_movement_target(closestBuilding.global_position)
 		movement_target_position = closestBuilding.global_position
 

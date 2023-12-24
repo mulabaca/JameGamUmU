@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c1ti7jg3mutfc"]
+[gd_scene load_steps=22 format=3 uid="uid://c1ti7jg3mutfc"]
 
 [ext_resource type="TileSet" uid="uid://chy8k0w1bg5s4" path="res://Assets/Terrain_tile_set.tres" id="1_ca0dn"]
 [ext_resource type="Script" path="res://Scripts/GameScript.gd" id="1_s1qw0"]
@@ -12,7 +12,6 @@
 [ext_resource type="Script" path="res://Scripts/entities/turretButton.gd" id="8_74lwp"]
 [ext_resource type="Texture2D" uid="uid://clwg3bymkm5i3" path="res://Assets/factory-icon.png" id="8_ugfjq"]
 [ext_resource type="Theme" uid="uid://dk8t5d0tge33u" path="res://themes/new_theme.tres" id="10_8r6rh"]
-[ext_resource type="PackedScene" uid="uid://uyeypu3hd8tm" path="res://Towers/basic_ballista.tscn" id="10_i8skc"]
 [ext_resource type="Texture2D" uid="uid://chyqviqfj8s3y" path="res://Assets/wall-icon.png" id="11_cgftu"]
 [ext_resource type="Texture2D" uid="uid://b2oagf2i8v03m" path="res://Assets/Sewing_machine_icon.png" id="12_f14ai"]
 [ext_resource type="PackedScene" uid="uid://cn2qab3762nnd" path="res://Mobs/gobbo.tscn" id="13_hjark"]
@@ -20,11 +19,8 @@
 [ext_resource type="Texture2D" uid="uid://du45iv02tjinv" path="res://Assets/ballista_frames/christmas_ballista_starting.png" id="16_852w2"]
 [ext_resource type="Texture2D" uid="uid://dvj5es6u62l4k" path="res://Assets/menu2_background.png" id="16_xsu0f"]
 [ext_resource type="Texture2D" uid="uid://bv07lg525k863" path="res://Assets/Cannon frames/treemissile2.png" id="17_76u45"]
-[ext_resource type="PackedScene" uid="uid://dl6r3ucr4x64p" path="res://Towers/Tree_Missile.tscn" id="18_xpkdm"]
 [ext_resource type="PackedScene" uid="uid://u4ppspvto0oe" path="res://Prefabs/spawner.tscn" id="20_maisa"]
 [ext_resource type="PackedScene" path="res://Prefabs/calendar.tscn" id="23_6puld"]
-[ext_resource type="PackedScene" uid="uid://bgtp0ya0p67a" path="res://Towers/minigun.tscn" id="24_a1i63"]
-[ext_resource type="AudioStream" uid="uid://daopb2rq7plqh" path="res://Assets/music/Mark Wilson X - In the Hall of the Mountain King.mp3" id="24_two2r"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_s1qw0")
@@ -265,25 +261,11 @@ collision_mask = 5
 
 [node name="towers" type="Node" parent="."]
 
-[node name="Basic_ballista" parent="towers" instance=ExtResource("10_i8skc")]
-position = Vector2(48, 73)
-
-[node name="StaticBody2D" parent="towers" instance=ExtResource("18_xpkdm")]
-position = Vector2(112, -16)
-
-[node name="minigun" parent="towers" instance=ExtResource("24_a1i63")]
-position = Vector2(182, 41)
-
 [node name="Spawner" parent="." instance=ExtResource("20_maisa")]
 position = Vector2(9, 276)
 
 [node name="Spawner2" parent="." instance=ExtResource("20_maisa")]
 position = Vector2(83, -130)
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("24_two2r")
-volume_db = -7.0
-autoplay = true
 
 [connection signal="timeout" from="TileMap/dayTimer" to="." method="_on_day_timer_timeout"]
 [connection signal="timeout" from="Camera2D/Timer" to="Camera2D" method="_on_timer_timeout"]

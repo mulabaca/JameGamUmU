@@ -12,11 +12,11 @@ var in_range = false
 @onready var shoot_timer:Timer = $Timer
 @onready var minigunSprite:AnimatedSprite2D = $minigun_shooting
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	#print("in range: ",in_range)
 	#print(is_instance_valid(curr))
 	if is_instance_valid(curr):
-		look_at(curr.global_position)
+		$minigun_shooting.look_at(curr.global_position)
 		if shoot_timer.is_stopped():
 			shoot_timer.start()
 			
@@ -33,7 +33,7 @@ func _physics_process(delta):
 			minigunSprite.stop()
 			minigunSprite.frame = 0
 
-func _on_tower_body_entered(body):
+func _on_tower_body_entered(_body):
 	var tempArray = []
 	currTargets = get_node("Tower").get_overlapping_bodies()
 	#this is to remove the tower from its area and to have it only
