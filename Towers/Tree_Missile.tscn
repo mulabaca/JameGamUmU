@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Towers/Tree_Missile.gd" id="1_c4pyi"]
 [ext_resource type="Texture2D" uid="uid://dinc2j2shlntm" path="res://Assets/Cannon frames/treemissile1.png" id="1_hla7i"]
 [ext_resource type="Texture2D" uid="uid://bv07lg525k863" path="res://Assets/Cannon frames/treemissile2.png" id="3_mp6i8"]
-[ext_resource type="PackedScene" uid="uid://ctpmsrrn0x3o6" path="res://Towers/health_module.tscn" id="4_bnp27"]
+[ext_resource type="PackedScene" path="res://Towers/health_module.tscn" id="4_bnp27"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ilwns"]
 animations = [{

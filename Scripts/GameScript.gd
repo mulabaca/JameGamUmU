@@ -26,6 +26,7 @@ const UNAVAILABLE = Vector2i(10,0)
 
 signal cookies_changed(cookies)
 
+var rng:RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready():
 	# Assuming TileMap is a child of the main scene
@@ -41,7 +42,8 @@ func _ready():
 	$"Camera2D/Cookie counter".set_text("🍪" + str(cookiesStored))
 	$"Camera2D/Metal counter".set_text("🤖0/"+str(requiredMetalToys))
 	$"Camera2D/Plush counter".set_text("🧸0/"+str(requiredPlushies))
-
+	
+	createNewSpawner()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -195,7 +197,21 @@ func getAvailability(cell: Vector2i):
 	
 	return AVAILABLE
 
-
+func createNewSpawner():
+	var x = rng.randf_range(0.5, 0.9) * 1000
+	var y = rng.randf_range(0.5, 0.9) * 1000
+	var signx = rng.randi_range(0, 1)
+	var signy = rng.randi_range(0, 1)
+	if signx == 0:
+		signx = -1
+	if signy == 0:
+		signy = -1
+	
+	var spawnerInstance = load("res://Prefabs/spawner.tscn").instantiate()
+	var spawnerPosition = Vector2(x*signx, y*signy)
+	spawnerInstance.position = spawnerPosition
+	get_tree().get_root().get_node("World").add_child(spawnerInstance)
+	
 
 func _on_day_timer_timeout():
 	
@@ -207,6 +223,7 @@ func _on_day_timer_timeout():
 			$Camera2D/TimeIndicator.set_day()
 			for building in get_tree().get_nodes_in_group("resourceBuilding"):
 				building.startWorking()
+			createNewSpawner()
 		time.EVENING:
 			dayTime = time.MIDNIGHT
 			$Camera2D/calendar.add_day()
