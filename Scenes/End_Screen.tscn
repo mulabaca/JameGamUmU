@@ -1,0 +1,84 @@
+[gd_scene load_steps=8 format=3 uid="uid://cylc2dx1ajsm3"]
+
+[ext_resource type="Script" path="res://Scripts/Menu_End.gd" id="1_ikt8l"]
+[ext_resource type="Texture2D" uid="uid://ctfkdenj6gk6n" path="res://Assets/bad_end.png" id="2_j2lv1"]
+[ext_resource type="Texture2D" uid="uid://b4h82rf7snaq1" path="res://Assets/good_end.jpg" id="2_p6p25"]
+[ext_resource type="Theme" uid="uid://dk8t5d0tge33u" path="res://themes/new_theme.tres" id="3_lm816"]
+[ext_resource type="AudioStream" uid="uid://dfqd7p8v4wstt" path="res://Assets/music/Denys Kyshchuk - New Year.mp3" id="4_jputf"]
+[ext_resource type="AudioStream" uid="uid://dseg3a74o1726" path="res://Assets/music/HoliznaPATREON - We Three Kings.mp3" id="5_a4g25"]
+
+[sub_resource type="Theme" id="Theme_j2br0"]
+
+[node name="EndMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_j2br0")
+script = ExtResource("1_ikt8l")
+
+[node name="good_end" type="Sprite2D" parent="."]
+position = Vector2(959.5, 540)
+scale = Vector2(1.88379, 1.76873)
+texture = ExtResource("2_p6p25")
+
+[node name="bad_end" type="Sprite2D" parent="."]
+position = Vector2(960, 539.5)
+scale = Vector2(1.58224, 1.30649)
+texture = ExtResource("2_j2lv1")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -0.5
+offset_top = 121.0
+offset_right = 0.5
+offset_bottom = 144.0
+grow_horizontal = 2
+theme = ExtResource("3_lm816")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
+text = "[END MESSAGE]"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.503
+anchor_top = 0.697
+anchor_right = 0.503
+anchor_bottom = 0.697
+offset_left = -153.76
+offset_top = 9.23999
+offset_right = -54.76
+offset_bottom = 113.24
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(3, 3)
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme = ExtResource("3_lm816")
+
+[node name="ReStartButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="winningmusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_jputf")
+volume_db = -5.0
+
+[node name="losingmusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_a4g25")
+volume_db = -5.0
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ReStartButton" to="." method="_on_re_start_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

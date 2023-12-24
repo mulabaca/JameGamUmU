@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dgmj2pfnohwcl"
+path="res://.godot/imported/AudioCoffee - Winter Relax.mp3-efaf6dc6f68ebbe466fd05905385edb2.mp3str"
+
+[deps]
+
+source_file="res://Assets/music/AudioCoffee - Winter Relax.mp3"
+dest_files=["res://.godot/imported/AudioCoffee - Winter Relax.mp3-efaf6dc6f68ebbe466fd05905385edb2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

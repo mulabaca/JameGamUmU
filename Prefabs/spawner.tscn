@@ -62,5 +62,6 @@ position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_avf02")
 
 [node name="Spawn_Timer" type="Timer" parent="."]
+wait_time = 2.0
 
 [connection signal="timeout" from="Spawn_Timer" to="." method="_on_spawn_timer_timeout"]

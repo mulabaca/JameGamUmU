@@ -258,6 +258,11 @@ position = Vector2(9, 276)
 [node name="Spawner2" parent="." instance=ExtResource("20_maisa")]
 position = Vector2(83, -130)
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("24_two2r")
+volume_db = -7.0
+autoplay = true
+
 [connection signal="timeout" from="TileMap/dayTimer" to="." method="_on_day_timer_timeout"]
 [connection signal="timeout" from="Camera2D/Timer" to="Camera2D" method="_on_timer_timeout"]
 [connection signal="pressed" from="Camera2D/Menu/ButtonMenu" to="Camera2D/Menu" method="_on_work_station_menu_pressed"]
