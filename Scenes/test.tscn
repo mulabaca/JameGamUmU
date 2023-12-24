@@ -20,8 +20,8 @@
 [ext_resource type="Texture2D" uid="uid://bv07lg525k863" path="res://Assets/Cannon frames/treemissile2.png" id="17_76u45"]
 [ext_resource type="Texture2D" uid="uid://lkkr4v33sumi" path="res://Assets/minigun_frames/minigunstart.png" id="19_5xga4"]
 [ext_resource type="AudioStream" uid="uid://daopb2rq7plqh" path="res://Assets/music/Mark Wilson X - In the Hall of the Mountain King.mp3" id="21_vvki7"]
-[ext_resource type="PackedScene" uid="uid://w52a36ufjqna" path="res://Prefabs/calendar.tscn" id="23_6puld"]
-[ext_resource type="PackedScene" uid="uid://s5nob1taoiuy" path="res://Prefabs/santa_bag.tscn" id="23_lh1e4"]
+[ext_resource type="PackedScene" path="res://Prefabs/calendar.tscn" id="23_6puld"]
+[ext_resource type="PackedScene" path="res://Prefabs/santa_bag.tscn" id="23_lh1e4"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_s1qw0")
