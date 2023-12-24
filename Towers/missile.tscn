@@ -94,6 +94,7 @@ scale = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_a0hqt")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="explosion_area" to="." method="_on_explosion_area_body_entered"]
