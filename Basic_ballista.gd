@@ -6,6 +6,7 @@ var pathName
 var currTargets = []
 var curr
 var in_range = false
+
 @onready var shoot_timer:Timer = $Timer
 
 #func _ready():
@@ -63,11 +64,12 @@ func _on_tower_body_entered(body):
 func shoot():
 	if curr != null:
 		var Temp_Icicle = icicle.instantiate()
+		var crosshair = get_node("ChristmasBallistaStarting").get_node("Aim")
 		Temp_Icicle.dmg = icicle_dmg
 		Temp_Icicle.target = curr
 		await get_tree().process_frame
 		get_node("Icicle_Container").add_child(Temp_Icicle)
-		Temp_Icicle.global_position = $Aim.global_position
+		Temp_Icicle.global_position = crosshair.global_position
 		
 #this is the Tower connecting(signal) to the body which is the Basic_Ballista for exiting
 #this checks every second if something has exited

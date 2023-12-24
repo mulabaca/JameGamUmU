@@ -34,7 +34,7 @@ sprite_frames = SubResource("SpriteFrames_jh7h3")
 animation = &"shooting"
 frame_progress = 0.753822
 
-[node name="Aim" type="Marker2D" parent="."]
+[node name="Aim" type="Marker2D" parent="minigun_shooting"]
 position = Vector2(12, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
