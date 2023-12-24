@@ -29,9 +29,10 @@ func _physics_process(_delta):
 				tempArray.append(i)
 		if tempArray.size() != 0:
 			curr = tempArray[0]
-		elif minigunSprite.is_playing():
-			minigunSprite.stop()
-			minigunSprite.frame = 0
+			$minigun_shooting.play()
+		else:
+			$minigun_shooting.stop()
+	
 
 func _on_tower_body_entered(_body):
 	var tempArray = []
@@ -57,15 +58,14 @@ func _on_tower_body_entered(_body):
 
 func shoot():
 	if curr != null:
-		if !minigunSprite.is_playing():
-			minigunSprite.play()
-			
+		$minigun_shooting.play()
+		var crosshair = get_node("minigun_shooting/Aim")
 		var Temp_bullet = bullet.instantiate()
 		Temp_bullet.dmg = bullet_dmg
 		Temp_bullet.target = curr
 		await get_tree().process_frame
 		get_node("Bullet_Container").add_child(Temp_bullet)
-		Temp_bullet.global_position = $Aim.global_position
+		Temp_bullet.global_position = crosshair.global_position
 		
 	
 func _on_tower_body_exited(body):

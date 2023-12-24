@@ -57,11 +57,12 @@ func _on_tower_body_entered(body):
 func shoot():
 	if curr != null:
 		var Temp_missile = missile.instantiate()
+		var crosshair = get_node("AnimatedSprite2D/Aim")
 		Temp_missile.dmg = missile_dmg
 		Temp_missile.target = curr
 		await get_tree().process_frame
 		get_node("Tree_container").add_child(Temp_missile)
-		Temp_missile.global_position = $Aim.global_position
+		Temp_missile.global_position = crosshair.global_position
 		
 func _on_tower_body_exited(_body):
 	currTargets = get_node("Tower").get_overlapping_bodies()

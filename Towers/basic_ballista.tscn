@@ -19,12 +19,13 @@ script = ExtResource("1_vx2h6")
 position = Vector2(0.499994, -0.50004)
 shape = SubResource("RectangleShape2D_itse3")
 
-[node name="Aim" type="Marker2D" parent="."]
-position = Vector2(15, -5.42999e-05)
-
 [node name="ChristmasBallistaStarting" type="Sprite2D" parent="."]
 rotation = 1.5708
 texture = ExtResource("2_04yaw")
+
+[node name="Aim" type="Marker2D" parent="ChristmasBallistaStarting"]
+position = Vector2(15, 0)
+rotation = -1.5708
 
 [node name="Tower" type="Area2D" parent="."]
 collision_mask = 2

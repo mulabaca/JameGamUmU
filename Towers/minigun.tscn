@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://c006bubs0qaue"]
+[gd_scene load_steps=8 format=3 uid="uid://bgtp0ya0p67a"]
 
 [ext_resource type="Script" path="res://Towers/minigun.gd" id="1_tkjdu"]
 [ext_resource type="Texture2D" uid="uid://lkkr4v33sumi" path="res://Assets/minigun_frames/minigunstart.png" id="2_7bn7x"]
-[ext_resource type="PackedScene" path="res://Towers/health_module.tscn" id="2_s1yad"]
+[ext_resource type="PackedScene" uid="uid://ctpmsrrn0x3o6" path="res://Towers/health_module.tscn" id="2_s1yad"]
 [ext_resource type="Texture2D" uid="uid://bfkpceopqbmwg" path="res://Assets/minigun_frames/minigunend.png" id="3_dwial"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jh7h3"]
@@ -16,7 +16,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"shooting",
-"speed": 8.0
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m8co2"]
@@ -30,13 +30,12 @@ collision_mask = 3
 script = ExtResource("1_tkjdu")
 
 [node name="minigun_shooting" type="AnimatedSprite2D" parent="."]
-rotation = 1.5708
 sprite_frames = SubResource("SpriteFrames_jh7h3")
 animation = &"shooting"
-frame_progress = 0.676993
+frame_progress = 0.753822
 
-[node name="Aim" type="Marker2D" parent="."]
-position = Vector2(15, 0)
+[node name="Aim" type="Marker2D" parent="minigun_shooting"]
+position = Vector2(12, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 1)
