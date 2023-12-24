@@ -12,14 +12,23 @@ var in_range = false
 	#await get_tree().process_frame
 	#call_deferred("shoot")
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	#print("in range: ",in_range)
 	#print(is_instance_valid(curr))
 	if is_instance_valid(curr):
-		look_at(curr.global_position)
+		$ChristmasBallistaStarting.look_at(curr.global_position)
 		if shoot_timer.is_stopped():
 			shoot_timer.start()
-		
+			
+	#this is so that if there are more enemies in range shoot
+	if !is_instance_valid(curr):
+		currTargets = get_node("Tower").get_overlapping_bodies()
+		var tempArray = []
+		for i in currTargets:
+			if i != self and i.is_in_group("enemy"):
+				tempArray.append(i)
+		if tempArray.size() != 0:
+			curr = tempArray[0]
 		
 #this is the Tower connecting(signal) to the body which is the Basic_Ballista for entering
 #this checks once when something enters

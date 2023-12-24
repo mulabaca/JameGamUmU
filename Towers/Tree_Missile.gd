@@ -9,13 +9,23 @@ var curr
 var in_range = false
 @onready var shoot_timer = get_node("Timer")
 
-func _physics_process(delta):
+
+func _physics_process(_delta):
 	#print("in range: ",in_range)
 	#print(is_instance_valid(curr))
 	if is_instance_valid(curr):
-		look_at(curr.global_position)
+		$AnimatedSprite2D.look_at(curr.global_position)
 		if shoot_timer.is_stopped():
 			shoot_timer.start()
+	#this is so that if there are more enemies in range shoot
+	if !is_instance_valid(curr):
+		currTargets = get_node("Tower").get_overlapping_bodies()
+		var tempArray = []
+		for i in currTargets:
+			if i != self and i.is_in_group("enemy"):
+				tempArray.append(i)
+		if tempArray.size() != 0:
+			curr = tempArray[0]
 
 func _on_tower_body_entered(body):
 	#test_Mob is the node in test.gd for spawning mob
@@ -57,8 +67,6 @@ func _on_tower_body_exited(body):
 	currTargets = get_node("Tower").get_overlapping_bodies()
 	print("out range; ",in_range)
 	print("current targets", currTargets)
-	if curr == body:
-		curr = null
 
 
 func _on_timer_timeout():

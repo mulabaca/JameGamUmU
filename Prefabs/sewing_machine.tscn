@@ -64,6 +64,7 @@ bg_color = Color(0, 0.705882, 0, 1)
 size = Vector2(26, 19)
 
 [node name="sewingMachine" type="Area2D" groups=["resourceBuilding"]]
+collision_mask = 3
 script = ExtResource("1_qqr5j")
 health = 100
 maxHealth = 100
@@ -93,6 +94,7 @@ show_percentage = false
 wait_time = 0.5
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 0.5)
@@ -115,6 +117,8 @@ text = "+🧸"
 [node name="labelCooldown" type="Timer" parent="."]
 wait_time = 0.3
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="ResourceTimer" to="." method="_on_resource_timer_timeout"]
 [connection signal="timeout" from="labelCooldown" to="." method="_on_label_cooldown_timeout"]

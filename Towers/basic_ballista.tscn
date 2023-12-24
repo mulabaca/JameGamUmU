@@ -1,11 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://uyeypu3hd8tm"]
+[gd_scene load_steps=7 format=3 uid="uid://uyeypu3hd8tm"]
 
 [ext_resource type="Script" path="res://Basic_ballista.gd" id="1_vx2h6"]
 [ext_resource type="Texture2D" uid="uid://du45iv02tjinv" path="res://Assets/ballista_frames/christmas_ballista_starting.png" id="2_04yaw"]
 [ext_resource type="Script" path="res://Towers/Timer.gd" id="3_3b5w4"]
+[ext_resource type="PackedScene" uid="uid://ctpmsrrn0x3o6" path="res://Towers/health_module.tscn" id="4_bgvld"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_itse3"]
-size = Vector2(34.0001, 30.9999)
+size = Vector2(31, 28.9999)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yxljt"]
 radius = 82.0061
@@ -16,7 +17,7 @@ collision_mask = 3
 script = ExtResource("1_vx2h6")
 
 [node name="Tower_Body" type="CollisionShape2D" parent="."]
-position = Vector2(2.30609e-05, -1.50003)
+position = Vector2(0.499994, -0.50004)
 shape = SubResource("RectangleShape2D_itse3")
 
 [node name="Aim" type="Marker2D" parent="."]
@@ -27,7 +28,8 @@ rotation = 1.5708
 texture = ExtResource("2_04yaw")
 
 [node name="Tower" type="Area2D" parent="."]
-collision_mask = 3
+visible = false
+collision_mask = 2
 
 [node name="Tower_Area" type="CollisionShape2D" parent="Tower"]
 shape = SubResource("CircleShape2D_yxljt")
@@ -39,6 +41,9 @@ process_callback = 0
 wait_time = 2.0
 one_shot = true
 script = ExtResource("3_3b5w4")
+
+[node name="HealthModule" parent="." instance=ExtResource("4_bgvld")]
+maxHealth = 700
 
 [connection signal="body_entered" from="Tower" to="." method="_on_tower_body_entered"]
 [connection signal="body_exited" from="Tower" to="." method="_on_tower_body_exited"]
