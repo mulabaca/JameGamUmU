@@ -6,12 +6,7 @@ func _ready():
 	pass
 
 func initialize(isWinning:bool):
-	if isWinning:
-		$bad_end.visible = false
-		$winningmusic.play()
-	else:
-		$good_end.visible = false
-		$losingmusic.play(4.9)
+		$music.play(4.9)
 #
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

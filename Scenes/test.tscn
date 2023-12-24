@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bgiu01i2vvt7m" path="res://Assets/menu_background.png" id="2_1otlr"]
 [ext_resource type="Script" path="res://Scripts/drawer.gd" id="2_t6h8n"]
 [ext_resource type="PackedScene" uid="uid://5exh3vxe1lp4" path="res://Prefabs/button.tscn" id="3_vlomp"]
-[ext_resource type="PackedScene" path="res://Prefabs/time_indicator.tscn" id="5_xncab"]
+[ext_resource type="PackedScene" uid="uid://dj0g6mqkvedf" path="res://Prefabs/time_indicator.tscn" id="5_xncab"]
 [ext_resource type="StyleBox" path="res://themes/new_style_box_empty.tres" id="7_brwht"]
 [ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="7_t2kth"]
 [ext_resource type="Script" path="res://Scripts/entities/turretButton.gd" id="8_74lwp"]
@@ -14,13 +14,13 @@
 [ext_resource type="Theme" uid="uid://dk8t5d0tge33u" path="res://themes/new_theme.tres" id="10_8r6rh"]
 [ext_resource type="Texture2D" uid="uid://chyqviqfj8s3y" path="res://Assets/wall-icon.png" id="11_cgftu"]
 [ext_resource type="Texture2D" uid="uid://b2oagf2i8v03m" path="res://Assets/Sewing_machine_icon.png" id="12_f14ai"]
-[ext_resource type="PackedScene" uid="uid://cn2qab3762nnd" path="res://Mobs/gobbo.tscn" id="13_hjark"]
 [ext_resource type="Script" path="res://Scripts/debug_stuff/spawn_debug.gd" id="14_1t5ij"]
 [ext_resource type="Texture2D" uid="uid://du45iv02tjinv" path="res://Assets/ballista_frames/christmas_ballista_starting.png" id="16_852w2"]
 [ext_resource type="Texture2D" uid="uid://dvj5es6u62l4k" path="res://Assets/menu2_background.png" id="16_xsu0f"]
 [ext_resource type="Texture2D" uid="uid://bv07lg525k863" path="res://Assets/Cannon frames/treemissile2.png" id="17_76u45"]
-[ext_resource type="PackedScene" uid="uid://u4ppspvto0oe" path="res://Prefabs/spawner.tscn" id="20_maisa"]
-[ext_resource type="PackedScene" path="res://Prefabs/calendar.tscn" id="23_6puld"]
+[ext_resource type="PackedScene" path="res://Prefabs/spawner.tscn" id="20_maisa"]
+[ext_resource type="AudioStream" uid="uid://daopb2rq7plqh" path="res://Assets/music/Mark Wilson X - In the Hall of the Mountain King.mp3" id="21_vvki7"]
+[ext_resource type="PackedScene" uid="uid://w52a36ufjqna" path="res://Prefabs/calendar.tscn" id="23_6puld"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_s1qw0")
@@ -255,10 +255,6 @@ scale = Vector2(0.6, 0.6)
 
 [node name="enemies" type="Node" parent="."]
 
-[node name="Gobbo" parent="enemies" instance=ExtResource("13_hjark")]
-position = Vector2(-49, 166)
-collision_mask = 5
-
 [node name="towers" type="Node" parent="."]
 
 [node name="Spawner" parent="." instance=ExtResource("20_maisa")]
@@ -266,6 +262,10 @@ position = Vector2(9, 276)
 
 [node name="Spawner2" parent="." instance=ExtResource("20_maisa")]
 position = Vector2(83, -130)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_vvki7")
+autoplay = true
 
 [connection signal="timeout" from="TileMap/dayTimer" to="." method="_on_day_timer_timeout"]
 [connection signal="timeout" from="Camera2D/Timer" to="Camera2D" method="_on_timer_timeout"]

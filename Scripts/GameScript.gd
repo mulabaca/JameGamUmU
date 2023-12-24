@@ -284,6 +284,6 @@ func gained_plush(plush: int):
 	
 func game_over():
 	if metalStored >= requiredMetalToys and plushStored >= requiredPlushies:
-		print("win")
+		get_tree().change_scene_to_file("res://Scenes/End_Screen.tscn")
 	else:
-		print("lose")
+		get_tree().change_scene_to_file("res://Scenes/End_Screen_lose.tscn")
