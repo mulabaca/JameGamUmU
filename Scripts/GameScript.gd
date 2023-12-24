@@ -27,14 +27,12 @@ const UNAVAILABLE = Vector2i(10,0)
 signal cookies_changed(cookies)
 
 
-
 func _ready():
 	# Assuming TileMap is a child of the main scene
 	tileMap = $TileMap as Node2D
 	#print(buttonGroup.get_buttons())
 	for b in buttonGroup.get_buttons():
 		b.pressed.connect(button_pressed)
-		
 	
 	hoverCell = get_hovered_cell(get_global_mouse_position())
 	
