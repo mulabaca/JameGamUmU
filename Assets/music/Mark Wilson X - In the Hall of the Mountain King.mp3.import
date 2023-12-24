@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://daopb2rq7plqh"
+path="res://.godot/imported/Mark Wilson X - In the Hall of the Mountain King.mp3-455fbebefee4b3d2b4c8ba16169dd3ab.mp3str"
+
+[deps]
+
+source_file="res://Assets/music/Mark Wilson X - In the Hall of the Mountain King.mp3"
+dest_files=["res://.godot/imported/Mark Wilson X - In the Hall of the Mountain King.mp3-455fbebefee4b3d2b4c8ba16169dd3ab.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

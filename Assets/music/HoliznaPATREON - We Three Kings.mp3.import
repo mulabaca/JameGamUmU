@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dseg3a74o1726"
+path="res://.godot/imported/HoliznaPATREON - We Three Kings.mp3-620bc868d971b4bae8d5252beb82f0a3.mp3str"
+
+[deps]
+
+source_file="res://Assets/music/HoliznaPATREON - We Three Kings.mp3"
+dest_files=["res://.godot/imported/HoliznaPATREON - We Three Kings.mp3-620bc868d971b4bae8d5252beb82f0a3.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

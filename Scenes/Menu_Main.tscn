@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bg8iaaud7x4fa"]
+[gd_scene load_steps=6 format=3 uid="uid://bg8iaaud7x4fa"]
 
 [ext_resource type="Script" path="res://Scripts/Menu_Main.gd" id="1_t2dqu"]
+[ext_resource type="Texture2D" uid="uid://b4h82rf7snaq1" path="res://Assets/good_end.jpg" id="2_2gyb6"]
 [ext_resource type="Theme" uid="uid://dk8t5d0tge33u" path="res://themes/new_theme.tres" id="2_matfd"]
+[ext_resource type="AudioStream" uid="uid://dgmj2pfnohwcl" path="res://Assets/music/AudioCoffee - Winter Relax.mp3" id="4_21vbs"]
 
 [sub_resource type="Theme" id="Theme_j2br0"]
 
@@ -15,17 +17,37 @@ grow_vertical = 2
 theme = SubResource("Theme_j2br0")
 script = ExtResource("1_t2dqu")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(959.5, 540)
+scale = Vector2(1.88379, 1.76873)
+texture = ExtResource("2_2gyb6")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -0.5
+offset_top = 121.0
+offset_right = 0.5
+offset_bottom = 144.0
+grow_horizontal = 2
+theme = ExtResource("2_matfd")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
+text = "12 Days Before Quota"
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.552
-anchor_top = 1.0
-anchor_right = 0.552
-anchor_bottom = 1.0
-offset_left = -147.3
-offset_top = -679.065
-offset_right = -48.3001
-offset_bottom = -546.064
+anchor_left = 0.503
+anchor_top = 0.697
+anchor_right = 0.503
+anchor_bottom = 0.697
+offset_left = -153.76
+offset_top = -77.76
+offset_right = -54.7601
+offset_bottom = 55.241
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(3, 3)
@@ -46,6 +68,11 @@ text = "Options"
 [node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Quit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_21vbs")
+volume_db = -7.0
+autoplay = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]

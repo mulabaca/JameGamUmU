@@ -27,14 +27,12 @@ const UNAVAILABLE = Vector2i(10,0)
 signal cookies_changed(cookies)
 
 
-
 func _ready():
 	# Assuming TileMap is a child of the main scene
 	tileMap = $TileMap as Node2D
 	#print(buttonGroup.get_buttons())
 	for b in buttonGroup.get_buttons():
 		b.pressed.connect(button_pressed)
-		
 	
 	hoverCell = get_hovered_cell(get_global_mouse_position())
 	
@@ -219,6 +217,8 @@ func _on_day_timer_timeout():
 			$Camera2D/TimeIndicator.set_night()
 			for building in get_tree().get_nodes_in_group("resourceBuilding"):
 				building.stopWorking()
+			for button in buttonGroup.get_buttons():
+				button.disabled = true
 		time.NOON:
 			dayTime = time.AFTERNOON
 		time.MORNING:

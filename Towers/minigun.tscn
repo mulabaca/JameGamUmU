@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bgtp0ya0p67a"]
+[gd_scene load_steps=8 format=3 uid="uid://dfukjtun2wuig"]
 
 [ext_resource type="Script" path="res://Towers/minigun.gd" id="1_tkjdu"]
 [ext_resource type="Texture2D" uid="uid://lkkr4v33sumi" path="res://Assets/minigun_frames/minigunstart.png" id="2_7bn7x"]
@@ -23,7 +23,7 @@ animations = [{
 size = Vector2(29, 14)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6oipa"]
-radius = 83.006
+radius = 64.0703
 
 [node name="minigun" type="StaticBody2D"]
 collision_mask = 3
@@ -55,7 +55,6 @@ shape = SubResource("CircleShape2D_6oipa")
 wait_time = 0.1
 
 [node name="HealthModule" parent="." instance=ExtResource("2_s1yad")]
-health = 500
 maxHealth = 500
 
 [connection signal="body_entered" from="Tower" to="." method="_on_tower_body_entered"]
