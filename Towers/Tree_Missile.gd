@@ -10,11 +10,11 @@ var in_range = false
 @onready var shoot_timer = get_node("Timer")
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	#print("in range: ",in_range)
 	#print(is_instance_valid(curr))
 	if is_instance_valid(curr):
-		look_at(curr.global_position)
+		$AnimatedSprite2D.look_at(curr.global_position)
 		if shoot_timer.is_stopped():
 			shoot_timer.start()
 	#this is so that if there are more enemies in range shoot

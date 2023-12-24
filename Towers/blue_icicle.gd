@@ -6,7 +6,7 @@ var speed = 200
 var dmg = 5
 @onready var curtarget
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	#print("damage: ", dmg)
 	#print("target: ", target)
 	#this deals with enemy types so having multiple of one type of mob on the screen 

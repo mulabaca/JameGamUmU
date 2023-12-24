@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var health: int
+var health: int
 @export var maxHealth: int
 var bodiesInCollision:Array[Node2D] = []
 
@@ -11,6 +11,7 @@ var bodiesInCollision:Array[Node2D] = []
 func _ready():
 	
 	$HealthBar.set_max(maxHealth)
+	health = maxHealth
 	$HealthBar.value = health
 	$HealthBar.visible = false
 

@@ -14,7 +14,6 @@
 [ext_resource type="Theme" uid="uid://dk8t5d0tge33u" path="res://themes/new_theme.tres" id="10_8r6rh"]
 [ext_resource type="PackedScene" uid="uid://uyeypu3hd8tm" path="res://Towers/basic_ballista.tscn" id="10_i8skc"]
 [ext_resource type="Texture2D" uid="uid://chyqviqfj8s3y" path="res://Assets/wall-icon.png" id="11_cgftu"]
-[ext_resource type="PackedScene" uid="uid://da5bnobgws7my" path="res://Mobs/test_mob.tscn" id="11_t4iav"]
 [ext_resource type="Texture2D" uid="uid://b2oagf2i8v03m" path="res://Assets/Sewing_machine_icon.png" id="12_f14ai"]
 [ext_resource type="PackedScene" uid="uid://cn2qab3762nnd" path="res://Mobs/gobbo.tscn" id="13_hjark"]
 [ext_resource type="Script" path="res://Scripts/debug_stuff/spawn_debug.gd" id="14_1t5ij"]
@@ -23,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://bv07lg525k863" path="res://Assets/Cannon frames/treemissile2.png" id="17_76u45"]
 [ext_resource type="PackedScene" uid="uid://dl6r3ucr4x64p" path="res://Towers/Tree_Missile.tscn" id="18_xpkdm"]
 [ext_resource type="PackedScene" uid="uid://u4ppspvto0oe" path="res://Prefabs/spawner.tscn" id="20_maisa"]
+[ext_resource type="PackedScene" uid="uid://w52a36ufjqna" path="res://Prefabs/calendar.tscn" id="23_6puld"]
 [ext_resource type="PackedScene" uid="uid://bgtp0ya0p67a" path="res://Towers/minigun.tscn" id="24_a1i63"]
 
 [node name="World" type="Node2D"]
@@ -252,10 +252,11 @@ offset_bottom = -156.0
 theme = ExtResource("10_8r6rh")
 text = "🧸0"
 
-[node name="enemies" type="Node" parent="."]
+[node name="calendar" parent="Camera2D" instance=ExtResource("23_6puld")]
+position = Vector2(73, -158)
+scale = Vector2(0.6, 0.6)
 
-[node name="Test_Mob" parent="enemies" groups=["enemy"] instance=ExtResource("11_t4iav")]
-position = Vector2(-59, 46)
+[node name="enemies" type="Node" parent="."]
 
 [node name="Gobbo" parent="enemies" instance=ExtResource("13_hjark")]
 position = Vector2(-49, 166)

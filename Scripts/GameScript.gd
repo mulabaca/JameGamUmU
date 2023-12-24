@@ -46,10 +46,10 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if placing:
 		var mouse_position = get_global_mouse_position()
-		showOnCursor("unused", mouse_position)
+		showOnCursor(mouse_position)
 		
 		if (Input.is_action_pressed("placeTurret")):
 			var grid_position = world_to_map(mouse_position)
@@ -169,7 +169,7 @@ func nearest32(n:int):
 
 
 #Will use to show turret while placing
-func showOnCursor(turret: String, mousePosition: Vector2):
+func showOnCursor(mousePosition: Vector2):
 	var newHovercell = get_hovered_cell(mousePosition)
 	if newHovercell != hoverCell:
 		removeAvailability(hoverCell)
@@ -211,6 +211,9 @@ func _on_day_timer_timeout():
 				building.startWorking()
 		time.EVENING:
 			dayTime = time.MIDNIGHT
+			$Camera2D/calendar.add_day()
+			if($Camera2D/calendar.get_day() == 25):
+				game_over()
 		time.AFTERNOON:
 			dayTime = time.EVENING
 			$Camera2D/TimeIndicator.set_night()
@@ -278,3 +281,9 @@ func gained_metal(metal: int):
 func gained_plush(plush: int):
 	plushStored += plush
 	$"Camera2D/Plush counter".set_text("🧸"+str(plushStored)+"/"+str(requiredPlushies))
+	
+func game_over():
+	if metalStored >= requiredMetalToys and plushStored >= requiredPlushies:
+		print("win")
+	else:
+		print("lose")
