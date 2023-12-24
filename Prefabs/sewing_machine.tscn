@@ -63,7 +63,7 @@ bg_color = Color(0, 0.705882, 0, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d76kr"]
 size = Vector2(26, 19)
 
-[node name="sewingMachine" type="Area2D"]
+[node name="sewingMachine" type="Area2D" groups=["resourceBuilding"]]
 script = ExtResource("1_qqr5j")
 health = 100
 maxHealth = 100

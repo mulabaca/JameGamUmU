@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c1ti7jg3mutfc"]
+[gd_scene load_steps=23 format=3 uid="uid://c1ti7jg3mutfc"]
 
 [ext_resource type="TileSet" uid="uid://chy8k0w1bg5s4" path="res://Assets/Terrain_tile_set.tres" id="1_ca0dn"]
 [ext_resource type="Script" path="res://Scripts/GameScript.gd" id="1_s1qw0"]
@@ -18,6 +18,9 @@
 [ext_resource type="Texture2D" uid="uid://b2oagf2i8v03m" path="res://Assets/Sewing_machine_icon.png" id="12_f14ai"]
 [ext_resource type="PackedScene" uid="uid://cn2qab3762nnd" path="res://Mobs/gobbo.tscn" id="13_hjark"]
 [ext_resource type="Script" path="res://Scripts/debug_stuff/spawn.gd" id="14_1t5ij"]
+[ext_resource type="Texture2D" uid="uid://du45iv02tjinv" path="res://Assets/ballista_frames/christmas_ballista_starting.png" id="16_852w2"]
+[ext_resource type="Texture2D" uid="uid://dvj5es6u62l4k" path="res://Assets/menu2_background.png" id="16_xsu0f"]
+[ext_resource type="Texture2D" uid="uid://bv07lg525k863" path="res://Assets/Cannon frames/treemissile2.png" id="17_76u45"]
 [ext_resource type="PackedScene" uid="uid://dl6r3ucr4x64p" path="res://Towers/Tree_Missile.tscn" id="18_xpkdm"]
 
 [node name="World" type="Node2D"]
@@ -25,7 +28,9 @@ script = ExtResource("1_s1qw0")
 buttonGroup = ExtResource("2_1ihti")
 AdjacentOnly = true
 dayLenght = 60
-cookiesStored = 150
+cookiesStored = 1500
+requiredMetalToys = 2000
+requiredPlushies = 1000
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_ca0dn")
@@ -51,6 +56,7 @@ position_smoothing_speed = 15.0
 script = ExtResource("7_t2kth")
 
 [node name="TimeIndicator" parent="Camera2D" instance=ExtResource("5_xncab")]
+z_index = 10
 position = Vector2(0, -158)
 scale = Vector2(0.3, 0.3)
 
@@ -63,7 +69,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_t6h8n")
 
-[node name="WorkStationMenu" type="Button" parent="Camera2D/Menu"]
+[node name="ButtonMenu" type="Button" parent="Camera2D/Menu"]
 layout_mode = 0
 offset_left = -320.0
 offset_top = -180.0
@@ -72,12 +78,12 @@ offset_bottom = -159.0
 theme_override_styles/focus = ExtResource("7_brwht")
 flat = true
 
-[node name="menu" type="Sprite2D" parent="Camera2D/Menu/WorkStationMenu"]
+[node name="menu" type="Sprite2D" parent="Camera2D/Menu/ButtonMenu"]
 z_index = 10
 position = Vector2(-33, 128)
 texture = ExtResource("2_1otlr")
 
-[node name="GridContainer" type="GridContainer" parent="Camera2D/Menu/WorkStationMenu"]
+[node name="GridContainer" type="GridContainer" parent="Camera2D/Menu/ButtonMenu"]
 z_index = 10
 layout_mode = 0
 offset_left = -92.0
@@ -88,7 +94,7 @@ theme_override_constants/h_separation = 14
 theme_override_constants/v_separation = 14
 columns = 2
 
-[node name="AnvilButton" parent="Camera2D/Menu/WorkStationMenu/GridContainer" node_paths=PackedStringArray("worldNode") instance=ExtResource("3_vlomp")]
+[node name="AnvilButton" parent="Camera2D/Menu/ButtonMenu/GridContainer" node_paths=PackedStringArray("worldNode") instance=ExtResource("3_vlomp")]
 layout_mode = 2
 theme_override_styles/focus = ExtResource("7_brwht")
 text = "
@@ -96,9 +102,10 @@ text = "
 script = ExtResource("8_74lwp")
 cost = 300
 worldNode = NodePath("../../../../..")
+buildingType = 1
 metadata/Spawn = "anvil"
 
-[node name="FactoryButton" parent="Camera2D/Menu/WorkStationMenu/GridContainer" node_paths=PackedStringArray("worldNode") instance=ExtResource("3_vlomp")]
+[node name="FactoryButton" parent="Camera2D/Menu/ButtonMenu/GridContainer" node_paths=PackedStringArray("worldNode") instance=ExtResource("3_vlomp")]
 layout_mode = 2
 theme_override_styles/focus = ExtResource("7_brwht")
 icon = ExtResource("8_ugfjq")
@@ -107,7 +114,7 @@ cost = 100
 worldNode = NodePath("../../../../..")
 metadata/Spawn = "anvil"
 
-[node name="SewingButton" parent="Camera2D/Menu/WorkStationMenu/GridContainer" node_paths=PackedStringArray("worldNode") instance=ExtResource("3_vlomp")]
+[node name="SewingButton" parent="Camera2D/Menu/ButtonMenu/GridContainer" node_paths=PackedStringArray("worldNode") instance=ExtResource("3_vlomp")]
 layout_mode = 2
 theme_override_styles/focus = ExtResource("7_brwht")
 text = "
@@ -116,9 +123,10 @@ icon = ExtResource("12_f14ai")
 script = ExtResource("8_74lwp")
 cost = 200
 worldNode = NodePath("../../../../..")
+buildingType = 2
 metadata/Spawn = "Sewing"
 
-[node name="WallButton" parent="Camera2D/Menu/WorkStationMenu/GridContainer" node_paths=PackedStringArray("worldNode") instance=ExtResource("3_vlomp")]
+[node name="WallButton" parent="Camera2D/Menu/ButtonMenu/GridContainer" node_paths=PackedStringArray("worldNode") instance=ExtResource("3_vlomp")]
 layout_mode = 2
 theme_override_styles/focus = ExtResource("7_brwht")
 text = "
@@ -127,9 +135,10 @@ icon = ExtResource("11_cgftu")
 script = ExtResource("8_74lwp")
 cost = 50
 worldNode = NodePath("../../../../..")
+buildingType = 3
 metadata/Spawn = "wall"
 
-[node name="DebugMenu" type="VBoxContainer" parent="Camera2D/Menu/WorkStationMenu"]
+[node name="DebugMenu" type="VBoxContainer" parent="Camera2D/Menu/ButtonMenu"]
 layout_mode = 0
 offset_left = -97.0
 offset_top = 255.0
@@ -137,7 +146,77 @@ offset_right = -1.0
 offset_bottom = 320.0
 theme = ExtResource("10_8r6rh")
 
-[node name="spawnGobbo" type="Button" parent="Camera2D/Menu/WorkStationMenu/DebugMenu"]
+[node name="spawnGobbo" type="Button" parent="Camera2D/Menu/ButtonMenu/DebugMenu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "spawn gobbo"
+script = ExtResource("14_1t5ij")
+mobName = "gobbo"
+
+[node name="Menu2" type="Control" parent="Camera2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 21.99
+offset_right = 40.0
+offset_bottom = 61.99
+script = ExtResource("2_t6h8n")
+
+[node name="ButtonMenu" type="Button" parent="Camera2D/Menu2"]
+layout_mode = 0
+offset_left = -320.0
+offset_top = -180.0
+offset_right = -312.0
+offset_bottom = -159.0
+theme_override_styles/focus = ExtResource("7_brwht")
+flat = true
+
+[node name="menu" type="Sprite2D" parent="Camera2D/Menu2/ButtonMenu"]
+z_index = 8
+position = Vector2(-33, 128)
+texture = ExtResource("16_xsu0f")
+
+[node name="GridContainer" type="GridContainer" parent="Camera2D/Menu2/ButtonMenu"]
+z_index = 8
+layout_mode = 0
+offset_left = -92.0
+offset_top = 3.0
+offset_right = -7.0
+offset_bottom = 75.0
+theme_override_constants/h_separation = 14
+theme_override_constants/v_separation = 14
+columns = 2
+
+[node name="BallistaButton" parent="Camera2D/Menu2/ButtonMenu/GridContainer" node_paths=PackedStringArray("worldNode") instance=ExtResource("3_vlomp")]
+layout_mode = 2
+theme_override_styles/focus = ExtResource("7_brwht")
+text = "
+"
+icon = ExtResource("16_852w2")
+script = ExtResource("8_74lwp")
+cost = 300
+worldNode = NodePath("../../../../..")
+buildingType = 4
+metadata/Spawn = "anvil"
+
+[node name="TreeButton" parent="Camera2D/Menu2/ButtonMenu/GridContainer" node_paths=PackedStringArray("worldNode") instance=ExtResource("3_vlomp")]
+layout_mode = 2
+theme_override_styles/focus = ExtResource("7_brwht")
+icon = ExtResource("17_76u45")
+script = ExtResource("8_74lwp")
+cost = 500
+worldNode = NodePath("../../../../..")
+buildingType = 5
+metadata/Spawn = "anvil"
+
+[node name="DebugMenu" type="VBoxContainer" parent="Camera2D/Menu2/ButtonMenu"]
+layout_mode = 0
+offset_left = -97.0
+offset_top = 255.0
+offset_right = -1.0
+offset_bottom = 320.0
+theme = ExtResource("10_8r6rh")
+
+[node name="spawnGobbo" type="Button" parent="Camera2D/Menu2/ButtonMenu/DebugMenu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 9
 text = "spawn gobbo"
@@ -145,6 +224,7 @@ script = ExtResource("14_1t5ij")
 mobName = "gobbo"
 
 [node name="Cookie counter" type="Label" parent="Camera2D"]
+z_index = 10
 offset_left = -158.75
 offset_top = -179.0
 offset_right = -95.75
@@ -153,18 +233,20 @@ theme = ExtResource("10_8r6rh")
 text = "🍪0"
 
 [node name="Metal counter" type="Label" parent="Camera2D"]
-offset_left = 256.0
+z_index = 10
+offset_left = 239.0
 offset_top = -180.0
-offset_right = 319.0
+offset_right = 302.0
 offset_bottom = -157.0
 theme = ExtResource("10_8r6rh")
 text = "🤖0"
 
 [node name="Plush counter" type="Label" parent="Camera2D"]
-offset_left = 190.0
-offset_top = -180.0
-offset_right = 253.0
-offset_bottom = -157.0
+z_index = 10
+offset_left = 154.0
+offset_top = -179.0
+offset_right = 217.0
+offset_bottom = -156.0
 theme = ExtResource("10_8r6rh")
 text = "🧸0"
 
@@ -187,5 +269,7 @@ position = Vector2(236, 19)
 
 [connection signal="timeout" from="TileMap/dayTimer" to="." method="_on_day_timer_timeout"]
 [connection signal="timeout" from="Camera2D/Timer" to="Camera2D" method="_on_timer_timeout"]
-[connection signal="pressed" from="Camera2D/Menu/WorkStationMenu" to="Camera2D/Menu" method="_on_work_station_menu_pressed"]
-[connection signal="pressed" from="Camera2D/Menu/WorkStationMenu/DebugMenu/spawnGobbo" to="Camera2D/Menu/WorkStationMenu/DebugMenu/spawnGobbo" method="_on_pressed"]
+[connection signal="pressed" from="Camera2D/Menu/ButtonMenu" to="Camera2D/Menu" method="_on_work_station_menu_pressed"]
+[connection signal="pressed" from="Camera2D/Menu/ButtonMenu/DebugMenu/spawnGobbo" to="Camera2D/Menu/ButtonMenu/DebugMenu/spawnGobbo" method="_on_pressed"]
+[connection signal="pressed" from="Camera2D/Menu2/ButtonMenu" to="Camera2D/Menu2" method="_on_work_station_menu_pressed"]
+[connection signal="pressed" from="Camera2D/Menu2/ButtonMenu/DebugMenu/spawnGobbo" to="Camera2D/Menu2/ButtonMenu/DebugMenu/spawnGobbo" method="_on_pressed"]

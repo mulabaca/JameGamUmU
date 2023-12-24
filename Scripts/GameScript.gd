@@ -77,19 +77,24 @@ func button_pressed():
 	#get turret from button here
 	var currButton : BaseButton = buttonGroup.get_pressed_button()
 	if currButton != null:
-		var buttonName = currButton.getName()
-		#print("Button name:", buttonName)
-		if buttonName == "AnvilButton":
-			selectedTurretScene = load("res://Prefabs/anvil.tscn")
+		match currButton.buildingType:
+			0:
+				selectedTurretScene = load("res://Prefabs/factory.tscn")
 			
-		elif buttonName == "FactoryButton":
-			selectedTurretScene = load("res://Prefabs/factory.tscn")
-		
-		elif buttonName == "WallButton":
-			selectedTurretScene = load("res://Prefabs/wall.tscn")
+			1:
+				selectedTurretScene = load("res://Prefabs/anvil.tscn")
 			
-		elif buttonName == "SewingButton":
-			selectedTurretScene = load("res://Prefabs/sewing_machine.tscn")
+			2:
+				selectedTurretScene = load("res://Prefabs/sewing_machine.tscn")
+			
+			3:
+				selectedTurretScene = load("res://Prefabs/wall.tscn")
+			
+			4:
+				selectedTurretScene = load("res://Towers/basic_ballista.tscn")
+			
+			5:
+				selectedTurretScene = load("res://Towers/Tree_Missile.tscn")
 	else:
 		placing = false;
 		removeAvailability(hoverCell);
@@ -120,18 +125,19 @@ func place(grid_position: Vector2i):
 		add_child(turret_instance)
 		buildingArray.append(turret_instance)
 		print("Building Array", buildingArray)
-		match turret_instance.resource:
-			1:
-				turret_instance.gained_cookies.connect(gained_cookies)
-			2:
-				turret_instance.gained_metal.connect(gained_metal)
-			3:
-				turret_instance.gained_plush.connect(gained_plush)
-				
-		if dayTime < time.EVENING or dayTime == time.DUSK:
-			turret_instance.startWorking()
-		else:
-			turret_instance.stopWorking()
+		if turret_instance.is_in_group("resourceBuilding"):
+			match turret_instance.resource:
+				1:
+					turret_instance.gained_cookies.connect(gained_cookies)
+				2:
+					turret_instance.gained_metal.connect(gained_metal)
+				3:
+					turret_instance.gained_plush.connect(gained_plush)
+			
+			if dayTime < time.EVENING or dayTime == time.DUSK:
+				turret_instance.startWorking()
+			else:
+				turret_instance.stopWorking()
 		# Set the cell in the TileMap to indicate that it's occupied by a turret
 		removeAvailability(hoverCell)
 		tileMap.set_cell(2, Vector2i(grid_position.x/32 , grid_position.y/32), 0, Vector2i(8,0), 0)
@@ -201,14 +207,14 @@ func _on_day_timer_timeout():
 		time.MIDNIGHT:
 			dayTime = time.DUSK
 			$Camera2D/TimeIndicator.set_day()
-			for building in buildingArray:
+			for building in get_tree().get_nodes_in_group("resourceBuilding"):
 				building.startWorking()
 		time.EVENING:
 			dayTime = time.MIDNIGHT
 		time.AFTERNOON:
 			dayTime = time.EVENING
 			$Camera2D/TimeIndicator.set_night()
-			for building in buildingArray:
+			for building in get_tree().get_nodes_in_group("resourceBuilding"):
 				building.stopWorking()
 		time.NOON:
 			dayTime = time.AFTERNOON
