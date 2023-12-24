@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bgiu01i2vvt7m" path="res://Assets/menu_background.png" id="2_1otlr"]
 [ext_resource type="Script" path="res://Scripts/drawer.gd" id="2_t6h8n"]
 [ext_resource type="PackedScene" uid="uid://5exh3vxe1lp4" path="res://Prefabs/button.tscn" id="3_vlomp"]
-[ext_resource type="PackedScene" uid="uid://dj0g6mqkvedf" path="res://Prefabs/time_indicator.tscn" id="5_xncab"]
+[ext_resource type="PackedScene" path="res://Prefabs/time_indicator.tscn" id="5_xncab"]
 [ext_resource type="StyleBox" path="res://themes/new_style_box_empty.tres" id="7_brwht"]
 [ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="7_t2kth"]
 [ext_resource type="Script" path="res://Scripts/entities/turretButton.gd" id="8_74lwp"]
@@ -22,7 +22,8 @@
 [ext_resource type="Texture2D" uid="uid://dvj5es6u62l4k" path="res://Assets/menu2_background.png" id="16_xsu0f"]
 [ext_resource type="Texture2D" uid="uid://bv07lg525k863" path="res://Assets/Cannon frames/treemissile2.png" id="17_76u45"]
 [ext_resource type="PackedScene" uid="uid://dl6r3ucr4x64p" path="res://Towers/Tree_Missile.tscn" id="18_xpkdm"]
-[ext_resource type="PackedScene" path="res://Prefabs/spawner.tscn" id="20_maisa"]
+[ext_resource type="PackedScene" uid="uid://u4ppspvto0oe" path="res://Prefabs/spawner.tscn" id="20_maisa"]
+[ext_resource type="PackedScene" uid="uid://bgtp0ya0p67a" path="res://Towers/minigun.tscn" id="24_a1i63"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_s1qw0")
@@ -268,14 +269,14 @@ position = Vector2(48, 73)
 [node name="StaticBody2D" parent="towers" instance=ExtResource("18_xpkdm")]
 position = Vector2(112, -16)
 
+[node name="minigun" parent="towers" instance=ExtResource("24_a1i63")]
+position = Vector2(182, 41)
+
 [node name="Spawner" parent="." instance=ExtResource("20_maisa")]
 position = Vector2(9, 276)
 
 [node name="Spawner2" parent="." instance=ExtResource("20_maisa")]
 position = Vector2(83, -130)
-
-[node name="minigun" parent="." instance=ExtResource("24_a1i63")]
-position = Vector2(131, 72)
 
 [connection signal="timeout" from="TileMap/dayTimer" to="." method="_on_day_timer_timeout"]
 [connection signal="timeout" from="Camera2D/Timer" to="Camera2D" method="_on_timer_timeout"]
