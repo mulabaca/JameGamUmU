@@ -14,7 +14,7 @@ func _ready():
 	_closed_ancor = $ButtonMenu.position
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if (isOpen and snappedf($ButtonMenu.position.x, 1) != _opened_ancor.x):
 		$ButtonMenu.position += Vector2(drawSpeed, 0.0)
 	elif(!isOpen and snappedf($ButtonMenu.position.x, 1) != _closed_ancor.x):

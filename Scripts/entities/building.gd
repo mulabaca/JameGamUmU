@@ -9,7 +9,7 @@ var bodiesInCollision:Array[Node2D] = []
 var working = true
 
 @onready var timer:Timer = $Timer
-@onready var resourceTimer:Timer = $ResourceTimer
+var resourceTimer
 
 enum ResourceType{NONE, COOKIES, METALTOYS, PLUSHIES}
 @export var resource: ResourceType

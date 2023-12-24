@@ -14,7 +14,6 @@ bg_color = Color(0, 0.705882, 0, 1)
 [node name="HealthModule" type="Area2D"]
 collision_mask = 2
 script = ExtResource("1_qeumv")
-health = 100
 maxHealth = 100
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

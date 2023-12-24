@@ -43,8 +43,7 @@ one_shot = true
 script = ExtResource("3_3b5w4")
 
 [node name="HealthModule" parent="." instance=ExtResource("4_bgvld")]
-health = 500
-maxHealth = 500
+maxHealth = 700
 
 [connection signal="body_entered" from="Tower" to="." method="_on_tower_body_entered"]
 [connection signal="body_exited" from="Tower" to="." method="_on_tower_body_exited"]

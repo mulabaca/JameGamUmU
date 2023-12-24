@@ -56,7 +56,7 @@ func set_next_target():
 		set_movement_target(closestBuilding.global_position)
 		movement_target_position = closestBuilding.global_position
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if navigation_agent.is_navigation_finished():
 		return
 
