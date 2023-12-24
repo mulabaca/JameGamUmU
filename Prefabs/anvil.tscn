@@ -72,12 +72,12 @@ bg_color = Color(0, 0.705882, 0, 1)
 size = Vector2(23.5, 16)
 
 [node name="Anvil" type="Area2D" groups=["resourceBuilding"]]
-collision_mask = 3
+collision_mask = 2
 script = ExtResource("1_fmns2")
 health = 200
 maxHealth = 200
 resourceGain = 1
-resouceCooldown = 10
+resouceCooldown = 7
 resource = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

@@ -1,9 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bl448mfnmkclu"]
+[gd_scene load_steps=6 format=3 uid="uid://cpe6xhhagln16"]
 
-[ext_resource type="Script" path="res://Scripts/Menu_End.gd" id="1_ikt8l"]
-[ext_resource type="Texture2D" uid="uid://b4h82rf7snaq1" path="res://Assets/good_end.jpg" id="2_p6p25"]
-[ext_resource type="Theme" uid="uid://dk8t5d0tge33u" path="res://themes/new_theme.tres" id="3_lm816"]
-[ext_resource type="AudioStream" uid="uid://dfqd7p8v4wstt" path="res://Assets/music/Denys Kyshchuk - New Year.mp3" id="4_jputf"]
+[ext_resource type="Script" path="res://Scripts/Menu_End.gd" id="1_8jhpd"]
+[ext_resource type="Texture2D" uid="uid://ctfkdenj6gk6n" path="res://Assets/bad_end.png" id="3_nugvs"]
+[ext_resource type="Theme" uid="uid://dk8t5d0tge33u" path="res://themes/new_theme.tres" id="4_6ud3d"]
+[ext_resource type="AudioStream" uid="uid://dseg3a74o1726" path="res://Assets/music/HoliznaPATREON - We Three Kings.mp3" id="6_s2bgp"]
 
 [sub_resource type="Theme" id="Theme_j2br0"]
 
@@ -15,12 +15,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_j2br0")
-script = ExtResource("1_ikt8l")
+script = ExtResource("1_8jhpd")
 
 [node name="end" type="Sprite2D" parent="."]
-position = Vector2(959.5, 540)
-scale = Vector2(1.88379, 1.76873)
-texture = ExtResource("2_p6p25")
+position = Vector2(960, 539.5)
+scale = Vector2(1.58224, 1.30649)
+texture = ExtResource("3_nugvs")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -32,7 +32,7 @@ offset_top = 121.0
 offset_right = 0.5
 offset_bottom = 144.0
 grow_horizontal = 2
-theme = ExtResource("3_lm816")
+theme = ExtResource("4_6ud3d")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 100
 text = "[END MESSAGE]"
@@ -55,7 +55,7 @@ theme_override_constants/margin_bottom = 50
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-theme = ExtResource("3_lm816")
+theme = ExtResource("4_6ud3d")
 
 [node name="ReStartButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -66,7 +66,7 @@ layout_mode = 2
 text = "Quit"
 
 [node name="music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_jputf")
+stream = ExtResource("6_s2bgp")
 volume_db = -5.0
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ReStartButton" to="." method="_on_re_start_button_pressed"]
