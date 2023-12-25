@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bgiu01i2vvt7m" path="res://Assets/menu_background.png" id="2_1otlr"]
 [ext_resource type="Script" path="res://Scripts/drawer.gd" id="2_t6h8n"]
 [ext_resource type="PackedScene" uid="uid://5exh3vxe1lp4" path="res://Prefabs/button.tscn" id="3_vlomp"]
-[ext_resource type="PackedScene" path="res://Prefabs/time_indicator.tscn" id="5_xncab"]
+[ext_resource type="PackedScene" uid="uid://dj0g6mqkvedf" path="res://Prefabs/time_indicator.tscn" id="5_xncab"]
 [ext_resource type="StyleBox" path="res://themes/new_style_box_empty.tres" id="7_brwht"]
 [ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="7_t2kth"]
 [ext_resource type="Script" path="res://Scripts/entities/turretButton.gd" id="8_74lwp"]
@@ -20,8 +20,8 @@
 [ext_resource type="Texture2D" uid="uid://bv07lg525k863" path="res://Assets/Cannon frames/treemissile2.png" id="17_76u45"]
 [ext_resource type="Texture2D" uid="uid://lkkr4v33sumi" path="res://Assets/minigun_frames/minigunstart.png" id="19_5xga4"]
 [ext_resource type="AudioStream" uid="uid://daopb2rq7plqh" path="res://Assets/music/Mark Wilson X - In the Hall of the Mountain King.mp3" id="21_vvki7"]
-[ext_resource type="PackedScene" path="res://Prefabs/calendar.tscn" id="23_6puld"]
-[ext_resource type="PackedScene" path="res://Prefabs/santa_bag.tscn" id="23_lh1e4"]
+[ext_resource type="PackedScene" uid="uid://w52a36ufjqna" path="res://Prefabs/calendar.tscn" id="23_6puld"]
+[ext_resource type="PackedScene" uid="uid://s5nob1taoiuy" path="res://Prefabs/santa_bag.tscn" id="23_lh1e4"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_s1qw0")
@@ -62,12 +62,13 @@ scale = Vector2(0.3, 0.3)
 
 [node name="Timer" type="Timer" parent="Camera2D"]
 
-[node name="Menu" type="Control" parent="Camera2D"]
+[node name="Menu" type="Control" parent="Camera2D" node_paths=PackedStringArray("OtherMenu")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_t6h8n")
+OtherMenu = NodePath("../Menu2")
 
 [node name="ButtonMenu" type="Button" parent="Camera2D/Menu"]
 layout_mode = 0
@@ -155,13 +156,14 @@ text = "spawn gobbo"
 script = ExtResource("14_1t5ij")
 mobName = "gobbo"
 
-[node name="Menu2" type="Control" parent="Camera2D"]
+[node name="Menu2" type="Control" parent="Camera2D" node_paths=PackedStringArray("OtherMenu")]
 layout_mode = 3
 anchors_preset = 0
 offset_top = 21.99
 offset_right = 40.0
 offset_bottom = 61.99
 script = ExtResource("2_t6h8n")
+OtherMenu = NodePath("../Menu")
 
 [node name="ButtonMenu" type="Button" parent="Camera2D/Menu2"]
 layout_mode = 0
@@ -248,18 +250,18 @@ text = "🍪0"
 
 [node name="Metal counter" type="Label" parent="Camera2D"]
 z_index = 10
-offset_left = 239.0
+offset_left = 211.0
 offset_top = -180.0
-offset_right = 302.0
+offset_right = 274.0
 offset_bottom = -157.0
 theme = ExtResource("10_8r6rh")
 text = "🤖0"
 
 [node name="Plush counter" type="Label" parent="Camera2D"]
 z_index = 10
-offset_left = 154.0
+offset_left = 115.0
 offset_top = -179.0
-offset_right = 217.0
+offset_right = 178.0
 offset_bottom = -156.0
 theme = ExtResource("10_8r6rh")
 text = "🧸0"

@@ -234,6 +234,7 @@ func _on_day_timer_timeout():
 			for building in get_tree().get_nodes_in_group("resourceBuilding"):
 				building.startWorking()
 			createNewSpawner()
+			createNewSpawner()
 		time.EVENING:
 			dayTime = time.MIDNIGHT
 			$Camera2D/calendar.add_day()
@@ -244,8 +245,6 @@ func _on_day_timer_timeout():
 			$Camera2D/TimeIndicator.set_night()
 			for building in get_tree().get_nodes_in_group("resourceBuilding"):
 				building.stopWorking()
-			for button in buttonGroup.get_buttons():
-				button.disabled = true
 		time.NOON:
 			dayTime = time.AFTERNOON
 		time.MORNING:
@@ -297,7 +296,8 @@ func pay_cookies(cost: int) -> bool:
 	if cookiesStored >= cost:
 		cookiesStored -= cost
 		$"Camera2D/Cookie counter".set_text("🍪" + str(cookiesStored))
-		cookies_changed.emit(cookiesStored)
+		if dayTime != time.EVENING and dayTime != time.MIDNIGHT:
+			cookies_changed.emit(cookiesStored)
 		return true
 	return false
 
