@@ -29,8 +29,8 @@ buttonGroup = ExtResource("2_1ihti")
 AdjacentOnly = true
 dayLenght = 120
 cookiesStored = 1500
-requiredMetalToys = 400
-requiredPlushies = 300
+requiredMetalToys = 1000
+requiredPlushies = 750
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_ca0dn")
@@ -139,6 +139,7 @@ buildingType = 3
 metadata/Spawn = "wall"
 
 [node name="DebugMenu" type="VBoxContainer" parent="Camera2D/Menu/ButtonMenu"]
+visible = false
 layout_mode = 0
 offset_left = -97.0
 offset_top = 255.0
@@ -147,6 +148,7 @@ offset_bottom = 320.0
 theme = ExtResource("10_8r6rh")
 
 [node name="spawnGobbo" type="Button" parent="Camera2D/Menu/ButtonMenu/DebugMenu"]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 9
 text = "spawn gobbo"
@@ -203,7 +205,7 @@ layout_mode = 2
 theme_override_styles/focus = ExtResource("7_brwht")
 icon = ExtResource("17_76u45")
 script = ExtResource("8_74lwp")
-cost = 500
+cost = 1000
 worldNode = NodePath("../../../../..")
 buildingType = 5
 metadata/Spawn = "anvil"
@@ -213,12 +215,13 @@ layout_mode = 2
 theme_override_styles/focus = ExtResource("7_brwht")
 icon = ExtResource("19_5xga4")
 script = ExtResource("8_74lwp")
-cost = 1000
+cost = 2000
 worldNode = NodePath("../../../../..")
 buildingType = 6
 metadata/Spawn = "anvil"
 
 [node name="DebugMenu" type="VBoxContainer" parent="Camera2D/Menu2/ButtonMenu"]
+visible = false
 layout_mode = 0
 offset_left = -97.0
 offset_top = 255.0
@@ -227,6 +230,7 @@ offset_bottom = 320.0
 theme = ExtResource("10_8r6rh")
 
 [node name="spawnGobbo" type="Button" parent="Camera2D/Menu2/ButtonMenu/DebugMenu"]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 9
 text = "spawn gobbo"
