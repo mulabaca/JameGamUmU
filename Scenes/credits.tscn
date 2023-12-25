@@ -38,7 +38,7 @@ anchor_bottom = 0.5
 offset_left = -498.0
 offset_top = -389.0
 offset_right = 498.0
-offset_bottom = 389.0
+offset_bottom = 445.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_odo5o")
@@ -61,7 +61,9 @@ Denys Kyshchuk - New Year
 
 HoliznaPATREON - We Three Kings
 
-[b]All music from \"Free Music Archive\"  - Creative Commons[b]"
+[b]All music from \"Free Music Archive\"  - Creative Commons[b]
+
+Thank you for playing!"
 text_direction = 1
 
 [node name="Button" type="Button" parent="."]
