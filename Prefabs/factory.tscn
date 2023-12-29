@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://2kxxsudhcxst"]
+[gd_scene load_steps=14 format=3 uid="uid://2kxxsudhcxst"]
 
 [ext_resource type="Texture2D" uid="uid://wgwfsteag045" path="res://Assets/factory_sprite.png" id="1_iaaop"]
 [ext_resource type="Script" path="res://Scripts/entities/building.gd" id="1_r8p3j"]
 [ext_resource type="Theme" uid="uid://dk8t5d0tge33u" path="res://themes/new_theme.tres" id="3_y1s5p"]
+[ext_resource type="Texture2D" uid="uid://bisrqh5tw28vl" path="res://Assets/cookie.png" id="4_ty24f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mp204"]
 atlas = ExtResource("1_iaaop")
@@ -109,7 +110,11 @@ offset_top = -27.0
 offset_right = 24.0
 offset_bottom = -4.0
 theme = ExtResource("3_y1s5p")
-text = "+🍪"
+text = "+"
+
+[node name="Sprite2D" type="Sprite2D" parent="Label"]
+position = Vector2(21, 12)
+texture = ExtResource("4_ty24f")
 
 [node name="labelCooldown" type="Timer" parent="."]
 wait_time = 0.3

@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://cd3aqhfd587ua"]
+[gd_scene load_steps=14 format=3 uid="uid://cd3aqhfd587ua"]
 
 [ext_resource type="Script" path="res://Scripts/entities/building.gd" id="1_qqr5j"]
 [ext_resource type="Texture2D" uid="uid://bi6p7iiexkohy" path="res://Assets/Sewing_machine_sprite.png" id="1_s3220"]
 [ext_resource type="Theme" uid="uid://dk8t5d0tge33u" path="res://themes/new_theme.tres" id="3_7on33"]
+[ext_resource type="Texture2D" uid="uid://1sgn4oqycsgr" path="res://Assets/TeddyBear.png" id="4_kdnen"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j5i0p"]
 atlas = ExtResource("1_s3220")
@@ -112,7 +113,11 @@ offset_top = -27.0
 offset_right = 24.0
 offset_bottom = -4.0
 theme = ExtResource("3_7on33")
-text = "+🧸"
+text = "+"
+
+[node name="Sprite2D" type="Sprite2D" parent="Label"]
+position = Vector2(21, 12)
+texture = ExtResource("4_kdnen")
 
 [node name="labelCooldown" type="Timer" parent="."]
 wait_time = 0.3

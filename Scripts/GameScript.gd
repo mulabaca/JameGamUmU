@@ -288,14 +288,14 @@ func changeLight():
 
 func gained_cookies(cookies):
 	cookiesStored += cookies;
-	$"Camera2D/Cookie counter".set_text("🍪" + str(cookiesStored))
+	$"Camera2D/Cookie counter".set_text(str(cookiesStored))
 	cookies_changed.emit(cookiesStored)
 
 #returns bool for weather it successfully paid cookies
 func pay_cookies(cost: int) -> bool:
 	if cookiesStored >= cost:
 		cookiesStored -= cost
-		$"Camera2D/Cookie counter".set_text("🍪" + str(cookiesStored))
+		$"Camera2D/Cookie counter".set_text(str(cookiesStored))
 		if dayTime != time.EVENING and dayTime != time.MIDNIGHT:
 			cookies_changed.emit(cookiesStored)
 		return true
@@ -303,11 +303,11 @@ func pay_cookies(cost: int) -> bool:
 
 func gained_metal(metal: int):
 	metalStored += metal;
-	$"Camera2D/Metal counter".set_text("🤖"+str(metalStored)+"/"+str(requiredMetalToys))
+	$"Camera2D/Metal counter".set_text(str(metalStored)+"/"+str(requiredMetalToys))
 
 func gained_plush(plush: int):
 	plushStored += plush
-	$"Camera2D/Plush counter".set_text("🧸"+str(plushStored)+"/"+str(requiredPlushies))
+	$"Camera2D/Plush counter".set_text(str(plushStored)+"/"+str(requiredPlushies))
 	
 func game_over():
 	if metalStored >= requiredMetalToys and plushStored >= requiredPlushies:
@@ -320,8 +320,8 @@ func loose_toys():
 		metalStored -= 1
 	if plushStored != 0:
 		plushStored -= 1
-	$"Camera2D/Metal counter".set_text("🤖"+str(metalStored)+"/"+str(requiredMetalToys))
-	$"Camera2D/Plush counter".set_text("🧸"+str(plushStored)+"/"+str(requiredPlushies))
+	$"Camera2D/Metal counter".set_text(str(metalStored)+"/"+str(requiredMetalToys))
+	$"Camera2D/Plush counter".set_text(str(plushStored)+"/"+str(requiredPlushies))
 
 
 func _on_audio_stream_player_finished():

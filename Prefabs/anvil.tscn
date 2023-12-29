@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://b5ogo0w0s5oeg"]
+[gd_scene load_steps=16 format=3 uid="uid://b5ogo0w0s5oeg"]
 
 [ext_resource type="Texture2D" uid="uid://8pmfs3v2fpw3" path="res://Assets/anvil_Sprite.png" id="1_72250"]
 [ext_resource type="Script" path="res://Scripts/entities/building.gd" id="1_fmns2"]
 [ext_resource type="Theme" uid="uid://dk8t5d0tge33u" path="res://themes/new_theme.tres" id="3_a0gfy"]
+[ext_resource type="Texture2D" uid="uid://blfhpl70yeetn" path="res://Assets/robot.png" id="4_ks6kk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6apl7"]
 atlas = ExtResource("1_72250")
@@ -120,7 +121,11 @@ offset_top = -27.0
 offset_right = 24.0
 offset_bottom = -4.0
 theme = ExtResource("3_a0gfy")
-text = "+🤖"
+text = "+"
+
+[node name="Sprite2D" type="Sprite2D" parent="Label"]
+position = Vector2(21, 12)
+texture = ExtResource("4_ks6kk")
 
 [node name="labelCooldown" type="Timer" parent="."]
 wait_time = 0.3
