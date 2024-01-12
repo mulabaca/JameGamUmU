@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c1ti7jg3mutfc"]
+[gd_scene load_steps=28 format=3 uid="uid://c1ti7jg3mutfc"]
 
 [ext_resource type="TileSet" uid="uid://chy8k0w1bg5s4" path="res://Assets/Terrain_tile_set.tres" id="1_ca0dn"]
 [ext_resource type="Script" path="res://Scripts/GameScript.gd" id="1_s1qw0"]
@@ -20,7 +20,9 @@
 [ext_resource type="Texture2D" uid="uid://bv07lg525k863" path="res://Assets/Cannon frames/treemissile2.png" id="17_76u45"]
 [ext_resource type="Texture2D" uid="uid://lkkr4v33sumi" path="res://Assets/minigun_frames/minigunstart.png" id="19_5xga4"]
 [ext_resource type="Texture2D" uid="uid://bisrqh5tw28vl" path="res://Assets/cookie.png" id="20_2fmnt"]
+[ext_resource type="Texture2D" uid="uid://dg1dr6pkwr2r1" path="res://Assets/earlyWin.png" id="20_ailj8"]
 [ext_resource type="Texture2D" uid="uid://blfhpl70yeetn" path="res://Assets/robot.png" id="21_gesce"]
+[ext_resource type="Script" path="res://Scenes/earlyLeave.gd" id="21_u2opx"]
 [ext_resource type="AudioStream" uid="uid://daopb2rq7plqh" path="res://Assets/music/Mark Wilson X - In the Hall of the Mountain King.mp3" id="21_vvki7"]
 [ext_resource type="Texture2D" uid="uid://1sgn4oqycsgr" path="res://Assets/TeddyBear.png" id="22_kdcb6"]
 [ext_resource type="PackedScene" uid="uid://w52a36ufjqna" path="res://Prefabs/calendar.tscn" id="23_6puld"]
@@ -242,6 +244,30 @@ text = "spawn gobbo"
 script = ExtResource("14_1t5ij")
 mobName = "gobbo"
 
+[node name="earlyLeave" type="Sprite2D" parent="Camera2D"]
+visible = false
+z_index = 12
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("20_ailj8")
+script = ExtResource("21_u2opx")
+
+[node name="leave" type="Button" parent="Camera2D/earlyLeave"]
+offset_left = -239.0
+offset_right = -79.0
+offset_bottom = 40.0
+scale = Vector2(3, 3)
+theme = ExtResource("10_8r6rh")
+text = "Leave"
+
+[node name="stay" type="Button" parent="Camera2D/earlyLeave"]
+offset_left = -236.0
+offset_top = 134.67
+offset_right = -72.0
+offset_bottom = 174.67
+scale = Vector2(3, 3)
+theme = ExtResource("10_8r6rh")
+text = "Play until christmass"
+
 [node name="Cookie counter" type="Label" parent="Camera2D"]
 z_index = 10
 offset_left = -158.75
@@ -302,4 +328,6 @@ position = Vector2(80, 15)
 [connection signal="pressed" from="Camera2D/Menu/ButtonMenu/DebugMenu/spawnGobbo" to="Camera2D/Menu/ButtonMenu/DebugMenu/spawnGobbo" method="_on_pressed"]
 [connection signal="pressed" from="Camera2D/Menu2/ButtonMenu" to="Camera2D/Menu2" method="_on_work_station_menu_pressed"]
 [connection signal="pressed" from="Camera2D/Menu2/ButtonMenu/DebugMenu/spawnGobbo" to="Camera2D/Menu2/ButtonMenu/DebugMenu/spawnGobbo" method="_on_pressed"]
+[connection signal="pressed" from="Camera2D/earlyLeave/leave" to="Camera2D/earlyLeave" method="_on_leave_pressed"]
+[connection signal="pressed" from="Camera2D/earlyLeave/stay" to="Camera2D/earlyLeave" method="_on_stay_pressed"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

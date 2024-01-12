@@ -74,7 +74,7 @@ text = "Quit"
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_jputf")
-volume_db = -5.0
+volume_db = -7.488
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ReStartButton" to="." method="_on_re_start_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Credits" to="." method="_on_credits_pressed"]

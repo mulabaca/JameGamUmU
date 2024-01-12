@@ -1,12 +1,7 @@
 extends Control
 
 func _ready():
-	#initialize(false)
-	# we don't want to use this here, need to load this scene
-	pass
-
-func initialize(isWinning:bool):
-		$music.play(4.9)
+	$music.play(4.9)
 #
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

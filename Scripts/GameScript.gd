@@ -39,9 +39,9 @@ func _ready():
 	
 	$TileMap/dayTimer.start(dayLenght/7.0)
 	cookies_changed.emit(cookiesStored)
-	$"Camera2D/Cookie counter".set_text("🍪" + str(cookiesStored))
-	$"Camera2D/Metal counter".set_text("🤖0/"+str(requiredMetalToys))
-	$"Camera2D/Plush counter".set_text("🧸0/"+str(requiredPlushies))
+	$"Camera2D/Cookie counter".set_text(str(cookiesStored))
+	$"Camera2D/Metal counter".set_text("0/"+str(requiredMetalToys))
+	$"Camera2D/Plush counter".set_text("0/"+str(requiredPlushies))
 	$santaBag.loose_toys.connect(loose_toys)
 	
 	createNewSpawner()
@@ -296,18 +296,22 @@ func pay_cookies(cost: int) -> bool:
 	if cookiesStored >= cost:
 		cookiesStored -= cost
 		$"Camera2D/Cookie counter".set_text(str(cookiesStored))
-		if dayTime != time.EVENING and dayTime != time.MIDNIGHT:
-			cookies_changed.emit(cookiesStored)
+		cookies_changed.emit(cookiesStored)
 		return true
+		
 	return false
 
 func gained_metal(metal: int):
 	metalStored += metal;
 	$"Camera2D/Metal counter".set_text(str(metalStored)+"/"+str(requiredMetalToys))
+	if metalStored >= requiredMetalToys and plushStored >= requiredPlushies:
+		$Camera2D/earlyLeave.visible = true;
 
 func gained_plush(plush: int):
 	plushStored += plush
 	$"Camera2D/Plush counter".set_text(str(plushStored)+"/"+str(requiredPlushies))
+	if metalStored >= requiredMetalToys and plushStored >= requiredPlushies:
+		$Camera2D/earlyLeave.visible = true;
 	
 func game_over():
 	if metalStored >= requiredMetalToys and plushStored >= requiredPlushies:
